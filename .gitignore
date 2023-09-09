@@ -1,6 +1,6 @@
 # Ignore all files and directories
 /*
-
+MCU/Debug
 # But include a.txt
 !/.git
 !/.gitignore
