@@ -23,6 +23,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "sht3x.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -33,7 +36,15 @@ typedef StaticTask_t osStaticThreadDef_t;
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define RECEIVED_MESSAGE_SIZE 512	// Max size for ESP message
+#define IP_ADDRESS "192.168.1.249"	// Server IP Address
+#define PORT "9999"					// Server Port number
+// AT command for connecting to server
+#define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
+#define WIFI_SSID "Telekom-2D6325"	// Local WIFI SSID
+#define WIFI_PASS "4njteenm6s7cx4cb"// Local WIFI password
+// AT command for connecting to wifi
+#define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -54,55 +65,89 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for sendString */
-osThreadId_t sendStringHandle;
+/* Definitions for SendDataWithESP */
+osThreadId_t SendDataWithESPHandle;
 uint32_t SendStringBuffer[ 128 ];
 osStaticThreadDef_t SendStringControlBlock;
-const osThreadAttr_t sendString_attributes = {
-  .name = "sendString",
+const osThreadAttr_t SendDataWithESP_attributes = {
+  .name = "SendDataWithESP",
   .cb_mem = &SendStringControlBlock,
   .cb_size = sizeof(SendStringControlBlock),
   .stack_mem = &SendStringBuffer[0],
   .stack_size = sizeof(SendStringBuffer),
-  .priority = (osPriority_t) osPriorityRealtime7,
+  .priority = (osPriority_t) osPriorityRealtime5,
 };
-/* Definitions for FSM */
-osThreadId_t FSMHandle;
+/* Definitions for SetUpESP */
+osThreadId_t SetUpESPHandle;
 uint32_t FSMBuffer[ 128 ];
 osStaticThreadDef_t FSMControlBlock;
-const osThreadAttr_t FSM_attributes = {
-  .name = "FSM",
+const osThreadAttr_t SetUpESP_attributes = {
+  .name = "SetUpESP",
   .cb_mem = &FSMControlBlock,
   .cb_size = sizeof(FSMControlBlock),
   .stack_mem = &FSMBuffer[0],
   .stack_size = sizeof(FSMBuffer),
-  .priority = (osPriority_t) osPriorityLow,
+  .priority = (osPriority_t) osPriorityRealtime6,
 };
-/* Definitions for readData */
-osThreadId_t readDataHandle;
+/* Definitions for ReadSensorData */
+osThreadId_t ReadSensorDataHandle;
 uint32_t readDataBuffer[ 128 ];
 osStaticThreadDef_t readDataControlBlock;
-const osThreadAttr_t readData_attributes = {
-  .name = "readData",
+const osThreadAttr_t ReadSensorData_attributes = {
+  .name = "ReadSensorData",
   .cb_mem = &readDataControlBlock,
   .cb_size = sizeof(readDataControlBlock),
   .stack_mem = &readDataBuffer[0],
   .stack_size = sizeof(readDataBuffer),
-  .priority = (osPriority_t) osPriorityRealtime6,
+  .priority = (osPriority_t) osPriorityRealtime4,
+};
+/* Definitions for ReadESP */
+osThreadId_t ReadESPHandle;
+uint32_t ReadUartBuffer[ 128 ];
+osStaticThreadDef_t ReadUartControlBlock;
+const osThreadAttr_t ReadESP_attributes = {
+  .name = "ReadESP",
+  .cb_mem = &ReadUartControlBlock,
+  .cb_size = sizeof(ReadUartControlBlock),
+  .stack_mem = &ReadUartBuffer[0],
+  .stack_size = sizeof(ReadUartBuffer),
+  .priority = (osPriority_t) osPriorityRealtime7,
 };
 /* Definitions for queueTempAndHumid */
 osMessageQueueId_t queueTempAndHumidHandle;
 const osMessageQueueAttr_t queueTempAndHumid_attributes = {
   .name = "queueTempAndHumid"
 };
+/* Definitions for queueRxDataChar */
+osMessageQueueId_t queueRxDataCharHandle;
+const osMessageQueueAttr_t queueRxDataChar_attributes = {
+  .name = "queueRxDataChar"
+};
 /* Definitions for semaphoreHaltUntilString */
 osSemaphoreId_t semaphoreHaltUntilStringHandle;
 const osSemaphoreAttr_t semaphoreHaltUntilString_attributes = {
   .name = "semaphoreHaltUntilString"
 };
+/* Definitions for semaphoreESPResponseValid */
+osSemaphoreId_t semaphoreESPResponseValidHandle;
+const osSemaphoreAttr_t semaphoreESPResponseValid_attributes = {
+  .name = "semaphoreESPResponseValid"
+};
+/* Definitions for semaphoreESPSetUpFinished */
+osSemaphoreId_t semaphoreESPSetUpFinishedHandle;
+const osSemaphoreAttr_t semaphoreESPSetUpFinished_attributes = {
+  .name = "semaphoreESPSetUpFinished"
+};
 /* USER CODE BEGIN PV */
 // Sensor handle
 sht3x_handle_t sht31 = {&hi2c4, SHT3X_I2C_DEVICE_ADDRESS_ADDR_PIN_LOW};
+enum state {	STATE_CONNECT_WIFI, STATE_CONNECT_SERVER, STATE_SEND_CIPSEND, STATE_SEND_DATA,
+				STATE_SEND_ATE0, STATE_READY, STATE_ERROR, STATE_CONFIG};
+enum state currentState = STATE_READY;
+
+uint8_t received_message[RECEIVED_MESSAGE_SIZE] = {'\0'};
+uint8_t rx_buffer;	// Global variable for UART callback func.
+uint8_t expectedESPResponse[64] = {'\0'};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -111,9 +156,10 @@ static void MX_GPIO_Init(void);
 static void MX_I2C4_Init(void);
 static void MX_USART2_UART_Init(void);
 void StartDefaultTask(void *argument);
-void prvTaskSendString(void *argument);
-void prvTaskFSM(void *argument);
+void prvTaskSendDataWithESP(void *argument);
+void prvTaskSetUpESP(void *argument);
 void prvTaskReadTempAndHumidity(void *argument);
+void prvTaskReadESP(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -169,6 +215,12 @@ int main(void)
   /* creation of semaphoreHaltUntilString */
   semaphoreHaltUntilStringHandle = osSemaphoreNew(1, 1, &semaphoreHaltUntilString_attributes);
 
+  /* creation of semaphoreESPResponseValid */
+  semaphoreESPResponseValidHandle = osSemaphoreNew(1, 1, &semaphoreESPResponseValid_attributes);
+
+  /* creation of semaphoreESPSetUpFinished */
+  semaphoreESPSetUpFinishedHandle = osSemaphoreNew(3, 3, &semaphoreESPSetUpFinished_attributes);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -181,6 +233,9 @@ int main(void)
   /* creation of queueTempAndHumid */
   queueTempAndHumidHandle = osMessageQueueNew (16, sizeof(float), &queueTempAndHumid_attributes);
 
+  /* creation of queueRxDataChar */
+  queueRxDataCharHandle = osMessageQueueNew (512, sizeof(uint8_t), &queueRxDataChar_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -189,14 +244,17 @@ int main(void)
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
-  /* creation of sendString */
-  sendStringHandle = osThreadNew(prvTaskSendString, NULL, &sendString_attributes);
+  /* creation of SendDataWithESP */
+  SendDataWithESPHandle = osThreadNew(prvTaskSendDataWithESP, NULL, &SendDataWithESP_attributes);
 
-  /* creation of FSM */
-  FSMHandle = osThreadNew(prvTaskFSM, NULL, &FSM_attributes);
+  /* creation of SetUpESP */
+  SetUpESPHandle = osThreadNew(prvTaskSetUpESP, NULL, &SetUpESP_attributes);
 
-  /* creation of readData */
-  readDataHandle = osThreadNew(prvTaskReadTempAndHumidity, NULL, &readData_attributes);
+  /* creation of ReadSensorData */
+  ReadSensorDataHandle = osThreadNew(prvTaskReadTempAndHumidity, NULL, &ReadSensorData_attributes);
+
+  /* creation of ReadESP */
+  ReadESPHandle = osThreadNew(prvTaskReadESP, NULL, &ReadESP_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -362,6 +420,8 @@ static void MX_USART2_UART_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN USART2_Init 2 */
+  HAL_UART_Receive_IT(&huart2, &rx_buffer, 1);
+  __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
 
   /* USER CODE END USART2_Init 2 */
 
@@ -409,6 +469,12 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	// Store new data in received_message buffer
+	osMessageQueuePut(queueRxDataCharHandle, &rx_buffer, 0, 0);
+	// Re-enable IRQ
+	HAL_UART_Receive_IT(&huart2, &rx_buffer,  1);
+}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -429,40 +495,152 @@ void StartDefaultTask(void *argument)
   /* USER CODE END 5 */
 }
 
-/* USER CODE BEGIN Header_prvTaskSendString */
+/* USER CODE BEGIN Header_prvTaskSendDataWithESP */
 /**
-* @brief Function implementing the sendString thread.
+* @brief Function implementing the SendDataWithESP thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_prvTaskSendString */
-void prvTaskSendString(void *argument)
+/* USER CODE END Header_prvTaskSendDataWithESP */
+void prvTaskSendDataWithESP(void *argument)
 {
-  /* USER CODE BEGIN prvTaskSendString */
+  /* USER CODE BEGIN prvTaskSendDataWithESP */
   /* Infinite loop */
+	// Wait for ESP setup to finish
+	osSemaphoreAcquire(semaphoreESPSetUpFinishedHandle, osWaitForever);
+
+	float temperature, humidity;
+
+    char dataString[14];  // -40<temp<125, 00<humid<100 => max 13 char + '\0'
+    char cipsendString[18];
   for(;;)
   {
-    osDelay(1);
+	// Get data
+    osMessageQueueGet(queueTempAndHumidHandle, &temperature, 0, osWaitForever);
+    osMessageQueueGet(queueTempAndHumidHandle, &humidity, 0, osWaitForever);
+
+    // Format data into string
+    snprintf(dataString, sizeof(dataString), "%.2f %.2fq", temperature, humidity);
+
+    // Send CIPSEND to ESP
+    snprintf(cipsendString, sizeof(cipsendString), "AT+CIPSEND=%d\r\n", strlen(dataString));
+    while(HAL_UART_Transmit(&huart2, (uint8_t*)cipsendString, strlen(cipsendString), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+
+    // Set expected response
+    while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+    strcpy((char*) expectedESPResponse,"OK\r\n");
+    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+    // Response valid
+    while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+
+    // Send data
+    while(HAL_UART_Transmit(&huart2, (uint8_t*)dataString, strlen(dataString), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+
+    // Set expected response
+    while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+    strcpy((char*) expectedESPResponse,"OK\r\n");
+    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
   }
-  /* USER CODE END prvTaskSendString */
+  /* USER CODE END prvTaskSendDataWithESP */
 }
 
-/* USER CODE BEGIN Header_prvTaskFSM */
+/* USER CODE BEGIN Header_prvTaskSetUpESP */
 /**
-* @brief Function implementing the FSM thread.
+* @brief Function implementing the SetUpESP thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_prvTaskFSM */
-void prvTaskFSM(void *argument)
+/* USER CODE END Header_prvTaskSetUpESP */
+void prvTaskSetUpESP(void *argument)
 {
-  /* USER CODE BEGIN prvTaskFSM */
+  /* USER CODE BEGIN prvTaskSetUpESP */
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  // Halt threads until setup complete
+	  for(int i = 0; i < 3; i ++)
+		  osSemaphoreAcquire(semaphoreESPSetUpFinishedHandle, osWaitForever);
+
+	  // Wait for ESP to set up
+	    // Set expected response
+	    while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+	    strcpy((char*) expectedESPResponse,"ready\r\n");
+	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+	    // Response valid
+	    while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+
+
+	  // Disable echo mode on ESP
+	    // Send CMD to ESP
+	    while(HAL_UART_Transmit(&huart2, (uint8_t*)"ATE0\r\n", strlen("ATE0\r\n"), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+
+	    // Set expected response
+	    while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+	    strcpy((char*) expectedESPResponse,"OK\r\n");
+	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+	    // Response valid
+	    while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+
+
+	  // Configure ESP so it is able to connect to wifi and server
+		// Send CMD to ESP
+		while(HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CIPMODE=0\r\n", strlen("AT+CIPMODE=0\r\n"), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+
+		// Set expected response
+		while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+		strcpy((char*) expectedESPResponse,"OK\r\n");
+		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+		// Response valid
+		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+
+		// Send CMD to ESP
+		while(HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CWMODE=1\r\n", strlen("AT+CWMODE=1\r\n"), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+
+		// Set expected response
+		while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+		strcpy((char*) expectedESPResponse,"OK\r\n");
+		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+		// Response valid
+		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+
+
+	  // Configure ESP so it is able to connect to wifi and server
+		// Send CMD to ESP
+		while(HAL_UART_Transmit(&huart2, (uint8_t*)WIFI_CONNECT, strlen(WIFI_CONNECT), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+
+		// Set expected response
+		while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+		strcpy((char*) expectedESPResponse,"OK\r\n");
+		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+		// Response valid
+		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+
+
+	  // Configure ESP so it is able to connect to wifi and server
+		// Send CMD to ESP
+		while(HAL_UART_Transmit(&huart2, (uint8_t*)SERVER_CONNECT, strlen(SERVER_CONNECT), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+
+		// Set expected response
+		while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+		strcpy((char*) expectedESPResponse,"OK\r\n");
+		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+		// Response valid
+		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+
+		// Enable other tasks
+		for(int i = 0; i < 3; i ++)
+			osSemaphoreRelease(semaphoreESPSetUpFinishedHandle);
+		// Task has to run only once
+		osThreadSuspend(SetUpESPHandle);
   }
-  /* USER CODE END prvTaskFSM */
+  /* USER CODE END prvTaskSetUpESP */
 }
 
 /* USER CODE BEGIN Header_prvTaskReadTempAndHumidity */
@@ -476,20 +654,61 @@ void prvTaskReadTempAndHumidity(void *argument)
 {
   /* USER CODE BEGIN prvTaskReadTempAndHumidity */
   /* Infinite loop */
+	// Wait for ESP setup to finish
+	osSemaphoreAcquire(semaphoreESPSetUpFinishedHandle, osWaitForever);
+
 	float temperature;
 	float humidity;
   for(;;)
-  {
-	 while(!sht3x_read_temperature_and_humidity(&sht31, &temperature, &humidity)){}
-	 if (osMessageQueuePut(queueTempAndHumidHandle, &temperature, 0, 0) != osOK) {
-	            // Error handling if the message couldn't be sent
-	        }
-	 if (osMessageQueuePut(queueTempAndHumidHandle, &humidity, 0, 0) != osOK) {
-	             // Error handling if the message couldn't be sent
-	         }
-	 osDelay(1000); // Delay for 1 second
+  {	// Read sensor data every 1 second
+
+	 while(!sht3x_read_temperature_and_humidity(&sht31, &temperature, &humidity))	{}
+	 while(osMessageQueuePut(queueTempAndHumidHandle, &temperature, 0, 0) != osOK)	{}
+	 while(osMessageQueuePut(queueTempAndHumidHandle, &humidity, 0, 0) != osOK) 	{}
+
+	 // Delay for 1 second
+	 osDelay(1000);
   }
   /* USER CODE END prvTaskReadTempAndHumidity */
+}
+
+/* USER CODE BEGIN Header_prvTaskReadESP */
+/**
+* @brief Function implementing the ReadESP thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_prvTaskReadESP */
+void prvTaskReadESP(void *argument)
+{
+  /* USER CODE BEGIN prvTaskReadESP */
+  /* Infinite loop */
+	uint8_t rxChar = '\0';
+  for(;;)
+  {
+	  // First, response is not valid
+	  while(osSemaphoreAcquire(semaphoreESPResponseValidHandle,0) != osOK){}
+
+	  // Add char to message
+	  while(osMessageQueueGet(queueRxDataCharHandle, &rxChar, 0, 0) != osOK){}
+	  strcat((char*)received_message, (char*)&rxChar);
+
+	  // Check if got expected response
+	  while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+	  // If message is valid, signal and clear message
+	  if(strstr((char*)received_message, (char*)expectedESPResponse) != NULL){
+		  while(osSemaphoreRelease(semaphoreESPResponseValidHandle) != osOK){}
+		  memset(received_message, '\0', strlen((char*)received_message));
+	  }
+	  else{
+		  // TODO: if "\r\n" but not valid response => implement error counter
+	  }
+	  osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+
+
+  }
+  /* USER CODE END prvTaskReadESP */
 }
 
 /**
