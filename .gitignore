@@ -1,6 +1,10 @@
 # Ignore all files and directories
 #/*
-MCU/Debug
+JS gyakorlas/
+__pycache__/
+backend/
+java gyakorlas/
+.DS_Store
 # But include a.txt
 !/.git
 !/.gitignore
