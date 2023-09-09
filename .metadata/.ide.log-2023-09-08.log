@@ -1,0 +1,418 @@
+2023-09-09 11:27:39,379 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 11:27:39,426 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 11:27:39,426 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 11:27:39,426 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:39,426 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:39,426 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:42,350 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 11:27:42,350 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 11:27:45,021 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 11:27:45,021 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 11:27:45,022 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 11:27:45,022 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:45,022 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:45,022 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:45,951 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 11:27:45,951 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 11:27:48,102 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 11:27:48,102 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 11:27:48,102 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 11:27:48,102 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:48,102 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:48,102 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:49,037 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 11:27:49,037 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 11:27:51,975 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 11:27:51,975 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 11:27:51,975 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 11:27:51,975 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:51,975 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:51,975 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 11:27:57,827 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 306990920 Bytes (913309696)
+2023-09-09 11:27:58,995 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 344739656 Bytes (913309696)
+2023-09-09 11:28:01,193 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 467945288 Bytes (913309696)
+2023-09-09 11:28:01,498 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2023-09-09 11:28:01,498 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-09-09 11:28:01,498 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: I2C
+2023-09-09 11:28:01,498 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2023-09-09 11:28:01,498 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2023-09-09 11:28:01,498 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-09-09 11:28:01,499 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-09-09 11:28:01,500 [INFO] CodeGenerator:799 - code generatio: config db path: C:\ST\STM32CubeIDE_1.13.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.9.1.202307191849\\db\
+2023-09-09 11:28:03,802 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\license.tmp_save
+2023-09-09 11:28:04,350 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\license.tmp
+2023-09-09 11:28:04,515 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\gpio.tmp_save
+2023-09-09 11:28:05,070 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\gpio.tmp
+2023-09-09 11:28:05,477 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-09-09 11:28:05,517 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp_save
+2023-09-09 11:28:05,716 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp
+2023-09-09 11:28:05,730 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-09-09 11:28:05,825 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp
+2023-09-09 11:28:05,840 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-09-09 11:28:05,908 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp
+2023-09-09 11:28:05,919 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp_save
+2023-09-09 11:28:05,981 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp
+2023-09-09 11:28:05,992 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp_save
+2023-09-09 11:28:06,070 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp
+2023-09-09 11:28:06,080 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp_save
+2023-09-09 11:28:06,140 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp
+2023-09-09 11:28:06,150 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-09-09 11:28:06,244 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp
+2023-09-09 11:28:06,269 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp_save
+2023-09-09 11:28:06,333 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp
+2023-09-09 11:28:06,343 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp_save
+2023-09-09 11:28:06,407 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp
+2023-09-09 11:28:06,420 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-09-09 11:28:06,428 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp_save
+2023-09-09 11:28:06,494 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp
+2023-09-09 11:28:06,503 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-09-09 11:28:06,549 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp
+2023-09-09 11:28:06,553 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-09-09 11:28:06,604 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp
+2023-09-09 11:28:06,609 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp_save
+2023-09-09 11:28:06,664 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp
+2023-09-09 11:28:06,676 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp_save
+2023-09-09 11:28:06,730 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp
+2023-09-09 11:28:06,742 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp_save
+2023-09-09 11:28:06,804 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp
+2023-09-09 11:28:06,815 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-09-09 11:28:06,866 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp
+2023-09-09 11:28:06,871 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp_save
+2023-09-09 11:28:06,920 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp
+2023-09-09 11:28:06,925 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp_save
+2023-09-09 11:28:06,974 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp
+2023-09-09 11:28:06,999 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\FreeRTOSConfig.h_save
+2023-09-09 11:28:07,101 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\FreeRTOSConfig.h
+2023-09-09 11:28:07,131 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\freertos.c_save
+2023-09-09 11:28:07,227 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\freertos.c
+2023-09-09 11:28:07,282 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\cortex.tmp_save
+2023-09-09 11:28:07,392 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\cortex.tmp
+2023-09-09 11:28:07,446 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_it.c_save
+2023-09-09 11:28:07,678 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_it.c
+2023-09-09 11:28:07,712 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_it.h_save
+2023-09-09 11:28:07,801 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_it.h
+2023-09-09 11:28:07,914 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_msp.c_save
+2023-09-09 11:28:08,027 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_msp.c
+2023-09-09 11:28:08,037 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\system.tmp_save
+2023-09-09 11:28:08,098 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\system.tmp
+2023-09-09 11:28:08,114 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_timebase_tim.c_save
+2023-09-09 11:28:08,238 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_timebase_tim.c
+2023-09-09 11:28:08,277 [INFO] CodeEngine:311 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_hal_conf.h_save
+2023-09-09 11:28:08,377 [INFO] CodeEngine:335 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_hal_conf.h
+2023-09-09 11:28:08,478 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\main.h_save
+2023-09-09 11:28:08,598 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\main.h
+2023-09-09 11:28:08,618 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\main.c_save
+2023-09-09 11:28:08,779 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\main.c
+2023-09-09 11:28:09,430 [INFO] ProjectBuilder:3064 - Time for Copy HAL[1] : 326mS.
+2023-09-09 11:28:09,439 [INFO] ProjectBuilder:4404 - Project Generator version: 4.1.0
+2023-09-09 11:28:09,605 [INFO] ConfigFileManager:1457 - The Die is : DIE450
+2023-09-09 11:28:15,540 [INFO] ProjectBuilder:4626 - Time for Generating toolchain IDE Files: 6101mS.
+2023-09-09 11:28:15,540 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-09-09 11:28:15,548 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-09-09 11:33:03,726 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 11:33:03,726 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 12:45:07,342 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 12:45:07,343 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 12:45:29,588 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 12:45:29,589 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 12:45:29,589 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 12:45:29,589 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 12:45:29,589 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 12:45:29,589 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 12:45:30,427 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 391390464 Bytes (1073741824)
+2023-09-09 12:45:31,555 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 367686496 Bytes (1073741824)
+2023-09-09 12:45:33,238 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 561150816 Bytes (1073741824)
+2023-09-09 12:45:33,492 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2023-09-09 12:45:33,492 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-09-09 12:45:33,492 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: I2C
+2023-09-09 12:45:33,492 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2023-09-09 12:45:33,492 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2023-09-09 12:45:33,492 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-09-09 12:45:33,493 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-09-09 12:45:33,494 [INFO] CodeGenerator:799 - code generatio: config db path: C:\ST\STM32CubeIDE_1.13.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.9.1.202307191849\\db\
+2023-09-09 12:45:33,653 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\license.tmp_save
+2023-09-09 12:45:33,896 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\license.tmp
+2023-09-09 12:45:33,934 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\gpio.tmp_save
+2023-09-09 12:45:34,022 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\gpio.tmp
+2023-09-09 12:45:34,215 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-09-09 12:45:34,221 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp_save
+2023-09-09 12:45:34,304 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp
+2023-09-09 12:45:34,309 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-09-09 12:45:34,439 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp
+2023-09-09 12:45:34,445 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-09-09 12:45:34,496 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp
+2023-09-09 12:45:34,499 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp_save
+2023-09-09 12:45:34,560 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp
+2023-09-09 12:45:34,564 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp_save
+2023-09-09 12:45:34,670 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp
+2023-09-09 12:45:34,674 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp_save
+2023-09-09 12:45:34,747 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp
+2023-09-09 12:45:34,750 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-09-09 12:45:34,824 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp
+2023-09-09 12:45:34,828 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp_save
+2023-09-09 12:45:34,899 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp
+2023-09-09 12:45:34,903 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp_save
+2023-09-09 12:45:34,975 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp
+2023-09-09 12:45:34,985 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-09-09 12:45:34,992 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp_save
+2023-09-09 12:45:35,087 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp
+2023-09-09 12:45:35,093 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-09-09 12:45:35,142 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp
+2023-09-09 12:45:35,146 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-09-09 12:45:35,192 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp
+2023-09-09 12:45:35,197 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp_save
+2023-09-09 12:45:35,244 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp
+2023-09-09 12:45:35,254 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp_save
+2023-09-09 12:45:35,303 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp
+2023-09-09 12:45:35,308 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp_save
+2023-09-09 12:45:35,356 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp
+2023-09-09 12:45:35,370 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-09-09 12:45:35,420 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp
+2023-09-09 12:45:35,427 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp_save
+2023-09-09 12:45:35,475 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp
+2023-09-09 12:45:35,479 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp_save
+2023-09-09 12:45:35,527 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp
+2023-09-09 12:45:35,545 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\FreeRTOSConfig.h_save
+2023-09-09 12:45:35,618 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\FreeRTOSConfig.h
+2023-09-09 12:45:35,631 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\freertos.c_save
+2023-09-09 12:45:35,696 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\freertos.c
+2023-09-09 12:45:35,704 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\cortex.tmp_save
+2023-09-09 12:45:35,786 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\cortex.tmp
+2023-09-09 12:45:35,812 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_it.c_save
+2023-09-09 12:45:35,959 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_it.c
+2023-09-09 12:45:35,964 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_it.h_save
+2023-09-09 12:45:36,019 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_it.h
+2023-09-09 12:45:36,102 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_msp.c_save
+2023-09-09 12:45:36,185 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_msp.c
+2023-09-09 12:45:36,190 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\system.tmp_save
+2023-09-09 12:45:36,244 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\system.tmp
+2023-09-09 12:45:36,257 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_timebase_tim.c_save
+2023-09-09 12:45:36,333 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_timebase_tim.c
+2023-09-09 12:45:36,396 [INFO] CodeEngine:311 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_hal_conf.h_save
+2023-09-09 12:45:36,493 [INFO] CodeEngine:335 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_hal_conf.h
+2023-09-09 12:45:36,545 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\main.h_save
+2023-09-09 12:45:36,626 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\main.h
+2023-09-09 12:45:36,640 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\main.c_save
+2023-09-09 12:45:36,776 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\main.c
+2023-09-09 12:45:37,430 [INFO] ProjectBuilder:3064 - Time for Copy HAL[1] : 283mS.
+2023-09-09 12:45:37,434 [INFO] ProjectBuilder:4404 - Project Generator version: 4.1.0
+2023-09-09 12:45:37,587 [INFO] ConfigFileManager:1457 - The Die is : DIE450
+2023-09-09 12:45:39,876 [INFO] ProjectBuilder:4626 - Time for Generating toolchain IDE Files: 2442mS.
+2023-09-09 12:45:39,887 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 11mS.
+2023-09-09 12:45:39,902 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-09-09 14:31:53,193 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 14:31:53,194 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 14:32:36,899 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 14:32:36,899 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 14:32:36,899 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 14:32:36,899 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:32:36,899 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:32:36,899 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:32:36,899 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:32:41,613 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 14:32:41,613 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 14:32:45,317 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 14:32:45,317 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 14:32:45,317 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 14:32:45,317 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:32:45,317 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:32:45,317 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:32:45,317 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:32:53,612 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 14:32:53,613 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 14:33:06,416 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 14:33:06,416 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 14:33:11,554 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 14:33:11,554 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 14:33:11,554 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 14:33:11,554 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:33:11,554 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:33:11,554 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:33:11,554 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:33:23,211 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 14:33:23,211 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 14:34:12,825 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 14:34:12,825 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 14:34:12,825 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 14:34:12,825 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:34:12,825 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:34:12,825 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:34:12,825 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:34:21,829 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 864
+2023-09-09 14:34:21,829 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 221184
+2023-09-09 14:35:07,154 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 14:35:07,154 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 14:35:07,154 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 14:35:07,154 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:35:07,154 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:35:07,154 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:35:07,154 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 14:35:11,987 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 479571992 Bytes (1048576000)
+2023-09-09 14:35:13,708 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 519421976 Bytes (1048576000)
+2023-09-09 14:35:21,105 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 785233944 Bytes (1048576000)
+2023-09-09 14:35:21,550 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2023-09-09 14:35:21,550 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-09-09 14:35:21,550 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: I2C
+2023-09-09 14:35:21,550 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2023-09-09 14:35:21,550 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2023-09-09 14:35:21,550 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-09-09 14:35:21,550 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-09-09 14:35:21,551 [INFO] CodeGenerator:799 - code generatio: config db path: C:\ST\STM32CubeIDE_1.13.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.9.1.202307191849\\db\
+2023-09-09 14:35:21,772 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\license.tmp_save
+2023-09-09 14:35:21,952 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\license.tmp
+2023-09-09 14:35:21,992 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\gpio.tmp_save
+2023-09-09 14:35:22,094 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\gpio.tmp
+2023-09-09 14:35:22,976 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-09-09 14:35:22,985 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp_save
+2023-09-09 14:35:23,555 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp
+2023-09-09 14:35:23,572 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-09-09 14:35:23,742 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp
+2023-09-09 14:35:23,757 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-09-09 14:35:24,063 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp
+2023-09-09 14:35:24,080 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp_save
+2023-09-09 14:35:24,302 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp
+2023-09-09 14:35:24,322 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp_save
+2023-09-09 14:35:24,732 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp
+2023-09-09 14:35:24,757 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp_save
+2023-09-09 14:35:24,933 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp
+2023-09-09 14:35:24,941 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-09-09 14:35:25,040 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp
+2023-09-09 14:35:25,047 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp_save
+2023-09-09 14:35:25,340 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp
+2023-09-09 14:35:25,349 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp_save
+2023-09-09 14:35:25,464 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp
+2023-09-09 14:35:25,493 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-09-09 14:35:25,571 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp_save
+2023-09-09 14:35:25,748 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp
+2023-09-09 14:35:25,767 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-09-09 14:35:25,867 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp
+2023-09-09 14:35:25,881 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-09-09 14:35:25,998 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp
+2023-09-09 14:35:26,008 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp_save
+2023-09-09 14:35:26,161 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp
+2023-09-09 14:35:26,202 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp_save
+2023-09-09 14:35:26,333 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp
+2023-09-09 14:35:26,344 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp_save
+2023-09-09 14:35:26,447 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp
+2023-09-09 14:35:26,464 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-09-09 14:35:26,556 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp
+2023-09-09 14:35:26,562 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp_save
+2023-09-09 14:35:26,649 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp
+2023-09-09 14:35:26,657 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp_save
+2023-09-09 14:35:26,761 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp
+2023-09-09 14:35:26,785 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\FreeRTOSConfig.h_save
+2023-09-09 14:35:26,894 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\FreeRTOSConfig.h
+2023-09-09 14:35:26,916 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\freertos.c_save
+2023-09-09 14:35:27,018 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\freertos.c
+2023-09-09 14:35:27,030 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\cortex.tmp_save
+2023-09-09 14:35:27,139 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\cortex.tmp
+2023-09-09 14:35:27,366 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_it.c_save
+2023-09-09 14:35:27,917 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_it.c
+2023-09-09 14:35:27,934 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_it.h_save
+2023-09-09 14:35:28,014 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_it.h
+2023-09-09 14:35:28,121 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_msp.c_save
+2023-09-09 14:35:28,293 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_msp.c
+2023-09-09 14:35:28,303 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\system.tmp_save
+2023-09-09 14:35:28,561 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\system.tmp
+2023-09-09 14:35:28,597 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_timebase_tim.c_save
+2023-09-09 14:35:28,777 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_timebase_tim.c
+2023-09-09 14:35:28,881 [INFO] CodeEngine:311 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_hal_conf.h_save
+2023-09-09 14:35:29,100 [INFO] CodeEngine:335 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_hal_conf.h
+2023-09-09 14:35:29,202 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\main.h_save
+2023-09-09 14:35:29,425 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\main.h
+2023-09-09 14:35:29,453 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\main.c_save
+2023-09-09 14:35:29,613 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\main.c
+2023-09-09 14:35:30,436 [INFO] ProjectBuilder:3064 - Time for Copy HAL[1] : 484mS.
+2023-09-09 14:35:30,443 [INFO] ProjectBuilder:4404 - Project Generator version: 4.1.0
+2023-09-09 14:35:30,607 [INFO] ConfigFileManager:1457 - The Die is : DIE450
+2023-09-09 14:35:33,638 [INFO] ProjectBuilder:4626 - Time for Generating toolchain IDE Files: 3195mS.
+2023-09-09 14:35:33,640 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-09-09 14:35:33,645 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-09-09 15:01:44,294 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 592458400 Bytes (1073741824)
+2023-09-09 15:01:45,423 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 631463784 Bytes (1073741824)
+2023-09-09 15:01:47,061 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 685049392 Bytes (1073741824)
+2023-09-09 15:01:47,682 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2023-09-09 15:01:47,682 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-09-09 15:01:47,682 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: I2C
+2023-09-09 15:01:47,682 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2023-09-09 15:01:47,682 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2023-09-09 15:01:47,682 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-09-09 15:01:47,683 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-09-09 15:01:47,684 [INFO] CodeGenerator:799 - code generatio: config db path: C:\ST\STM32CubeIDE_1.13.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.9.1.202307191849\\db\
+2023-09-09 15:01:48,210 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\license.tmp_save
+2023-09-09 15:01:48,406 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\license.tmp
+2023-09-09 15:01:48,457 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\gpio.tmp_save
+2023-09-09 15:01:48,876 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\gpio.tmp
+2023-09-09 15:01:49,634 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-09-09 15:01:49,642 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp_save
+2023-09-09 15:01:50,236 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp
+2023-09-09 15:01:50,432 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-09-09 15:01:50,754 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp
+2023-09-09 15:01:50,759 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-09-09 15:01:50,848 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp
+2023-09-09 15:01:50,853 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp_save
+2023-09-09 15:01:51,098 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp
+2023-09-09 15:01:51,158 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp_save
+2023-09-09 15:01:51,448 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp
+2023-09-09 15:01:51,458 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp_save
+2023-09-09 15:01:51,571 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp
+2023-09-09 15:01:51,576 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-09-09 15:01:51,670 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp
+2023-09-09 15:01:51,678 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp_save
+2023-09-09 15:01:51,775 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp
+2023-09-09 15:01:51,782 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp_save
+2023-09-09 15:01:51,882 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp
+2023-09-09 15:01:51,898 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-09-09 15:01:51,950 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp_save
+2023-09-09 15:01:52,027 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_inc.tmp
+2023-09-09 15:01:52,038 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-09-09 15:01:52,119 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelInit.tmp
+2023-09-09 15:01:52,139 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-09-09 15:01:52,227 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_kernelStart.tmp
+2023-09-09 15:01:52,241 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp_save
+2023-09-09 15:01:52,316 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_typedefs.tmp
+2023-09-09 15:01:52,337 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp_save
+2023-09-09 15:01:52,442 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_vars.tmp
+2023-09-09 15:01:52,452 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp_save
+2023-09-09 15:01:52,524 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_pfp.tmp
+2023-09-09 15:01:52,540 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-09-09 15:01:52,675 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_obj_creat.tmp
+2023-09-09 15:01:52,698 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp_save
+2023-09-09 15:01:52,875 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_default_thread.tmp
+2023-09-09 15:01:52,893 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp_save
+2023-09-09 15:01:53,025 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\rtos_threads.tmp
+2023-09-09 15:01:53,050 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\FreeRTOSConfig.h_save
+2023-09-09 15:01:53,360 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\FreeRTOSConfig.h
+2023-09-09 15:01:53,389 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\freertos.c_save
+2023-09-09 15:01:53,551 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\freertos.c
+2023-09-09 15:01:53,582 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\cortex.tmp_save
+2023-09-09 15:01:53,758 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\cortex.tmp
+2023-09-09 15:01:53,893 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_it.c_save
+2023-09-09 15:01:54,198 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_it.c
+2023-09-09 15:01:54,219 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_it.h_save
+2023-09-09 15:01:54,436 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_it.h
+2023-09-09 15:01:54,875 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_msp.c_save
+2023-09-09 15:01:55,105 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_msp.c
+2023-09-09 15:01:55,119 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\system.tmp_save
+2023-09-09 15:01:55,258 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\MXTmpFiles\system.tmp
+2023-09-09 15:01:55,307 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_timebase_tim.c_save
+2023-09-09 15:01:55,502 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\stm32h7xx_hal_timebase_tim.c
+2023-09-09 15:01:55,580 [INFO] CodeEngine:311 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_hal_conf.h_save
+2023-09-09 15:01:55,705 [INFO] CodeEngine:335 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\stm32h7xx_hal_conf.h
+2023-09-09 15:01:56,017 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\main.h_save
+2023-09-09 15:01:56,323 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Inc\main.h
+2023-09-09 15:01:56,449 [INFO] CodeEngine:255 - oldGeneratedFile, C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\main.c_save
+2023-09-09 15:01:56,684 [INFO] CodeEngine:279 - Generated code: C:\Users\domip\Desktop\szakdoga\MCU\Core\Src\main.c
+2023-09-09 15:01:57,910 [INFO] ProjectBuilder:3064 - Time for Copy HAL[1] : 474mS.
+2023-09-09 15:01:57,917 [INFO] ProjectBuilder:4404 - Project Generator version: 4.1.0
+2023-09-09 15:01:58,455 [INFO] ConfigFileManager:1457 - The Die is : DIE450
+2023-09-09 15:02:01,807 [INFO] ProjectBuilder:4626 - Time for Generating toolchain IDE Files: 3887mS.
+2023-09-09 15:02:01,807 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-09-09 15:02:01,817 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-09-09 15:26:56,669 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-09-09 15:26:56,669 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-09-09 15:26:56,669 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-09-09 15:26:56,669 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 15:26:56,669 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 15:26:56,669 [INFO] TasksAndQueuesTab:757 - Static
+2023-09-09 15:26:56,669 [INFO] TasksAndQueuesTab:757 - Static

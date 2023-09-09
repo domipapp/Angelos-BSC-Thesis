@@ -5,3 +5,4 @@ MCU/Debug
 !/.git
 !/.gitignore
 !/MCU
+!/.metadata
