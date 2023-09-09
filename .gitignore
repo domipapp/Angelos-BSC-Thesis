@@ -4,5 +4,4 @@
 # But include:
 !/.git
 !/.gitignore
-!/.project
 !/MCU
