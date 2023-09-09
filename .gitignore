@@ -1,12 +1,8 @@
 # Ignore all files and directories
-#/*
-JS gyakorlas/
-__pycache__/
-backend/
-java gyakorlas/
-.DS_Store
-# But include a.txt
+/*
+# But include:
 !/.git
 !/.gitignore
-!/MCU
 !/.metadata
+!/.project
+!/MCU
