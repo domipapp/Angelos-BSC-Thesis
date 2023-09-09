@@ -1,8 +1,8 @@
 # Ignore all files and directories
 /*
+/MCU/Debug
 # But include:
 !/.git
 !/.gitignore
-!/.metadata
 !/.project
 !/MCU
