@@ -1,2 +1,7 @@
-MCU/Debug/
-.metadata
+# Ignore all files and directories
+/*
+
+# But include a.txt
+!/.git
+!/.gitignore
+!/MCU
