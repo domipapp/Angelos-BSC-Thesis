@@ -1,6 +1,7 @@
 # Ignore all files and directories
 /*
 /MCU/Debug
+MCU/.settings/language.settings.xml
 # But include:
 !/.git
 !/.gitignore
