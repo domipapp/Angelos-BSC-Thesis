@@ -45,8 +45,6 @@ typedef StaticTask_t osStaticThreadDef_t;
 #define WIFI_PASS "4njteenm6s7cx4cb"// Local WIFI password
 // AT command for connecting to wifi
 #define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
-// Event flag
-#define EVENT_FLAG1 0x00000001U
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -135,10 +133,10 @@ osSemaphoreId_t semaphoreESPResponseValidHandle;
 const osSemaphoreAttr_t semaphoreESPResponseValid_attributes = {
   .name = "semaphoreESPResponseValid"
 };
-/* Definitions for eventESPSetUpFinished */
-osEventFlagsId_t eventESPSetUpFinishedHandle;
-const osEventFlagsAttr_t eventESPSetUpFinished_attributes = {
-  .name = "eventESPSetUpFinished"
+/* Definitions for semaphoreESPSetUpFinished */
+osSemaphoreId_t semaphoreESPSetUpFinishedHandle;
+const osSemaphoreAttr_t semaphoreESPSetUpFinished_attributes = {
+  .name = "semaphoreESPSetUpFinished"
 };
 /* USER CODE BEGIN PV */
 // Sensor handle
@@ -220,6 +218,9 @@ int main(void)
   /* creation of semaphoreESPResponseValid */
   semaphoreESPResponseValidHandle = osSemaphoreNew(1, 1, &semaphoreESPResponseValid_attributes);
 
+  /* creation of semaphoreESPSetUpFinished */
+  semaphoreESPSetUpFinishedHandle = osSemaphoreNew(3, 3, &semaphoreESPSetUpFinished_attributes);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -258,10 +259,6 @@ int main(void)
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
-
-  /* Create the event(s) */
-  /* creation of eventESPSetUpFinished */
-  eventESPSetUpFinishedHandle = osEventFlagsNew(&eventESPSetUpFinished_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
@@ -510,7 +507,7 @@ void prvTaskSendDataWithESP(void *argument)
   /* USER CODE BEGIN prvTaskSendDataWithESP */
   /* Infinite loop */
 	// Wait for ESP setup to finish
-	osEventFlagsWait(eventESPSetUpFinishedHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
+	osSemaphoreAcquire(semaphoreESPSetUpFinishedHandle, osWaitForever);
 
 	float temperature, humidity;
 
@@ -561,6 +558,9 @@ void prvTaskSetUpESP(void *argument)
   /* Infinite loop */
   for(;;)
   {
+	  // Halt threads until setup complete
+	  for(int i = 0; i < 3; i ++)
+		  osSemaphoreAcquire(semaphoreESPSetUpFinishedHandle, osWaitForever);
 
 	  // Wait for ESP to set up
 	    // Set expected response
@@ -634,8 +634,9 @@ void prvTaskSetUpESP(void *argument)
 		// Response valid
 		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
 
-		// Signal event
-		osEventFlagsSet(eventESPSetUpFinishedHandle, EVENT_FLAG1);
+		// Enable other tasks
+		for(int i = 0; i < 3; i ++)
+			osSemaphoreRelease(semaphoreESPSetUpFinishedHandle);
 		// Task has to run only once
 		osThreadSuspend(SetUpESPHandle);
   }
@@ -654,7 +655,7 @@ void prvTaskReadTempAndHumidity(void *argument)
   /* USER CODE BEGIN prvTaskReadTempAndHumidity */
   /* Infinite loop */
 	// Wait for ESP setup to finish
-	osEventFlagsWait(eventESPSetUpFinishedHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
+	osSemaphoreAcquire(semaphoreESPSetUpFinishedHandle, osWaitForever);
 
 	float temperature;
 	float humidity;
