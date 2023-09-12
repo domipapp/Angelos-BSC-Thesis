@@ -527,21 +527,21 @@ void prvTaskSendDataWithESP(void *argument)
 
     // Send CIPSEND to ESP
     snprintf(cipsendString, sizeof(cipsendString), "AT+CIPSEND=%d\r\n", strlen(dataString));
-    while(HAL_UART_Transmit(&huart2, (uint8_t*)cipsendString, strlen(cipsendString), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+    HAL_UART_Transmit(&huart2, (uint8_t*)cipsendString, strlen(cipsendString), HAL_MAX_DELAY);
 
     // Set expected response
-    while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
     strcpy((char*) expectedESPResponse,"OK\r\n");
     osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
     // Response valid
-    while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+    osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
 
     // Send data
-    while(HAL_UART_Transmit(&huart2, (uint8_t*)dataString, strlen(dataString), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+    HAL_UART_Transmit(&huart2, (uint8_t*)dataString, strlen(dataString), HAL_MAX_DELAY);
 
     // Set expected response
-    while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
     strcpy((char*) expectedESPResponse,"OK\r\n");
     osSemaphoreRelease(semaphoreHaltUntilStringHandle);
   }
@@ -566,75 +566,75 @@ void prvTaskSetUpESP(void *argument)
 
 	  // Wait for ESP to set up
 	    // Set expected response
-	    while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+	    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 	    strcpy((char*) expectedESPResponse,"ready\r\n");
 	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 	    // Response valid
-	    while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+	    osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
 
 
 	  // Disable echo mode on ESP
 	    // Send CMD to ESP
-	    while(HAL_UART_Transmit(&huart2, (uint8_t*)"ATE0\r\n", strlen("ATE0\r\n"), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+	    HAL_UART_Transmit(&huart2, (uint8_t*)"ATE0\r\n", strlen("ATE0\r\n"), HAL_MAX_DELAY);
 
 	    // Set expected response
-	    while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+	    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 	    strcpy((char*) expectedESPResponse,"OK\r\n");
 	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 	    // Response valid
-	    while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+	    osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
 
 
 	  // Configure ESP so it is able to connect to wifi and server
 		// Send CMD to ESP
-		while(HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CIPMODE=0\r\n", strlen("AT+CIPMODE=0\r\n"), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+		HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CIPMODE=0\r\n", strlen("AT+CIPMODE=0\r\n"), HAL_MAX_DELAY);
 
 		// Set expected response
-		while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+		osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 		strcpy((char*) expectedESPResponse,"OK\r\n");
 		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 		// Response valid
-		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+		osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
 
 		// Send CMD to ESP
-		while(HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CWMODE=1\r\n", strlen("AT+CWMODE=1\r\n"), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+		HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CWMODE=1\r\n", strlen("AT+CWMODE=1\r\n"), HAL_MAX_DELAY);
 
 		// Set expected response
-		while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+		osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 		strcpy((char*) expectedESPResponse,"OK\r\n");
 		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 		// Response valid
-		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+		osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
 
 
 	  // Configure ESP so it is able to connect to wifi and server
 		// Send CMD to ESP
-		while(HAL_UART_Transmit(&huart2, (uint8_t*)WIFI_CONNECT, strlen(WIFI_CONNECT), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+		HAL_UART_Transmit(&huart2, (uint8_t*)WIFI_CONNECT, strlen(WIFI_CONNECT), HAL_MAX_DELAY);
 
 		// Set expected response
-		while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+		osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 		strcpy((char*) expectedESPResponse,"OK\r\n");
 		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 		// Response valid
-		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+		osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
 
 
 	  // Configure ESP so it is able to connect to wifi and server
 		// Send CMD to ESP
-		while(HAL_UART_Transmit(&huart2, (uint8_t*)SERVER_CONNECT, strlen(SERVER_CONNECT), HAL_UART_TIMEOUT_VALUE) != HAL_OK){}
+		HAL_UART_Transmit(&huart2, (uint8_t*)SERVER_CONNECT, strlen(SERVER_CONNECT), HAL_MAX_DELAY);
 
 		// Set expected response
-		while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+		osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 		strcpy((char*) expectedESPResponse,"OK\r\n");
 		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 		// Response valid
-		while(osSemaphoreAcquire(semaphoreESPResponseValidHandle, 0) != osOK){}
+		osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
 
 		// Signal event
 		osEventFlagsSet(eventESPSetUpFinishedHandle, EVENT_FLAG1);
@@ -663,9 +663,10 @@ void prvTaskReadTempAndHumidity(void *argument)
   for(;;)
   {	// Read sensor data every 1 second
 
-	 while(!sht3x_read_temperature_and_humidity(&sht31, &temperature, &humidity))	{}
-	 while(osMessageQueuePut(queueTempAndHumidHandle, &temperature, 0, 0) != osOK)	{}
-	 while(osMessageQueuePut(queueTempAndHumidHandle, &humidity, 0, 0) != osOK) 	{}
+	 if(sht3x_read_temperature_and_humidity(&sht31, &temperature, &humidity))	{
+		 osMessageQueuePut(queueTempAndHumidHandle, &temperature, 0, osWaitForever);
+		 osMessageQueuePut(queueTempAndHumidHandle, &humidity, 0, osWaitForever);
+	 }
 
 	 // Delay for 1 second
 	 osDelay(1000);
@@ -688,14 +689,14 @@ void prvTaskReadESP(void *argument)
   for(;;)
   {
 	  // First, response is not valid
-	  while(osSemaphoreAcquire(semaphoreESPResponseValidHandle,0) != osOK){}
+	  osSemaphoreAcquire(semaphoreESPResponseValidHandle,osWaitForever);
 
 	  // Add char to message
-	  while(osMessageQueueGet(queueRxDataCharHandle, &rxChar, 0, 0) != osOK){}
+	  osMessageQueueGet(queueRxDataCharHandle, &rxChar, 0, osWaitForever);
 	  strcat((char*)received_message, (char*)&rxChar);
 
 	  // Check if got expected response
-	  while(osSemaphoreAcquire(semaphoreHaltUntilStringHandle, 0) != osOK){}
+	  osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 	  // If message is valid, signal and clear message
 	  if(strstr((char*)received_message, (char*)expectedESPResponse) != NULL){
 		  while(osSemaphoreRelease(semaphoreESPResponseValidHandle) != osOK){}
