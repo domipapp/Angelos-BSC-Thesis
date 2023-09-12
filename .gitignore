@@ -2,7 +2,7 @@
 /*
 /MCU/Debug
 MCU/.settings/language.settings.xml
-MCU/.DS_Store
+**/.DS_Store
 # But include:
 !/.git
 !/.gitignore
