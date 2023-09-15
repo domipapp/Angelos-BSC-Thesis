@@ -526,10 +526,10 @@ void prvTaskSendDataWithESP(void *argument)
     osMessageQueueGet(queueTempAndHumidHandle, &humidity, 0, osWaitForever);
 
     // Format data into string
-    sprintf((char*)dataString, "%.2f %.2fq", temperature, humidity);
+    snprintf((char*)dataString, 14, "%.2f %.2fq", temperature, humidity);
 
     // Send CIPSEND to ESP
-    sprintf((char*)cipsendString, "AT+CIPSEND=%d\r\n", (int)strlen((char*)dataString));
+    snprintf((char*)cipsendString, 16, "AT+CIPSEND=%d\r\n", (int)strlen((char*)dataString));
 
     HAL_UART_Transmit(&huart2,cipsendString, strlen((char *)cipsendString), HAL_MAX_DELAY);
     // Set expected response
