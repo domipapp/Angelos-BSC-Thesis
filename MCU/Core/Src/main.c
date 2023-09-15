@@ -686,10 +686,11 @@ void prvTaskReadESP(void *argument)
   /* USER CODE BEGIN prvTaskReadESP */
   /* Infinite loop */
 	uint8_t rxChar = '\0';
+	// First, response is not valid
+	osSemaphoreAcquire(semaphoreESPResponseValidHandle,osWaitForever);
   for(;;)
   {
-	  // First, response is not valid
-	  osSemaphoreAcquire(semaphoreESPResponseValidHandle,osWaitForever);
+
 
 	  // Add char to message
 	  osMessageQueueGet(queueRxDataCharHandle, &rxChar, 0, osWaitForever);
