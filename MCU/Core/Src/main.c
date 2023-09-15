@@ -38,7 +38,7 @@ typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE BEGIN PD */
 #define RECEIVED_MESSAGE_SIZE 512	// Max size for ESP message
 #define IP_ADDRESS "192.168.1.249"	// Server IP Address
-#define PORT "9999"					// Server Port number
+#define PORT "9000"					// Server Port number
 // AT command for connecting to server
 #define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
 #define WIFI_SSID "Telekom-2D6325"	// Local WIFI SSID
@@ -65,11 +65,11 @@ osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
   .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityRealtime,
 };
 /* Definitions for SendDataWithESP */
 osThreadId_t SendDataWithESPHandle;
-uint32_t SendStringBuffer[ 128 ];
+uint32_t SendStringBuffer[ 256 ];
 osStaticThreadDef_t SendStringControlBlock;
 const osThreadAttr_t SendDataWithESP_attributes = {
   .name = "SendDataWithESP",
@@ -77,7 +77,7 @@ const osThreadAttr_t SendDataWithESP_attributes = {
   .cb_size = sizeof(SendStringControlBlock),
   .stack_mem = &SendStringBuffer[0],
   .stack_size = sizeof(SendStringBuffer),
-  .priority = (osPriority_t) osPriorityRealtime5,
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for SetUpESP */
 osThreadId_t SetUpESPHandle;
@@ -89,7 +89,7 @@ const osThreadAttr_t SetUpESP_attributes = {
   .cb_size = sizeof(FSMControlBlock),
   .stack_mem = &FSMBuffer[0],
   .stack_size = sizeof(FSMBuffer),
-  .priority = (osPriority_t) osPriorityRealtime6,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for ReadSensorData */
 osThreadId_t ReadSensorDataHandle;
@@ -101,7 +101,7 @@ const osThreadAttr_t ReadSensorData_attributes = {
   .cb_size = sizeof(readDataControlBlock),
   .stack_mem = &readDataBuffer[0],
   .stack_size = sizeof(readDataBuffer),
-  .priority = (osPriority_t) osPriorityRealtime4,
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for ReadESP */
 osThreadId_t ReadESPHandle;
@@ -113,7 +113,7 @@ const osThreadAttr_t ReadESP_attributes = {
   .cb_size = sizeof(ReadUartControlBlock),
   .stack_mem = &ReadUartBuffer[0],
   .stack_size = sizeof(ReadUartBuffer),
-  .priority = (osPriority_t) osPriorityRealtime7,
+  .priority = (osPriority_t) osPriorityHigh,
 };
 /* Definitions for queueTempAndHumid */
 osMessageQueueId_t queueTempAndHumidHandle;
@@ -475,6 +475,8 @@ static void MX_GPIO_Init(void)
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	// Store new data in received_message buffer
+	if(rx_buffer == '\0')
+		rx_buffer = '0';
 	osMessageQueuePut(queueRxDataCharHandle, &rx_buffer, 0, 0);
 	// Re-enable IRQ
 	HAL_UART_Receive_IT(&huart2, &rx_buffer,  1);
@@ -515,8 +517,8 @@ void prvTaskSendDataWithESP(void *argument)
 
 	float temperature, humidity;
 
-    char dataString[14];  // -40<temp<125, 00<humid<100 => max 13 char + '\0'
-    char cipsendString[18];
+    static uint8_t dataString[50] = {'\0'} ;  // -40<temp<125, 00<humid<100 => max 13 char + '\0'
+    static uint8_t cipsendString[50] = {'\0'};
   for(;;)
   {
 	// Get data
@@ -524,12 +526,12 @@ void prvTaskSendDataWithESP(void *argument)
     osMessageQueueGet(queueTempAndHumidHandle, &humidity, 0, osWaitForever);
 
     // Format data into string
-    snprintf(dataString, sizeof(dataString), "%.2f %.2fq", temperature, humidity);
+    sprintf((char*)dataString, "%.2f %.2fq", temperature, humidity);
 
     // Send CIPSEND to ESP
-    snprintf(cipsendString, sizeof(cipsendString), "AT+CIPSEND=%d\r\n", strlen(dataString));
-    HAL_UART_Transmit(&huart2, (uint8_t*)cipsendString, strlen(cipsendString), HAL_MAX_DELAY);
+    sprintf((char*)cipsendString, "AT+CIPSEND=%d\r\n", (int)strlen((char*)dataString));
 
+    HAL_UART_Transmit(&huart2,cipsendString, strlen((char *)cipsendString), HAL_MAX_DELAY);
     // Set expected response
     osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
     strcpy((char*) expectedESPResponse,"OK\r\n");
@@ -539,12 +541,15 @@ void prvTaskSendDataWithESP(void *argument)
     osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
 
     // Send data
-    HAL_UART_Transmit(&huart2, (uint8_t*)dataString, strlen(dataString), HAL_MAX_DELAY);
+    HAL_UART_Transmit(&huart2, dataString, strlen((char *)dataString), HAL_MAX_DELAY);
 
     // Set expected response
     osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
     strcpy((char*) expectedESPResponse,"OK\r\n");
     osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+    // Response valid
+    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
   }
   /* USER CODE END prvTaskSendDataWithESP */
 }
@@ -560,18 +565,18 @@ void prvTaskSetUpESP(void *argument)
 {
   /* USER CODE BEGIN prvTaskSetUpESP */
   /* Infinite loop */
+	// Restart ESP
 	 HAL_UART_Transmit(&huart2, (uint8_t*)"AT+RST\r\n", strlen("AT+RST\r\n"), HAL_MAX_DELAY);
-	  // Wait for ESP to set up
-	    // Set expected response
-	    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-	    strcpy((char*) expectedESPResponse,"ready\r\n");
-	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
   for(;;)
   {
 	  // Halts threads until setup complete
 
-
-
+	  // Wait for ESP boot-up
+	    // Set expected response
+	    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
+	    strcpy((char*) expectedESPResponse,"ready\r\n");
+	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 	    // Response valid
 	    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
@@ -689,13 +694,15 @@ void prvTaskReadESP(void *argument)
   /* USER CODE BEGIN prvTaskReadESP */
   /* Infinite loop */
 	uint8_t rxChar = '\0';
+	uint16_t received_message_index = 0;
   for(;;)
   {
 
 
 	  // Add char to message
 	  osMessageQueueGet(queueRxDataCharHandle, &rxChar, 0, osWaitForever);
-	  strcat((char*)received_message, (char*)&rxChar);
+	  // Add data to string, string is "\0" all the way
+	  received_message[received_message_index++] = rxChar; // Append the character
 
 	  // Check if got expected response
 	  osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
@@ -703,6 +710,7 @@ void prvTaskReadESP(void *argument)
 	  if(strstr((char*)received_message, (char*)expectedESPResponse) != NULL){
 		  osEventFlagsSet(eventESPResponseValidHandle, EVENT_FLAG1);
 		  memset(received_message, '\0', strlen((char*)received_message));
+		  received_message_index = 0;
 	  }
 	  else{
 		  // TODO: if "\r\n" but not valid response => implement error counter
