@@ -265,6 +265,9 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
+  // Enable UART interrupts
+  HAL_UART_Receive_IT(&huart2, &rx_buffer, 1);
+  __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
   /* USER CODE END RTOS_EVENTS */
 
   /* Start scheduler */
@@ -423,8 +426,6 @@ static void MX_USART2_UART_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN USART2_Init 2 */
-  HAL_UART_Receive_IT(&huart2, &rx_buffer, 1);
-  __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
 
   /* USER CODE END USART2_Init 2 */
 
@@ -559,16 +560,18 @@ void prvTaskSetUpESP(void *argument)
 {
   /* USER CODE BEGIN prvTaskSetUpESP */
   /* Infinite loop */
-  for(;;)
-  {
-	  // Halts threads until setup complete
-
-
+	 HAL_UART_Transmit(&huart2, (uint8_t*)"AT+RST\r\n", strlen("AT+RST\r\n"), HAL_MAX_DELAY);
 	  // Wait for ESP to set up
 	    // Set expected response
 	    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 	    strcpy((char*) expectedESPResponse,"ready\r\n");
 	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+  for(;;)
+  {
+	  // Halts threads until setup complete
+
+
+
 
 	    // Response valid
 	    osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
