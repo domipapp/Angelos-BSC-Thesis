@@ -130,15 +130,15 @@ osSemaphoreId_t semaphoreHaltUntilStringHandle;
 const osSemaphoreAttr_t semaphoreHaltUntilString_attributes = {
   .name = "semaphoreHaltUntilString"
 };
-/* Definitions for semaphoreESPResponseValid */
-osSemaphoreId_t semaphoreESPResponseValidHandle;
-const osSemaphoreAttr_t semaphoreESPResponseValid_attributes = {
-  .name = "semaphoreESPResponseValid"
-};
 /* Definitions for eventESPSetUpFinished */
 osEventFlagsId_t eventESPSetUpFinishedHandle;
 const osEventFlagsAttr_t eventESPSetUpFinished_attributes = {
   .name = "eventESPSetUpFinished"
+};
+/* Definitions for eventESPResponseValid */
+osEventFlagsId_t eventESPResponseValidHandle;
+const osEventFlagsAttr_t eventESPResponseValid_attributes = {
+  .name = "eventESPResponseValid"
 };
 /* USER CODE BEGIN PV */
 // Sensor handle
@@ -217,9 +217,6 @@ int main(void)
   /* creation of semaphoreHaltUntilString */
   semaphoreHaltUntilStringHandle = osSemaphoreNew(1, 1, &semaphoreHaltUntilString_attributes);
 
-  /* creation of semaphoreESPResponseValid */
-  semaphoreESPResponseValidHandle = osSemaphoreNew(1, 1, &semaphoreESPResponseValid_attributes);
-
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -262,6 +259,9 @@ int main(void)
   /* Create the event(s) */
   /* creation of eventESPSetUpFinished */
   eventESPSetUpFinishedHandle = osEventFlagsNew(&eventESPSetUpFinished_attributes);
+
+  /* creation of eventESPResponseValid */
+  eventESPResponseValidHandle = osEventFlagsNew(&eventESPResponseValid_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
@@ -536,7 +536,7 @@ void prvTaskSendDataWithESP(void *argument)
     osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
     // Response valid
-    osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
+    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
 
     // Send data
     HAL_UART_Transmit(&huart2, (uint8_t*)dataString, strlen(dataString), HAL_MAX_DELAY);
@@ -574,7 +574,7 @@ void prvTaskSetUpESP(void *argument)
 
 
 	    // Response valid
-	    osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
+	    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
 
 
 	  // Disable echo mode on ESP
@@ -587,7 +587,7 @@ void prvTaskSetUpESP(void *argument)
 	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 	    // Response valid
-	    osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
+	    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
 
 
 	  // Configure ESP so it is able to connect to wifi and server
@@ -600,7 +600,7 @@ void prvTaskSetUpESP(void *argument)
 		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 		// Response valid
-		osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
+		osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
 
 		// Send CMD to ESP
 		HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CWMODE=1\r\n", strlen("AT+CWMODE=1\r\n"), HAL_MAX_DELAY);
@@ -611,7 +611,7 @@ void prvTaskSetUpESP(void *argument)
 		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 		// Response valid
-		osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
+		osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
 
 
 	  // Configure ESP so it is able to connect to wifi and server
@@ -624,7 +624,7 @@ void prvTaskSetUpESP(void *argument)
 		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 		// Response valid
-		osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
+		osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
 
 
 	  // Configure ESP so it is able to connect to wifi and server
@@ -637,7 +637,7 @@ void prvTaskSetUpESP(void *argument)
 		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
 		// Response valid
-		osSemaphoreAcquire(semaphoreESPResponseValidHandle, osWaitForever);
+		osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
 
 		// Signal event
 		osEventFlagsSet(eventESPSetUpFinishedHandle, EVENT_FLAG1);
@@ -689,8 +689,6 @@ void prvTaskReadESP(void *argument)
   /* USER CODE BEGIN prvTaskReadESP */
   /* Infinite loop */
 	uint8_t rxChar = '\0';
-	// First, response is not valid
-	osSemaphoreAcquire(semaphoreESPResponseValidHandle,osWaitForever);
   for(;;)
   {
 
@@ -703,7 +701,7 @@ void prvTaskReadESP(void *argument)
 	  osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 	  // If message is valid, signal and clear message
 	  if(strstr((char*)received_message, (char*)expectedESPResponse) != NULL){
-		  while(osSemaphoreRelease(semaphoreESPResponseValidHandle) != osOK){}
+		  osEventFlagsSet(eventESPResponseValidHandle, EVENT_FLAG1);
 		  memset(received_message, '\0', strlen((char*)received_message));
 	  }
 	  else{
