@@ -517,8 +517,8 @@ void prvTaskSendDataWithESP(void *argument)
 
 	float temperature, humidity;
 
-    static uint8_t dataString[50] = {'\0'} ;  // -40<temp<125, 00<humid<100 => max 13 char + '\0'
-    static uint8_t cipsendString[50] = {'\0'};
+    uint8_t dataString[14] = {'\0'} ;  // -40<temp<125, 00<humid<100 => max 13 char + '\0'
+    uint8_t cipsendString[16] = {'\0'};
   for(;;)
   {
 	// Get data
