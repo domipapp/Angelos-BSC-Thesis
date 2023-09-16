@@ -47,6 +47,10 @@ typedef StaticTask_t osStaticThreadDef_t;
 #define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
 // Event flag
 #define EVENT_FLAG1 0x00000001U
+#define EVENT_FLAG_ESP_ERROR 0x00000001U
+#define EVENT_FLAG_ESP_RESPONSE_TIMEOUT 0x00000010U
+// Wait for event flags for 5000 ticks
+#define EVENT_FLAG_WAIT 5000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -139,6 +143,11 @@ const osEventFlagsAttr_t eventESPSetUpFinished_attributes = {
 osEventFlagsId_t eventESPResponseValidHandle;
 const osEventFlagsAttr_t eventESPResponseValid_attributes = {
   .name = "eventESPResponseValid"
+};
+/* Definitions for eventESPResponse */
+osEventFlagsId_t eventESPResponseHandle;
+const osEventFlagsAttr_t eventESPResponse_attributes = {
+  .name = "eventESPResponse"
 };
 /* USER CODE BEGIN PV */
 // Sensor handle
@@ -262,6 +271,9 @@ int main(void)
 
   /* creation of eventESPResponseValid */
   eventESPResponseValidHandle = osEventFlagsNew(&eventESPResponseValid_attributes);
+
+  /* creation of eventESPResponse */
+  eventESPResponseHandle = osEventFlagsNew(&eventESPResponse_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
@@ -481,6 +493,31 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	// Re-enable IRQ
 	HAL_UART_Receive_IT(&huart2, &rx_buffer,  1);
 }
+
+
+bool send_and_recieve(char* send, char* recieve){
+    HAL_UART_Transmit(&huart2, (uint8_t*) send, strlen(send), HAL_MAX_DELAY);
+
+    // Set expected response
+    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
+    strcpy((char*) expectedESPResponse, recieve);
+    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+    uint32_t flags = osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, EVENT_FLAG_WAIT);
+    if (flags & EVENT_FLAG1) {
+        // Valid response received
+    	return true;
+    } else {
+        // Timeout occurred
+    	// Retry once
+    	if(!(osEventFlagsGet(eventESPResponseHandle) & EVENT_FLAG_ESP_RESPONSE_TIMEOUT)){
+        	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_RESPONSE_TIMEOUT);
+        	return send_and_recieve(send, recieve);
+    	}
+
+    	return false;
+    }
+}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -528,28 +565,17 @@ void prvTaskSendDataWithESP(void *argument)
     // Format data into string
     snprintf((char*)dataString, 14, "%.2f %.2fq", temperature, humidity);
 
-    // Send CIPSEND to ESP
+    // Format CIPSEND
     snprintf((char*)cipsendString, 16, "AT+CIPSEND=%d\r\n", (int)strlen((char*)dataString));
 
-    HAL_UART_Transmit(&huart2,cipsendString, strlen((char *)cipsendString), HAL_MAX_DELAY);
-    // Set expected response
-    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-    strcpy((char*) expectedESPResponse,"OK\r\n");
-    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
-
-    // Response valid
-    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
+    // Send CMD to send data
+    if(!send_and_recieve((char*) cipsendString, "OK\r\n"))
+    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
     // Send data
-    HAL_UART_Transmit(&huart2, dataString, strlen((char *)dataString), HAL_MAX_DELAY);
+    if(!send_and_recieve((char*) dataString, "OK\r\n"))
+    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
-    // Set expected response
-    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-    strcpy((char*) expectedESPResponse,"OK\r\n");
-    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
-
-    // Response valid
-    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
   }
   /* USER CODE END prvTaskSendDataWithESP */
 }
@@ -565,88 +591,38 @@ void prvTaskSetUpESP(void *argument)
 {
   /* USER CODE BEGIN prvTaskSetUpESP */
   /* Infinite loop */
-	// Restart ESP
-	 HAL_UART_Transmit(&huart2, (uint8_t*)"AT+RST\r\n", strlen("AT+RST\r\n"), HAL_MAX_DELAY);
+
 
   for(;;)
   {
 	  // Halts threads until setup complete
 
-	  // Wait for ESP boot-up
-	    // Set expected response
-	    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-	    strcpy((char*) expectedESPResponse,"ready\r\n");
-	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
-
-	    // Response valid
-	    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
-
+	  // Restart ESP
+	    if(!send_and_recieve("AT+RST\r\n", "ready\r\n"))
+	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
 	  // Disable echo mode on ESP
-	    // Send CMD to ESP
-	    HAL_UART_Transmit(&huart2, (uint8_t*)"ATE0\r\n", strlen("ATE0\r\n"), HAL_MAX_DELAY);
-
-	    // Set expected response
-	    osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-	    strcpy((char*) expectedESPResponse,"OK\r\n");
-	    osSemaphoreRelease(semaphoreHaltUntilStringHandle);
-
-	    // Response valid
-	    osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
-
+	    if(!send_and_recieve("ATE0\r\n", "OK\r\n"))
+	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
 	  // Configure ESP so it is able to connect to wifi and server
-		// Send CMD to ESP
-		HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CIPMODE=0\r\n", strlen("AT+CIPMODE=0\r\n"), HAL_MAX_DELAY);
+	    if(!send_and_recieve("AT+CIPMODE=0\r\n", "OK\r\n"))
+	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
-		// Set expected response
-		osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-		strcpy((char*) expectedESPResponse,"OK\r\n");
-		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+	    if(!send_and_recieve("AT+CWMODE=1\r\n", "OK\r\n"))
+	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
-		// Response valid
-		osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
+	  // Connect to WIFI
+	    if(!send_and_recieve(WIFI_CONNECT, "OK\r\n"))
+	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
-		// Send CMD to ESP
-		HAL_UART_Transmit(&huart2, (uint8_t*)"AT+CWMODE=1\r\n", strlen("AT+CWMODE=1\r\n"), HAL_MAX_DELAY);
+	  // Connect to server
+	    if(!send_and_recieve(SERVER_CONNECT, "OK\r\n"))
+	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
-		// Set expected response
-		osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-		strcpy((char*) expectedESPResponse,"OK\r\n");
-		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
-
-		// Response valid
-		osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
-
-
-	  // Configure ESP so it is able to connect to wifi and server
-		// Send CMD to ESP
-		HAL_UART_Transmit(&huart2, (uint8_t*)WIFI_CONNECT, strlen(WIFI_CONNECT), HAL_MAX_DELAY);
-
-		// Set expected response
-		osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-		strcpy((char*) expectedESPResponse,"OK\r\n");
-		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
-
-		// Response valid
-		osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
-
-
-	  // Configure ESP so it is able to connect to wifi and server
-		// Send CMD to ESP
-		HAL_UART_Transmit(&huart2, (uint8_t*)SERVER_CONNECT, strlen(SERVER_CONNECT), HAL_MAX_DELAY);
-
-		// Set expected response
-		osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
-		strcpy((char*) expectedESPResponse,"OK\r\n");
-		osSemaphoreRelease(semaphoreHaltUntilStringHandle);
-
-		// Response valid
-		osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
-
-		// Signal event
+	  // Signal setup finish
 		osEventFlagsSet(eventESPSetUpFinishedHandle, EVENT_FLAG1);
-		// Task has to run only once
+	  // Task has to run only once
 		osThreadSuspend(SetUpESPHandle);
   }
   /* USER CODE END prvTaskSetUpESP */
