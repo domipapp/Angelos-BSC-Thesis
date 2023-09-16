@@ -533,7 +533,9 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	// Restart MCU if error occurs
+    osEventFlagsWait(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR, 0, osWaitForever);
+    NVIC_SystemReset();
   }
   /* USER CODE END 5 */
 }
@@ -689,7 +691,10 @@ void prvTaskReadESP(void *argument)
 		  received_message_index = 0;
 	  }
 	  else{
-		  // TODO: if "\r\n" but not valid response => implement error counter
+		  // Signal if "ERROR" is recieved
+		  if(strstr((char*)received_message, "ERROR\r\n") != NULL){
+		  		  osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
+		  	  }
 	  }
 	  osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
