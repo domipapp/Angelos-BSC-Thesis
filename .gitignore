@@ -1,8 +1,7 @@
 # Ignore all files and directories
 /*
-/MCU/Debug
-/MCU_Mac/MCU/Debug
-MCU/.settings/language.settings.xml
+**/Debug
+**/language.settings.xml
 /backend/__pycache__
 **/.DS_Store
 # But include:
