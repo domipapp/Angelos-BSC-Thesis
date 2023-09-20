@@ -3,9 +3,11 @@
 /MCU/Debug
 /MCU_Mac/MCU/Debug
 MCU/.settings/language.settings.xml
+/backend/__pycache__
 **/.DS_Store
 # But include:
 !/.git
 !/.gitignore
 !/MCU
 !/MCU_Mac
+!/backend
