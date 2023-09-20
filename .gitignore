@@ -2,7 +2,7 @@
 /*
 **/Debug
 **/language.settings.xml
-/backend/__pycache__
+**/__pycache__
 **/.DS_Store
 # But include:
 !/.git
