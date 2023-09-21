@@ -11,10 +11,11 @@
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/containers/ScrollableContainer.hpp>
-#include <touchgfx/containers/buttons/Buttons.hpp>
-#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/EasingEquations.hpp>
-#include <touchgfx/mixins/FadeAnimator.hpp>
+#include <gui/containers/CustomContainerMenuItemDataFrequency.hpp>
+#include <gui/containers/CustomContainerMenuItemWifiPassword.hpp>
+#include <gui/containers/CustomContainerMenuItemWifiSsid.hpp>
+#include <gui/containers/CustomContainerMenuItemServerIP.hpp>
+#include <gui/containers/CustomContainerMenuItemServerPort.hpp>
 
 class ScreenMenuViewBase : public touchgfx::View<ScreenMenuPresenter>
 {
@@ -22,14 +23,6 @@ public:
     ScreenMenuViewBase();
     virtual ~ScreenMenuViewBase();
     virtual void setupScreen();
-
-    /*
-     * Virtual Action Handlers
-     */
-    virtual void ServerPortClicked()
-    {
-        // Override and implement this function in ScreenMenu
-    }
 
 protected:
     FrontendApplication& application() {
@@ -43,33 +36,15 @@ protected:
     touchgfx::Image Background;
     touchgfx::Image TopBar;
     touchgfx::TextArea textAreaMenu;
-    touchgfx::ScrollableContainer scrollableContainer1;
-    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonDataFrequency;
-    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonWifiSsid;
-    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonWifiPass;
-    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonServerIP;
-    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonServerPort;
-    touchgfx::Box boxTextAreaServerPortBackground;
-    touchgfx::TextAreaWithOneWildcard textAreaServerPort;
+    touchgfx::ScrollableContainer scrollableContainerMenu;
+    CustomContainerMenuItemDataFrequency customContainerMenuItemDataFrequency;
+    CustomContainerMenuItemWifiPassword customContainerMenuItemWifiPassword;
+    CustomContainerMenuItemWifiSsid customContainerMenuItemWifiSsid;
+    CustomContainerMenuItemServerIP customContainerMenuItemServerIP;
+    CustomContainerMenuItemServerPort customContainerMenuItemServerPort;
     touchgfx::Image imageScrollSeparator;
 
-    /*
-     * Wildcard Buffers
-     */
-    static const uint16_t TEXTAREASERVERPORT_SIZE = 50;
-    touchgfx::Unicode::UnicodeChar textAreaServerPortBuffer[TEXTAREASERVERPORT_SIZE];
-
 private:
-
-    /*
-     * Callback Declarations
-     */
-    touchgfx::Callback<ScreenMenuViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
-
-    /*
-     * Callback Handler Declarations
-     */
-    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

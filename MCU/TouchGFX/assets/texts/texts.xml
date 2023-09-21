@@ -6,29 +6,53 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_0C44" Alignment="Left" TypographyId="Large">
+      <Text Id="textArea" Alignment="Left" TypographyId="Wildcard">
         <Translation Language="GB"></Translation>
       </Text>
-      <Text Id="__SingleUse_FBL0" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
+      <Text Id="__SingleUse_2LYF" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB"></Translation>
       </Text>
-      <Text Id="__SingleUse_Z2BR" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Server IP</Translation>
-      </Text>
-      <Text Id="__SingleUse_57Z3" Alignment="Left" TypographyId="Large">
+      <Text Id="__SingleUse_WP1Q" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Data frequency</Translation>
       </Text>
-      <Text Id="__SingleUse_UU6C" Alignment="Left" TypographyId="Large">
+      <Text Id="__SingleUse_Z8R9" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_LDKT" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Wi-Fi password</Translation>
       </Text>
-      <Text Id="__SingleUse_U4UC" Alignment="Left" TypographyId="Large">
+      <Text Id="__SingleUse_JZTK" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_FXY6" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_DV1L" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Wi-Fi SSID</Translation>
+      </Text>
+      <Text Id="__SingleUse_Z0IA" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_ZG12" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_XYZH" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Server IP</Translation>
+      </Text>
+      <Text Id="__SingleUse_WLHW" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_7Y0N" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_PSQ8" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_JZW7" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Server port</Translation>
       </Text>
       <Text Id="__SingleUse_G20V" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Menu</Translation>
-      </Text>
-      <Text Id="__SingleUse_ZJYL" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Server port</Translation>
       </Text>
       <Text Id="__SingleUse_872K" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Welcome!</Translation>
