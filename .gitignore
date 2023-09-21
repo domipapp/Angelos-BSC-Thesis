@@ -4,6 +4,7 @@
 **/language.settings.xml
 **/__pycache__
 **/.DS_Store
+MCU/TouchGFX/build
 # But include:
 !/.git
 !/.gitignore
