@@ -9,13 +9,15 @@
 #include <gui/screenmenu_screen/ScreenMenuPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/containers/ScrollableContainer.hpp>
 #include <gui/containers/CustomContainerMenuItemDataFrequency.hpp>
 #include <gui/containers/CustomContainerMenuItemWifiPassword.hpp>
 #include <gui/containers/CustomContainerMenuItemWifiSsid.hpp>
 #include <gui/containers/CustomContainerMenuItemServerIP.hpp>
 #include <gui/containers/CustomContainerMenuItemServerPort.hpp>
+#include <touchgfx/containers/Container.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 class ScreenMenuViewBase : public touchgfx::View<ScreenMenuPresenter>
 {
@@ -34,8 +36,6 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Image Background;
-    touchgfx::Image TopBar;
-    touchgfx::TextArea textAreaMenu;
     touchgfx::ScrollableContainer scrollableContainerMenu;
     CustomContainerMenuItemDataFrequency customContainerMenuItemDataFrequency;
     CustomContainerMenuItemWifiPassword customContainerMenuItemWifiPassword;
@@ -43,6 +43,10 @@ protected:
     CustomContainerMenuItemServerIP customContainerMenuItemServerIP;
     CustomContainerMenuItemServerPort customContainerMenuItemServerPort;
     touchgfx::Image imageScrollSeparator;
+    touchgfx::Container containerMenuBar;
+    touchgfx::Image TopBar;
+    touchgfx::TextArea textAreaMenu;
+    touchgfx::ButtonWithLabel buttonLoadDefault;
 
 private:
 

@@ -12,6 +12,7 @@ enum LANGUAGES
 
 enum TEXTS
 {
+    T___SINGLEUSE_OJWK,
     T_TEXTAREA,
     T___SINGLEUSE_2LYF,
     T___SINGLEUSE_WP1Q,

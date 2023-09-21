@@ -101,32 +101,6 @@
             "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_480x272_waves.png"
           },
           {
-            "Type": "Image",
-            "Name": "TopBar",
-            "Width": 480,
-            "Height": 50,
-            "LockPosition": true,
-            "RelativeFilename": "__generated\\alternate_theme_images_bars_480x272_bottom_dim_dark.png",
-            "Alpha": 135
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textAreaMenu",
-            "X": 180,
-            "Y": 5,
-            "Width": 108,
-            "Height": 48,
-            "LockPosition": true,
-            "TextId": "__SingleUse_G20V",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
-          },
-          {
             "Type": "ScrollableContainer",
             "Name": "scrollableContainerMenu",
             "Y": 50,
@@ -192,6 +166,61 @@
             "Width": 2,
             "Height": 320,
             "RelativeFilename": "__generated\\alternate_theme_images_dividers_vertical_medium_thin_dark.png"
+          },
+          {
+            "Type": "Container",
+            "Name": "containerMenuBar",
+            "Width": 480,
+            "Height": 50,
+            "Components": [
+              {
+                "Type": "Image",
+                "Name": "TopBar",
+                "Width": 480,
+                "Height": 50,
+                "LockPosition": true,
+                "RelativeFilename": "__generated\\alternate_theme_images_bars_480x272_bottom_dim_dark.png",
+                "Alpha": 135
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textAreaMenu",
+                "X": 180,
+                "Y": 5,
+                "Width": 108,
+                "Height": 48,
+                "LockPosition": true,
+                "TextId": "__SingleUse_G20V",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "buttonLoadDefault",
+                "Width": 110,
+                "Height": 50,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png",
+                "TextId": "__SingleUse_OJWK",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0",
+                "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_active.json"
+              }
+            ]
           }
         ],
         "Interactions": []

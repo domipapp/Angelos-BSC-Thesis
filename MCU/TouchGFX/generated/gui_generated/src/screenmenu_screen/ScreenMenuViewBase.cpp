@@ -16,17 +16,6 @@ ScreenMenuViewBase::ScreenMenuViewBase()
     Background.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_BACKGROUNDS_480X272_WAVES_ID));
     add(Background);
 
-    TopBar.setXY(0, 0);
-    TopBar.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_BARS_480X272_BOTTOM_DIM_DARK_ID));
-    TopBar.setAlpha(135);
-    add(TopBar);
-
-    textAreaMenu.setXY(180, 5);
-    textAreaMenu.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    textAreaMenu.setLinespacing(0);
-    textAreaMenu.setTypedText(touchgfx::TypedText(T___SINGLEUSE_G20V));
-    add(textAreaMenu);
-
     scrollableContainerMenu.setPosition(0, 50, 480, 222);
     scrollableContainerMenu.setScrollbarsColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     scrollableContainerMenu.setScrollbarsAlpha(255);
@@ -51,6 +40,27 @@ ScreenMenuViewBase::ScreenMenuViewBase()
     imageScrollSeparator.setXY(317, 50);
     imageScrollSeparator.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_DIVIDERS_VERTICAL_MEDIUM_THIN_DARK_ID));
     add(imageScrollSeparator);
+
+    containerMenuBar.setPosition(0, 0, 480, 50);
+    TopBar.setXY(0, 0);
+    TopBar.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_BARS_480X272_BOTTOM_DIM_DARK_ID));
+    TopBar.setAlpha(135);
+    containerMenuBar.add(TopBar);
+
+    textAreaMenu.setXY(180, 5);
+    textAreaMenu.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textAreaMenu.setLinespacing(0);
+    textAreaMenu.setTypedText(touchgfx::TypedText(T___SINGLEUSE_G20V));
+    containerMenuBar.add(textAreaMenu);
+
+    buttonLoadDefault.setXY(0, 0);
+    buttonLoadDefault.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    buttonLoadDefault.setLabelText(touchgfx::TypedText(T___SINGLEUSE_OJWK));
+    buttonLoadDefault.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonLoadDefault.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    containerMenuBar.add(buttonLoadDefault);
+
+    add(containerMenuBar);
 }
 
 ScreenMenuViewBase::~ScreenMenuViewBase()
