@@ -1,7 +1,7 @@
-build/MINGW32_NT-6.2/gui/src/screen1_screen/Screen1Presenter.o: \
- gui/src/screen1_screen/Screen1Presenter.cpp \
- gui/include/gui/screen1_screen/Screen1View.hpp \
- generated/gui_generated/include/gui_generated/screen1_screen/Screen1ViewBase.hpp \
+build/MINGW32_NT-6.2/gui/src/screenwelcome_screen/ScreenWelcomePresenter.o: \
+ gui/src/screenwelcome_screen/ScreenWelcomePresenter.cpp \
+ gui/include/gui/screenwelcome_screen/ScreenWelcomeView.hpp \
+ generated/gui_generated/include/gui_generated/screenwelcome_screen/ScreenWelcomeViewBase.hpp \
  gui/include/gui/common/FrontendApplication.hpp \
  generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp \
@@ -40,7 +40,7 @@ build/MINGW32_NT-6.2/gui/src/screen1_screen/Screen1Presenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp \
  gui/include/gui/model/Model.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
- gui/include/gui/screen1_screen/Screen1Presenter.hpp \
+ gui/include/gui/screenwelcome_screen/ScreenWelcomePresenter.hpp \
  gui/include/gui/model/ModelListener.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
@@ -50,9 +50,9 @@ build/MINGW32_NT-6.2/gui/src/screen1_screen/Screen1Presenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/EasingEquations.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/FadeAnimator.hpp
 
-gui/include/gui/screen1_screen/Screen1View.hpp:
+gui/include/gui/screenwelcome_screen/ScreenWelcomeView.hpp:
 
-generated/gui_generated/include/gui_generated/screen1_screen/Screen1ViewBase.hpp:
+generated/gui_generated/include/gui_generated/screenwelcome_screen/ScreenWelcomeViewBase.hpp:
 
 gui/include/gui/common/FrontendApplication.hpp:
 
@@ -130,7 +130,7 @@ gui/include/gui/model/Model.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
 
-gui/include/gui/screen1_screen/Screen1Presenter.hpp:
+gui/include/gui/screenwelcome_screen/ScreenWelcomePresenter.hpp:
 
 gui/include/gui/model/ModelListener.hpp:
 

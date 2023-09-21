@@ -2,13 +2,14 @@
   "Application": {
     "Screens": [
       {
-        "Name": "Screen1",
+        "Name": "ScreenWelcome",
         "Components": [
           {
             "Type": "Image",
-            "Name": "image1",
+            "Name": "Background",
             "Width": 480,
             "Height": 272,
+            "LockPosition": true,
             "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_480x272_waves.png"
           },
           {
@@ -17,7 +18,7 @@
             "X": 142,
             "Y": 112,
             "Width": 197,
-            "Height": 49,
+            "Height": 41,
             "TextId": "__SingleUse_872K",
             "TextRotation": "0",
             "Color": {
@@ -72,8 +73,59 @@
               "Type": "ActionDelay",
               "Duration": 1000
             }
+          },
+          {
+            "InteractionName": "ChangeToScreenMenu",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "testAreaWelcomeFadeOut"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionCover",
+              "ScreenTransitionDirection": "East",
+              "ActionComponent": "ScreenMenu"
+            }
           }
         ]
+      },
+      {
+        "Name": "ScreenMenu",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "Background",
+            "Width": 480,
+            "Height": 272,
+            "LockPosition": true,
+            "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_480x272_waves.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "TopBar",
+            "Width": 480,
+            "Height": 50,
+            "RelativeFilename": "__generated\\alternate_theme_images_bars_480x272_bottom_dim_dark.png",
+            "Alpha": 135
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 186,
+            "Y": 5,
+            "Width": 108,
+            "Height": 41,
+            "TextId": "__SingleUse_QMKH",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": []
       }
     ],
     "CustomContainerDefinitions": [],
@@ -83,7 +135,7 @@
       "Height": 272
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "Screen1",
+    "StartupScreenName": "ScreenWelcome",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

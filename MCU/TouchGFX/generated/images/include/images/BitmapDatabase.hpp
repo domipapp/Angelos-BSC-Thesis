@@ -7,6 +7,7 @@
 #include <touchgfx/Bitmap.hpp>
 
 const uint16_t BITMAP_ALTERNATE_THEME_IMAGES_BACKGROUNDS_480X272_WAVES_ID = 0;
+const uint16_t BITMAP_ALTERNATE_THEME_IMAGES_BARS_480X272_BOTTOM_DIM_DARK_ID = 1;
 
 namespace BitmapDatabase
 {

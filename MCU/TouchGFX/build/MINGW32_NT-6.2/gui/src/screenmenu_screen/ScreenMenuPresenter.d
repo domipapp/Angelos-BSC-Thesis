@@ -1,7 +1,7 @@
-build/MINGW32_NT-6.2/gui/src/screen1_screen/Screen1View.o: \
- gui/src/screen1_screen/Screen1View.cpp \
- gui/include/gui/screen1_screen/Screen1View.hpp \
- generated/gui_generated/include/gui_generated/screen1_screen/Screen1ViewBase.hpp \
+build/MINGW32_NT-6.2/gui/src/screenmenu_screen/ScreenMenuPresenter.o: \
+ gui/src/screenmenu_screen/ScreenMenuPresenter.cpp \
+ gui/include/gui/screenmenu_screen/ScreenMenuView.hpp \
+ generated/gui_generated/include/gui_generated/screenmenu_screen/ScreenMenuViewBase.hpp \
  gui/include/gui/common/FrontendApplication.hpp \
  generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp \
@@ -40,19 +40,17 @@ build/MINGW32_NT-6.2/gui/src/screen1_screen/Screen1View.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp \
  gui/include/gui/model/Model.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
- gui/include/gui/screen1_screen/Screen1Presenter.hpp \
+ gui/include/gui/screenmenu_screen/ScreenMenuPresenter.hpp \
  gui/include/gui/model/ModelListener.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/EasingEquations.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/FadeAnimator.hpp
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp
 
-gui/include/gui/screen1_screen/Screen1View.hpp:
+gui/include/gui/screenmenu_screen/ScreenMenuView.hpp:
 
-generated/gui_generated/include/gui_generated/screen1_screen/Screen1ViewBase.hpp:
+generated/gui_generated/include/gui_generated/screenmenu_screen/ScreenMenuViewBase.hpp:
 
 gui/include/gui/common/FrontendApplication.hpp:
 
@@ -130,7 +128,7 @@ gui/include/gui/model/Model.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
 
-gui/include/gui/screen1_screen/Screen1Presenter.hpp:
+gui/include/gui/screenmenu_screen/ScreenMenuPresenter.hpp:
 
 gui/include/gui/model/ModelListener.hpp:
 
@@ -143,7 +141,3 @@ gui/include/gui/model/ModelListener.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:
-
-../Middlewares/ST/touchgfx/framework/include/touchgfx/EasingEquations.hpp:
-
-../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/FadeAnimator.hpp:
