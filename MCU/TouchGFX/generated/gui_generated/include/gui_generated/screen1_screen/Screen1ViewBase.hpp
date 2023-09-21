@@ -8,7 +8,10 @@
 #include <mvp/View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/ButtonWithIcon.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/mixins/FadeAnimator.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -16,6 +19,8 @@ public:
     Screen1ViewBase();
     virtual ~Screen1ViewBase();
     virtual void setupScreen();
+    virtual void transitionBegins();
+    virtual void handleTickEvent();
 
 protected:
     FrontendApplication& application() {
@@ -26,9 +31,26 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::ButtonWithIcon buttonWithIcon1;
+    touchgfx::Image image1;
+    touchgfx::FadeAnimator< touchgfx::TextArea > textAreaWelcome;
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback < Screen1ViewBase, const touchgfx::FadeAnimator<touchgfx::TextArea>& > testAreaWelcomeFadeInEndedCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void testAreaWelcomeFadeInEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::TextArea>& comp);
+
+    /*
+     * Delay Variable Declarations
+     */
+    static const uint16_t TESTAREAWELCOMEFADEWAIT_DURATION = 60;
+    uint16_t testAreaWelcomeFadeWaitCounter;
 
 };
 

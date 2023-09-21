@@ -5,23 +5,75 @@
         "Name": "Screen1",
         "Components": [
           {
-            "Type": "ButtonWithIcon",
-            "Name": "buttonWithIcon1",
-            "X": 120,
-            "Y": 111,
-            "Width": 240,
-            "Height": 50,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_normal.png",
-            "IconPressed": "__generated\\icon_theme_images_action_done_50_50_E8F6FB.svg.png",
-            "IconReleased": "__generated\\icon_theme_images_action_done_50_50_E8F6FB.svg.png",
-            "IconX": 97,
-            "IconHeight": 50,
-            "IconWidth": 50,
-            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\medium_rounded_normal.json"
+            "Type": "Image",
+            "Name": "image1",
+            "Width": 480,
+            "Height": 272,
+            "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_480x272_waves.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textAreaWelcome",
+            "X": 142,
+            "Y": 112,
+            "Width": 197,
+            "Height": 49,
+            "TextId": "__SingleUse_872K",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 0,
+            "AutoSize": true,
+            "Fadeable": true
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "testAreaWelcomeFadeIn",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 1000,
+              "ActionComponent": "textAreaWelcome"
+            }
+          },
+          {
+            "InteractionName": "testAreaWelcomeFadeOut",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "testAreaWelcomeFadeWait"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Alpha": 0,
+              "Easing": "Linear",
+              "EasingOption": "Out",
+              "Duration": 1000,
+              "ActionComponent": "textAreaWelcome"
+            }
+          },
+          {
+            "InteractionName": "testAreaWelcomeFadeWait",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "testAreaWelcomeFadeIn"
+            },
+            "Action": {
+              "Type": "ActionDelay",
+              "Duration": 1000
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],

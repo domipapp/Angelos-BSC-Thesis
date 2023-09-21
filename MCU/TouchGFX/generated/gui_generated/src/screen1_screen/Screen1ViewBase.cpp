@@ -4,17 +4,26 @@
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <images/BitmapDatabase.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 
-Screen1ViewBase::Screen1ViewBase()
+Screen1ViewBase::Screen1ViewBase() :
+    testAreaWelcomeFadeInEndedCallback(this, &Screen1ViewBase::testAreaWelcomeFadeInEndedCallbackHandler),
+    testAreaWelcomeFadeWaitCounter(0)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    buttonWithIcon1.setXY(120, 111);
-    buttonWithIcon1.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_MEDIUM_ROUNDED_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_MEDIUM_ROUNDED_PRESSED_ID), touchgfx::Bitmap(BITMAP_ICON_THEME_IMAGES_ACTION_DONE_50_50_E8F6FB_SVG_ID), touchgfx::Bitmap(BITMAP_ICON_THEME_IMAGES_ACTION_DONE_50_50_E8F6FB_SVG_ID));
-    buttonWithIcon1.setIconXY(97, 0);
-    add(buttonWithIcon1);
+    image1.setXY(0, 0);
+    image1.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_BACKGROUNDS_480X272_WAVES_ID));
+    add(image1);
+
+    textAreaWelcome.setXY(142, 112);
+    textAreaWelcome.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textAreaWelcome.setLinespacing(0);
+    textAreaWelcome.setTypedText(touchgfx::TypedText(T___SINGLEUSE_872K));
+    textAreaWelcome.setAlpha(0);
+    add(textAreaWelcome);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -24,5 +33,39 @@ Screen1ViewBase::~Screen1ViewBase()
 
 void Screen1ViewBase::setupScreen()
 {
+    transitionBegins();
+}
 
+void Screen1ViewBase::transitionBegins()
+{
+    //testAreaWelcomeFadeIn
+    //When screen transition begins fade textAreaWelcome
+    //Fade textAreaWelcome to alpha:255 with LinearIn easing in 1000 ms (60 Ticks)
+    textAreaWelcome.clearFadeAnimationEndedAction();
+    textAreaWelcome.startFadeAnimation(255, 60, touchgfx::EasingEquations::linearEaseIn);
+    textAreaWelcome.setFadeAnimationEndedAction(testAreaWelcomeFadeInEndedCallback);
+}
+
+void Screen1ViewBase::handleTickEvent()
+{
+    if (testAreaWelcomeFadeWaitCounter > 0)
+    {
+        testAreaWelcomeFadeWaitCounter--;
+        if (testAreaWelcomeFadeWaitCounter == 0)
+        {
+                //testAreaWelcomeFadeOut
+                //When testAreaWelcomeFadeWait completed fade textAreaWelcome
+                //Fade textAreaWelcome to alpha:0 with LinearOut easing in 1000 ms (60 Ticks)
+                textAreaWelcome.clearFadeAnimationEndedAction();
+                textAreaWelcome.startFadeAnimation(0, 60, touchgfx::EasingEquations::linearEaseOut);
+        }
+    }
+}
+
+void Screen1ViewBase::testAreaWelcomeFadeInEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::TextArea>& comp)
+{
+    //testAreaWelcomeFadeWait
+    //When testAreaWelcomeFadeIn completed delay
+    //Delay for 1000 ms (60 Ticks)
+    testAreaWelcomeFadeWaitCounter = TESTAREAWELCOMEFADEWAIT_DURATION;
 }

@@ -12,6 +12,7 @@ enum LANGUAGES
 
 enum TEXTS
 {
+    T___SINGLEUSE_872K,
     NUMBER_OF_TEXT_KEYS
 };
 
