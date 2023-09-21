@@ -6,7 +6,8 @@
 #include <images/BitmapDatabase.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-ScreenMenuViewBase::ScreenMenuViewBase()
+ScreenMenuViewBase::ScreenMenuViewBase() :
+    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -21,11 +22,65 @@ ScreenMenuViewBase::ScreenMenuViewBase()
     TopBar.setAlpha(135);
     add(TopBar);
 
-    textArea1.setXY(186, 5);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    textArea1.setLinespacing(0);
-    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QMKH));
-    add(textArea1);
+    textAreaMenu.setXY(180, 5);
+    textAreaMenu.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textAreaMenu.setLinespacing(0);
+    textAreaMenu.setTypedText(touchgfx::TypedText(T___SINGLEUSE_G20V));
+    add(textAreaMenu);
+
+    scrollableContainer1.setPosition(0, 50, 480, 222);
+    scrollableContainer1.setScrollbarsColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    scrollableContainer1.setScrollbarsAlpha(255);
+    scrollableContainer1.setScrollbarsPermanentlyVisible();
+    flexButtonDataFrequency.setText(TypedText(T___SINGLEUSE_57Z3));
+    flexButtonDataFrequency.setTextPosition(0, 0, 311, 50);
+    flexButtonDataFrequency.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
+    flexButtonDataFrequency.setPosition(0, 200, 311, 50);
+    scrollableContainer1.add(flexButtonDataFrequency);
+
+    flexButtonWifiSsid.setText(TypedText(T___SINGLEUSE_U4UC));
+    flexButtonWifiSsid.setTextPosition(0, 0, 311, 50);
+    flexButtonWifiSsid.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
+    flexButtonWifiSsid.setPosition(0, 100, 311, 50);
+    scrollableContainer1.add(flexButtonWifiSsid);
+
+    flexButtonWifiPass.setText(TypedText(T___SINGLEUSE_UU6C));
+    flexButtonWifiPass.setTextPosition(0, 0, 311, 50);
+    flexButtonWifiPass.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
+    flexButtonWifiPass.setPosition(0, 150, 311, 50);
+    scrollableContainer1.add(flexButtonWifiPass);
+
+    flexButtonServerIP.setText(TypedText(T___SINGLEUSE_Z2BR));
+    flexButtonServerIP.setTextPosition(0, 0, 311, 50);
+    flexButtonServerIP.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
+    flexButtonServerIP.setPosition(0, 50, 311, 50);
+    scrollableContainer1.add(flexButtonServerIP);
+
+    flexButtonServerPort.setText(TypedText(T___SINGLEUSE_ZJYL));
+    flexButtonServerPort.setTextPosition(0, 0, 311, 50);
+    flexButtonServerPort.setTextColors(touchgfx::Color::getColorFromRGB(10, 10, 10), touchgfx::Color::getColorFromRGB(10, 10, 10));
+    flexButtonServerPort.setAction(flexButtonCallback);
+    flexButtonServerPort.setPosition(0, 0, 311, 50);
+    scrollableContainer1.add(flexButtonServerPort);
+
+    boxTextAreaServerPortBackground.setPosition(325, 0, 155, 50);
+    boxTextAreaServerPortBackground.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    boxTextAreaServerPortBackground.setAlpha(0);
+    scrollableContainer1.add(boxTextAreaServerPortBackground);
+
+    textAreaServerPort.setPosition(325, 0, 155, 50);
+    textAreaServerPort.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textAreaServerPort.setLinespacing(0);
+    Unicode::snprintf(textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_0C44).getText());
+    textAreaServerPort.setWildcard(textAreaServerPortBuffer);
+    textAreaServerPort.setTypedText(touchgfx::TypedText(T___SINGLEUSE_FBL0));
+    scrollableContainer1.add(textAreaServerPort);
+
+    add(scrollableContainer1);
+
+    imageScrollSeparator.setXY(317, 50);
+    imageScrollSeparator.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_DIVIDERS_VERTICAL_MEDIUM_THIN_DARK_ID));
+    add(imageScrollSeparator);
 }
 
 ScreenMenuViewBase::~ScreenMenuViewBase()
@@ -36,4 +91,20 @@ ScreenMenuViewBase::~ScreenMenuViewBase()
 void ScreenMenuViewBase::setupScreen()
 {
 
+}
+
+void ScreenMenuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+{
+    if (&src == &flexButtonServerPort)
+    {
+        //ServerPortClicked
+        //When flexButtonServerPort clicked call virtual function
+        //Call ServerPortClicked
+        ServerPortClicked();
+        //FadeBoxTextAreaServerPortBackground
+        //When flexButtonServerPort clicked fade boxTextAreaServerPortBackground
+        //Set alpha to 100 on boxTextAreaServerPortBackground
+        boxTextAreaServerPortBackground.setAlpha(100);
+        boxTextAreaServerPortBackground.invalidate();
+    }
 }

@@ -11,6 +11,7 @@ public:
     virtual ~ScreenMenuView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    virtual void ServerPortClicked(); // Mine
 protected:
 };
 

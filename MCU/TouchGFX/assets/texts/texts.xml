@@ -6,8 +6,29 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_QMKH" Alignment="Left" TypographyId="Large">
+      <Text Id="__SingleUse_0C44" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_FBL0" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_Z2BR" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Server IP</Translation>
+      </Text>
+      <Text Id="__SingleUse_57Z3" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Data frequency</Translation>
+      </Text>
+      <Text Id="__SingleUse_UU6C" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Wi-Fi password</Translation>
+      </Text>
+      <Text Id="__SingleUse_U4UC" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Wi-Fi SSID</Translation>
+      </Text>
+      <Text Id="__SingleUse_G20V" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Menu</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZJYL" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Server port</Translation>
       </Text>
       <Text Id="__SingleUse_872K" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Welcome!</Translation>
@@ -18,5 +39,6 @@
     <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Wildcard" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" WildcardCharacterRanges="0-9,a-z,A-Z" />
   </Typographies>
 </TextDatabase>

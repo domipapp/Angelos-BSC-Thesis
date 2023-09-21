@@ -10,6 +10,13 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 // Remap all strings
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    9, // T___SINGLEUSE_QMKH: "Menu"
-    0  // T___SINGLEUSE_872K: "Welcome!"
+    14, // T___SINGLEUSE_0C44: ""
+    72, // T___SINGLEUSE_FBL0: "<>"
+    53, // T___SINGLEUSE_Z2BR: "Server IP"
+    0,  // T___SINGLEUSE_57Z3: "Data frequency"
+    15, // T___SINGLEUSE_UU6C: "Wi-Fi password"
+    42, // T___SINGLEUSE_U4UC: "Wi-Fi SSID"
+    74, // T___SINGLEUSE_G20V: "Menu"
+    30, // T___SINGLEUSE_ZJYL: "Server port"
+    63  // T___SINGLEUSE_872K: "Welcome!"
 };

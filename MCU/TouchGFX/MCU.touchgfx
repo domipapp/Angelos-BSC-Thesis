@@ -105,17 +105,19 @@
             "Name": "TopBar",
             "Width": 480,
             "Height": 50,
+            "LockPosition": true,
             "RelativeFilename": "__generated\\alternate_theme_images_bars_480x272_bottom_dim_dark.png",
             "Alpha": 135
           },
           {
             "Type": "TextArea",
-            "Name": "textArea1",
-            "X": 186,
+            "Name": "textAreaMenu",
+            "X": 180,
             "Y": 5,
             "Width": 108,
-            "Height": 41,
-            "TextId": "__SingleUse_QMKH",
+            "Height": 48,
+            "LockPosition": true,
+            "TextId": "__SingleUse_G20V",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -123,9 +125,224 @@
               "Blue": 255
             },
             "AutoSize": true
+          },
+          {
+            "Type": "ScrollableContainer",
+            "Name": "scrollableContainer1",
+            "Y": 50,
+            "Width": 480,
+            "Height": 222,
+            "HorizontalScrollEnabled": true,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisible": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "ScrollbarsAlpha": 255,
+            "Components": [
+              {
+                "Type": "FlexButton",
+                "Name": "flexButtonDataFrequency",
+                "Y": 200,
+                "Width": 311,
+                "Height": 50,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "TextId": "__SingleUse_57Z3",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    },
+                    "ColorPressed": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "flexButtonWifiSsid",
+                "Y": 100,
+                "Width": 311,
+                "Height": 50,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "TextId": "__SingleUse_U4UC",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    },
+                    "ColorPressed": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "flexButtonWifiPass",
+                "Y": 150,
+                "Width": 311,
+                "Height": 50,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "TextId": "__SingleUse_UU6C",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    },
+                    "ColorPressed": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "flexButtonServerIP",
+                "Y": 50,
+                "Width": 311,
+                "Height": 50,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "TextId": "__SingleUse_Z2BR",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    },
+                    "ColorPressed": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "flexButtonServerPort",
+                "Width": 311,
+                "Height": 50,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "TextId": "__SingleUse_ZJYL",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    },
+                    "ColorPressed": {
+                      "Red": 10,
+                      "Green": 10,
+                      "Blue": 10
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Box",
+                "Name": "boxTextAreaServerPortBackground",
+                "X": 325,
+                "Width": 155,
+                "Height": 50,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 0
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textAreaServerPort",
+                "X": 325,
+                "Width": 155,
+                "Height": 50,
+                "TextId": "__SingleUse_FBL0",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_0C44",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              }
+            ]
+          },
+          {
+            "Type": "Image",
+            "Name": "imageScrollSeparator",
+            "X": 317,
+            "Y": 50,
+            "Width": 2,
+            "Height": 320,
+            "RelativeFilename": "__generated\\alternate_theme_images_dividers_vertical_medium_thin_dark.png"
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "ServerPortClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButtonServerPort"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "ServerPortClicked"
+            }
+          },
+          {
+            "InteractionName": "FadeBoxTextAreaServerPortBackground",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButtonServerPort"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Alpha": 100,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "ActionComponent": "boxTextAreaServerPortBackground"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],
