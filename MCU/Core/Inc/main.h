@@ -90,7 +90,21 @@ void Error_Handler(void);
 #define CHE_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
-
+#define RECEIVED_MESSAGE_SIZE 512	// Max size for ESP message
+#define IP_ADDRESS "192.168.1.249"	// Server IP Address
+#define PORT "9000"					// Server Port number
+// AT command for connecting to server
+#define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
+#define WIFI_SSID "Telekom-2D6325"	// Local WIFI SSID
+#define WIFI_PASS "4njteenm6s7cx4cb"// Local WIFI password
+// AT command for connecting to wifi
+#define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
+// Event flag
+#define EVENT_FLAG1 0x00000001U
+#define EVENT_FLAG_ESP_ERROR 0x00000001U
+#define EVENT_FLAG_ESP_RESPONSE_TIMEOUT 0x00000010U
+// Wait for event flags for 5000 ticks
+#define EVENT_FLAG_WAIT 5000
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
