@@ -67,7 +67,7 @@ static const Keyboard::Layout layout =
     30,
     callbackAreas,
     3,
-    Rect(15, 10, 11 * 28, 40),
+    Rect(15, 10, 11 * 27, 40),
     TypedText(T_ENTEREDTEXT),
     0xFFFFFF,
     Typography::KEYBOARD,
