@@ -3,6 +3,7 @@
 
 #include <gui_generated/screenmenu_screen/ScreenMenuViewBase.hpp>
 #include <gui/screenmenu_screen/ScreenMenuPresenter.hpp>
+#include <gui/common/CustomKeyboard.hpp>
 
 class ScreenMenuView : public ScreenMenuViewBase
 {
@@ -12,6 +13,8 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void LoadDefaultParameters();
+protected:
+    CustomKeyboard keyboard;
 };
 
 #endif // SCREENMENUVIEW_HPP

@@ -3,7 +3,8 @@
 
 ScreenMenuView::ScreenMenuView()
 {
-
+	keyboard.setPosition(80, 16, 320, 240);
+	add(keyboard);
 }
 
 void ScreenMenuView::setupScreen()

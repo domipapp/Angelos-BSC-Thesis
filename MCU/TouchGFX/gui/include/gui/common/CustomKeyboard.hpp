@@ -39,7 +39,7 @@ private:
      * The size of the buffer that is used by the keyboard.
      * The size determines how much text the keyboard can contain in its textfield.
      */
-    static const uint8_t BUFFER_SIZE = 18;
+    static const uint8_t BUFFER_SIZE = 50;
 
     /**
      * The keyboard which this CustomKeyboard wraps.
