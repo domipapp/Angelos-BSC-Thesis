@@ -40,3 +40,12 @@ void ScreenMenuView::LoadDefaultParameters()
 	Unicode::strncpy(string, WIFI_SSID, 50);
 	customContainerMenuItemWifiSsid.LoadParameter(string);
 }
+
+void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
+	keyboard.setVisible(false);
+	keyboard.getExitButton()->setVisible(false);
+	keyboard.getSaveButton()->setVisible(false);
+	keyboard.invalidate();
+	keyboard.getExitButton()->invalidate();
+	keyboard.getSaveButton()->invalidate();
+}

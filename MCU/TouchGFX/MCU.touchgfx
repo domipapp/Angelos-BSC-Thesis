@@ -278,6 +278,17 @@
               "Type": "ActionCustom",
               "FunctionName": "LoadDefaultParameters"
             }
+          },
+          {
+            "InteractionName": "buttonWithLabelKeyboardExitClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonWithLabelKeyboardExit"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "buttonWithLabelKeyboardExitClicked"
+            }
           }
         ]
       }

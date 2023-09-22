@@ -71,6 +71,7 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonWithLabelKeyboardExit.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonWithLabelKeyboardExit.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonWithLabelKeyboardExit.setVisible(false);
+    buttonWithLabelKeyboardExit.setAction(buttonCallback);
     add(buttonWithLabelKeyboardExit);
 
     buttonWithLabelKeyboardSave.setXY(420, 212);
@@ -104,5 +105,12 @@ void ScreenMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //When buttonLoadDefault clicked call virtual function
         //Call LoadDefaultParameters
         LoadDefaultParameters();
+    }
+    if (&src == &buttonWithLabelKeyboardExit)
+    {
+        //buttonWithLabelKeyboardExitClicked
+        //When buttonWithLabelKeyboardExit clicked call virtual function
+        //Call buttonWithLabelKeyboardExitClicked
+        buttonWithLabelKeyboardExitClicked();
     }
 }

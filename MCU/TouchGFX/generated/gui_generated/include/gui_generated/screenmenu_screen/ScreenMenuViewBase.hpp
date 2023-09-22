@@ -33,6 +33,10 @@ public:
     {
         // Override and implement this function in ScreenMenu
     }
+    virtual void buttonWithLabelKeyboardExitClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
 
 protected:
     FrontendApplication& application() {

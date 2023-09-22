@@ -13,6 +13,7 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void LoadDefaultParameters();
+    virtual void buttonWithLabelKeyboardExitClicked();
 protected:
     CustomKeyboard keyboard;
 };
