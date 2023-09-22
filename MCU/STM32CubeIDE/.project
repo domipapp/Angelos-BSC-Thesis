@@ -605,6 +605,11 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/target/generated/tgfx_jpeg_utils.c</locationURI>
 		</link>
 		<link>
+			<name>Application/User/gui/CustomKeyboard.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/common/CustomKeyboard.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/gui/FrontendApplication.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/common/FrontendApplication.cpp</locationURI>
@@ -688,6 +693,11 @@
 			<name>Application/User/generated/Font_verdana_20_4bpp_0.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/fonts/src/Font_verdana_20_4bpp_0.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/Font_verdana_20_4bpp_4.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/fonts/src/Font_verdana_20_4bpp_4.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/Font_verdana_40_4bpp_0.cpp</name>
@@ -818,6 +828,51 @@
 			<name>Application/User/generated/image_alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_icon_keyboard_even_row.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_icon_keyboard_even_row.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_icon_keyboard_highlighted.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_icon_keyboard_highlighted.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_icon_keyboard_odd_row.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_icon_keyboard_odd_row.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_keyboard_background.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_keyboard_background.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_keyboard_key_delete_highlighted.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_keyboard_key_delete_highlighted.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_keyboard_key_highlighted.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_keyboard_key_highlighted.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_keyboard_key_num_highlighted.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_keyboard_key_num_highlighted.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_keyboard_key_shift_highlighted.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_keyboard_key_shift_highlighted.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_keyboard_space_highlighted.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_keyboard_space_highlighted.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/LanguageGb.cpp</name>

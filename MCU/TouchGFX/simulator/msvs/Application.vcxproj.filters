@@ -209,7 +209,7 @@
       <UniqueIdentifier>19583780-005B-53BE-812F-22B53C1CEF03</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\gui\include">
-      <UniqueIdentifier>DAE81C52-940C-30F6-3202-C9F563D080FE</UniqueIdentifier>
+      <UniqueIdentifier>3569BA6C-7B85-4B0B-C988-636C0D9B2CE5</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +290,9 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemWifiSsidBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp">
+      <Filter>Source Files\gui\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -783,6 +786,15 @@
     </ClInclude>
     <ClInclude Include="..\..\gui\include\simulator_main.h">
       <Filter>Source Files\gui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\common\CustomKeyboard.hpp">
+      <Filter>Header Files\gui\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\common\KeyboardKeyMapping.hpp">
+      <Filter>Header Files\gui\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp">
+      <Filter>Header Files\gui\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

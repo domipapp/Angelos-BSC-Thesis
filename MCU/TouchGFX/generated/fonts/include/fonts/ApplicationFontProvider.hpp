@@ -18,6 +18,9 @@ struct Typography
     static const touchgfx::FontId SMALL = 2;
     static const touchgfx::FontId WILDCARD = 3;
     static const touchgfx::FontId MENUBARBUTTON = 4;
+    static const touchgfx::FontId DISPLAY = 5;
+    static const touchgfx::FontId KEYBOARD = 6;
+    static const touchgfx::FontId MODE = 7;
 };
 
 struct TypographyFontIndex
@@ -27,6 +30,9 @@ struct TypographyFontIndex
     static const touchgfx::FontId SMALL = 2;         // verdana_10_4bpp
     static const touchgfx::FontId WILDCARD = 1;      // verdana_40_4bpp
     static const touchgfx::FontId MENUBARBUTTON = 3; // verdana_15_4bpp
+    static const touchgfx::FontId DISPLAY = 0;       // verdana_20_4bpp
+    static const touchgfx::FontId KEYBOARD = 0;      // verdana_20_4bpp
+    static const touchgfx::FontId MODE = 0;          // verdana_20_4bpp
     static const uint16_t NUMBER_OF_FONTS = 4;
 };
 
