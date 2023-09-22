@@ -11,9 +11,13 @@ void CustomContainerMenuItemServerIP::initialize()
 }
 
 void CustomContainerMenuItemServerIP::FlexButtonClicked()
-{	uint16_t a = 123;
-	Unicode::snprintf(textAreaBuffer, TEXTAREA_SIZE, "%u", a);
-	textArea.invalidate();
+{	
+    keyboard->setVisible(true);
+	keyboard->getExitButton()->setVisible(true);
+	keyboard->getExitButton()->invalidate();
+	keyboard->getSaveButton()->setVisible(true);
+	keyboard->getSaveButton()->invalidate();
+	keyboard->invalidate();
 }
 
 void CustomContainerMenuItemServerIP::LoadParameter(const Unicode::UnicodeChar * string){
@@ -23,3 +27,8 @@ void CustomContainerMenuItemServerIP::LoadParameter(const Unicode::UnicodeChar *
     TextAreaBackground.invalidate();
 
 }
+
+void CustomContainerMenuItemServerIP::SetKeyboard(CustomKeyboard* keyboard){
+	this->keyboard = keyboard;
+}
+
