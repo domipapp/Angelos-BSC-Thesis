@@ -55,6 +55,8 @@ protected:
     touchgfx::Image TopBar;
     touchgfx::TextArea textAreaMenu;
     touchgfx::ButtonWithLabel buttonLoadDefault;
+    touchgfx::ButtonWithLabel buttonWithLabelKeyboardExit;
+    touchgfx::ButtonWithLabel buttonWithLabelKeyboardSave;
 
 private:
 

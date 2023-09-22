@@ -64,6 +64,22 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     containerMenuBar.add(buttonLoadDefault);
 
     add(containerMenuBar);
+
+    buttonWithLabelKeyboardExit.setXY(0, 212);
+    buttonWithLabelKeyboardExit.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUND_TINY_FILL_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUND_TINY_FILL_PRESSED_ID));
+    buttonWithLabelKeyboardExit.setLabelText(touchgfx::TypedText(T___SINGLEUSE_ZRWR));
+    buttonWithLabelKeyboardExit.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonWithLabelKeyboardExit.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonWithLabelKeyboardExit.setVisible(false);
+    add(buttonWithLabelKeyboardExit);
+
+    buttonWithLabelKeyboardSave.setXY(420, 212);
+    buttonWithLabelKeyboardSave.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUND_TINY_FILL_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUND_TINY_FILL_PRESSED_ID));
+    buttonWithLabelKeyboardSave.setLabelText(touchgfx::TypedText(T___SINGLEUSE_N9FE));
+    buttonWithLabelKeyboardSave.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonWithLabelKeyboardSave.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonWithLabelKeyboardSave.setVisible(false);
+    add(buttonWithLabelKeyboardSave);
 }
 
 ScreenMenuViewBase::~ScreenMenuViewBase()

@@ -8,6 +8,7 @@
 #include <gui/common/KeyboardLayout.hpp>
 #include <fonts/ApplicationFontProvider.hpp>
 #include <gui/common/KeyboardKeyMapping.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 using namespace touchgfx;
 
@@ -33,6 +34,12 @@ public:
 	Unicode::UnicodeChar *getBuffer ();
 
     virtual void clearBuffer ();
+    virtual void setButtons (ButtonWithLabel* buttonWithLabelKeyboardExit, ButtonWithLabel* buttonWithLabelKeyboardSave);
+    virtual ButtonWithLabel* getExitButton ();
+    virtual ButtonWithLabel* getSaveButton ();
+protected:
+    ButtonWithLabel* buttonWithLabelKeyboardExit;
+    ButtonWithLabel* buttonWithLabelKeyboardSave;
 
 private:
     /*

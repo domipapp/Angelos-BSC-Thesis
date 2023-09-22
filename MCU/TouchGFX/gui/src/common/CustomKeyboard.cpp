@@ -2,7 +2,9 @@
 #include <string.h>
 #include <touchgfx/Color.hpp>
 
-CustomKeyboard::CustomKeyboard() : keyboard(),
+CustomKeyboard::CustomKeyboard() : 	buttonWithLabelKeyboardExit(nullptr),
+	buttonWithLabelKeyboardSave(nullptr),
+	keyboard(),
     modeBtnTextArea(),
     capslockPressed(this, &CustomKeyboard::capslockPressedHandler),
     backspacePressed(this, &CustomKeyboard::backspacePressedHandler),
@@ -11,6 +13,7 @@ CustomKeyboard::CustomKeyboard() : keyboard(),
     alphaKeys(true),
     uppercaseKeys(false),
     firstCharacterEntry(false)
+
 {
     //Set the callbacks for the callback areas of the keyboard and set its layout.
     layout.callbackAreaArray[0].callback = &capslockPressed;
@@ -135,4 +138,17 @@ void CustomKeyboard::clearBuffer ()
     firstCharacterEntry = true;
     uppercaseKeys = true;
     setKeyMappingList();
+}
+
+void CustomKeyboard::setButtons (ButtonWithLabel* buttonWithLabelKeyboardExit, ButtonWithLabel* buttonWithLabelKeyboardSave){
+	this->buttonWithLabelKeyboardExit = buttonWithLabelKeyboardExit;
+	this->buttonWithLabelKeyboardSave = buttonWithLabelKeyboardSave;
+}
+
+ButtonWithLabel* CustomKeyboard::getExitButton (){
+	return this->buttonWithLabelKeyboardExit;
+}
+
+ButtonWithLabel* CustomKeyboard::getSaveButton (){
+	return this->buttonWithLabelKeyboardSave;
 }

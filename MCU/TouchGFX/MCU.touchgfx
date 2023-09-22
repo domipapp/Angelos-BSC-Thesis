@@ -220,6 +220,51 @@
                 "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_active.json"
               }
             ]
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "buttonWithLabelKeyboardExit",
+            "Y": 212,
+            "Width": 60,
+            "Height": 60,
+            "Visible": false,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_round_tiny_fill_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_round_tiny_fill_active.png",
+            "TextId": "__SingleUse_ZRWR",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "buttonWithLabelKeyboardSave",
+            "X": 420,
+            "Y": 212,
+            "Width": 60,
+            "Height": 60,
+            "Visible": false,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_round_tiny_fill_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_round_tiny_fill_active.png",
+            "TextId": "__SingleUse_N9FE",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0"
           }
         ],
         "Interactions": [

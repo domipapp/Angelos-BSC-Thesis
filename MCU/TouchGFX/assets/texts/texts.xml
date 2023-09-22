@@ -16,6 +16,12 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_N9FE" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">Save</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZRWR" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">Exit</Translation>
+      </Text>
       <Text Id="__SingleUse_RJR7" Alignment="Left" TypographyId="Wildcard">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
