@@ -5,7 +5,7 @@
   </Languages>
   <Texts>
     <TextGroup Id="Group1">
-      <Text Id="EnteredText" Alignment="Left" TypographyId="Display">
+      <Text Id="EnteredText" Alignment="Center" TypographyId="Display">
         <Translation Language="GB">&lt;placeholder&gt;</Translation>
       </Text>
       <Text Id="NumMode" Alignment="Center" TypographyId="Mode">
