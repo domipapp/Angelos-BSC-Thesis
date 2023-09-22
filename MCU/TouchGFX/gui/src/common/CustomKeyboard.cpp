@@ -27,7 +27,7 @@ CustomKeyboard::CustomKeyboard() : 	buttonWithLabelKeyboardExit(nullptr),
     memset(buffer, 0, sizeof(buffer));
     keyboard.setBuffer(buffer, BUFFER_SIZE);
 
-    uppercaseKeys = true;
+    uppercaseKeys = false;
     firstCharacterEntry = true;
 
     modeBtnTextArea.setPosition(5, 196, 56, 40);
@@ -80,7 +80,6 @@ void CustomKeyboard::backspacePressedHandler()
         if (1 == pos)
         {
             firstCharacterEntry = true;
-            uppercaseKeys = true;
             setKeyMappingList();
         }
     }
@@ -111,13 +110,14 @@ void CustomKeyboard::modePressedHandler()
 
 void CustomKeyboard::keyPressedhandler(Unicode::UnicodeChar keyChar)
 {
+
     // After the first keypress, the keyboard will shift to lowercase.
-    if (firstCharacterEntry && keyChar != 0)
+    /*if (firstCharacterEntry && keyChar != 0)
     {
         firstCharacterEntry = false;
         uppercaseKeys = false;
         setKeyMappingList();
-    }
+    }*/
 }
 
 void CustomKeyboard::setTouchable(bool touch)
@@ -136,7 +136,6 @@ void CustomKeyboard::clearBuffer ()
 	memset(buffer, 0, BUFFER_SIZE+1);
 	keyboard.setBufferPosition(0);
     firstCharacterEntry = true;
-    uppercaseKeys = true;
     setKeyMappingList();
 }
 
