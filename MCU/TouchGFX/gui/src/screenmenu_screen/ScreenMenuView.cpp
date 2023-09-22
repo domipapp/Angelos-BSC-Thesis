@@ -8,6 +8,7 @@ ScreenMenuView::ScreenMenuView()
 	customContainerMenuItemServerIP.SetKeyboard(&keyboard);
 	customContainerMenuItemWifiSsid.SetKeyboard(&keyboard);
 	customContainerMenuItemWifiPassword.SetKeyboard(&keyboard);
+	customContainerMenuItemDataFrequency.SetKeyboard(&keyboard);
 	keyboard.setPosition(80, 16, 320, 240);
 	add(keyboard);
 	keyboard.setVisible(false);

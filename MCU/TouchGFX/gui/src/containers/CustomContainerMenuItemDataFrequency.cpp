@@ -11,10 +11,13 @@ void CustomContainerMenuItemDataFrequency::initialize()
 }
 
 void CustomContainerMenuItemDataFrequency::FlexButtonClicked()
-{	uint16_t a = 123;
-	Unicode::snprintf(textAreaBuffer, TEXTAREA_SIZE, "%u", a);
-	textArea.invalidate();
-
+{
+	keyboard->setVisible(true);
+	keyboard->getExitButton()->setVisible(true);
+	keyboard->getExitButton()->invalidate();
+	keyboard->getSaveButton()->setVisible(true);
+	keyboard->getSaveButton()->invalidate();
+	keyboard->invalidate();
 }
 
 void CustomContainerMenuItemDataFrequency::LoadParameter(const Unicode::UnicodeChar * string){
@@ -23,4 +26,8 @@ void CustomContainerMenuItemDataFrequency::LoadParameter(const Unicode::UnicodeC
     TextAreaBackground.setAlpha(100);
     TextAreaBackground.invalidate();
 
+}
+
+void CustomContainerMenuItemDataFrequency::SetKeyboard(CustomKeyboard* keyboard){
+	this->keyboard = keyboard;
 }
