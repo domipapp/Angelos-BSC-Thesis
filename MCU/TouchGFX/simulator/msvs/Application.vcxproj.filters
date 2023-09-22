@@ -208,6 +208,9 @@
     <Filter Include="Header Files\generated\gui_generated\containers">
       <UniqueIdentifier>19583780-005B-53BE-812F-22B53C1CEF03</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gui\include">
+      <UniqueIdentifier>DAE81C52-940C-30F6-3202-C9F563D080FE</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -777,6 +780,9 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemWifiSsidBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\simulator_main.h">
+      <Filter>Source Files\gui\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

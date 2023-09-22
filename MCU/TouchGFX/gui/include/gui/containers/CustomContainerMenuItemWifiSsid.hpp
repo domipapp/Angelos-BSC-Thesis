@@ -11,6 +11,7 @@ public:
 
     virtual void initialize();
     virtual void FlexButtonClicked();
+    virtual void LoadParameter(const Unicode::UnicodeChar * string);
 protected:
 };
 

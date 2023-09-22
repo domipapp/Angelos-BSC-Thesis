@@ -15,3 +15,11 @@ void CustomContainerMenuItemServerIP::FlexButtonClicked()
 	Unicode::snprintf(textAreaBuffer, TEXTAREA_SIZE, "%u", a);
 	textArea.invalidate();
 }
+
+void CustomContainerMenuItemServerIP::LoadParameter(const Unicode::UnicodeChar * string){
+
+	Unicode::strncpy(textAreaBuffer, string, TEXTAREA_SIZE);
+    TextAreaBackground.setAlpha(100);
+    TextAreaBackground.invalidate();
+
+}

@@ -11,7 +11,7 @@ public:
     virtual ~ScreenMenuView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
-protected:
+    virtual void LoadDefaultParameters();
 };
 
 #endif // SCREENMENUVIEW_HPP

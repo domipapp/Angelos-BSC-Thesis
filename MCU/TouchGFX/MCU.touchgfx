@@ -18,7 +18,7 @@
             "X": 142,
             "Y": 112,
             "Width": 197,
-            "Height": 41,
+            "Height": 49,
             "TextId": "__SingleUse_872K",
             "TextRotation": "0",
             "Color": {
@@ -106,7 +106,6 @@
             "Y": 50,
             "Width": 480,
             "Height": 222,
-            "HorizontalScrollEnabled": true,
             "VerticalScrollEnabled": true,
             "ScrollbarsVisible": true,
             "ScrollbarsVisibleOnPressed": true,
@@ -223,7 +222,19 @@
             ]
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "LoadDefaultParameters",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonLoadDefault"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "LoadDefaultParameters"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [
@@ -233,33 +244,43 @@
         "Height": 52,
         "Components": [
           {
-            "Type": "Box",
-            "Name": "TextAreaBackground",
+            "Type": "ScrollableContainer",
+            "Name": "scrollableContainer1",
             "X": 321,
             "Y": 2,
-            "Width": 155,
+            "Width": 159,
             "Height": 50,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Alpha": 0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea",
-            "X": 324,
-            "Y": 2,
-            "Width": 148,
-            "Height": 50,
-            "TextId": "__SingleUse_Z8R9",
-            "TextRotation": "0",
-            "Wildcard1": {
-              "TextId": "__SingleUse_2LYF",
-              "UseBuffer": true,
-              "BufferSize": 50
-            }
+            "HorizontalScrollEnabled": true,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsAlpha": 255,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "TextAreaBackground",
+                "Width": 564,
+                "Height": 50,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 0
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textArea",
+                "Width": 564,
+                "Height": 50,
+                "TextId": "__SingleUse_RJR7",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "textArea",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              }
+            ]
           },
           {
             "Type": "FlexButton",
@@ -323,33 +344,43 @@
         "Height": 52,
         "Components": [
           {
-            "Type": "Box",
-            "Name": "TextAreaBackground",
+            "Type": "ScrollableContainer",
+            "Name": "scrollableContainer1",
             "X": 321,
             "Y": 2,
-            "Width": 155,
+            "Width": 159,
             "Height": 50,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Alpha": 0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea",
-            "X": 324,
-            "Y": 2,
-            "Width": 148,
-            "Height": 50,
-            "TextId": "__SingleUse_FXY6",
-            "TextRotation": "0",
-            "Wildcard1": {
-              "TextId": "__SingleUse_JZTK",
-              "UseBuffer": true,
-              "BufferSize": 50
-            }
+            "HorizontalScrollEnabled": true,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsAlpha": 255,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "TextAreaBackground",
+                "Width": 564,
+                "Height": 50,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 0
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textArea",
+                "Width": 564,
+                "Height": 50,
+                "TextId": "__SingleUse_GR4G",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "textArea",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              }
+            ]
           },
           {
             "Type": "FlexButton",
@@ -413,33 +444,43 @@
         "Height": 52,
         "Components": [
           {
-            "Type": "Box",
-            "Name": "TextAreaBackground",
+            "Type": "ScrollableContainer",
+            "Name": "scrollableContainer1",
             "X": 321,
             "Y": 2,
-            "Width": 155,
+            "Width": 159,
             "Height": 50,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Alpha": 0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea",
-            "X": 324,
-            "Y": 2,
-            "Width": 148,
-            "Height": 50,
-            "TextId": "__SingleUse_ZG12",
-            "TextRotation": "0",
-            "Wildcard1": {
-              "TextId": "__SingleUse_Z0IA",
-              "UseBuffer": true,
-              "BufferSize": 50
-            }
+            "HorizontalScrollEnabled": true,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsAlpha": 255,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "TextAreaBackground",
+                "Width": 564,
+                "Height": 50,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 0
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textArea",
+                "Width": 564,
+                "Height": 50,
+                "TextId": "__SingleUse_ZEA7",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "textArea",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              }
+            ]
           },
           {
             "Type": "FlexButton",
@@ -503,33 +544,43 @@
         "Height": 52,
         "Components": [
           {
-            "Type": "Box",
-            "Name": "TextAreaBackground",
+            "Type": "ScrollableContainer",
+            "Name": "scrollableContainer1",
             "X": 321,
             "Y": 2,
-            "Width": 155,
+            "Width": 159,
             "Height": 50,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Alpha": 0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea",
-            "X": 324,
-            "Y": 2,
-            "Width": 148,
-            "Height": 50,
-            "TextId": "__SingleUse_7Y0N",
-            "TextRotation": "0",
-            "Wildcard1": {
-              "TextId": "__SingleUse_WLHW",
-              "UseBuffer": true,
-              "BufferSize": 50
-            }
+            "HorizontalScrollEnabled": true,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsAlpha": 255,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "TextAreaBackground",
+                "Width": 564,
+                "Height": 50,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 0
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textArea",
+                "Width": 564,
+                "Height": 50,
+                "TextId": "__SingleUse_A2CN",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "textArea",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              }
+            ]
           },
           {
             "Type": "FlexButton",
@@ -593,38 +644,8 @@
         "Height": 52,
         "Components": [
           {
-            "Type": "Box",
-            "Name": "TextAreaBackground",
-            "X": 321,
-            "Y": 2,
-            "Width": 155,
-            "Height": 50,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Alpha": 0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea",
-            "X": 324,
-            "Y": 2,
-            "Width": 148,
-            "Height": 50,
-            "TextId": "__SingleUse_PSQ8",
-            "TextRotation": "0",
-            "Wildcard1": {
-              "TextId": "textArea",
-              "UseBuffer": true,
-              "BufferSize": 50
-            }
-          },
-          {
             "Type": "FlexButton",
             "Name": "flexButton",
-            "Y": 2,
             "Width": 311,
             "Height": 50,
             "ButtonTrigger": {
@@ -644,6 +665,45 @@
                   "Red": 10,
                   "Green": 10,
                   "Blue": 10
+                }
+              }
+            ]
+          },
+          {
+            "Type": "ScrollableContainer",
+            "Name": "scrollableContainer1",
+            "X": 321,
+            "Y": 2,
+            "Width": 159,
+            "Height": 50,
+            "HorizontalScrollEnabled": true,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsAlpha": 255,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "TextAreaBackground",
+                "Width": 564,
+                "Height": 50,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "Alpha": 0
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textArea",
+                "Width": 564,
+                "Height": 50,
+                "TextId": "__SingleUse_PSQ8",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "textArea",
+                  "UseBuffer": true,
+                  "BufferSize": 50
                 }
               }
             ]

@@ -6,6 +6,7 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
+#include <touchgfx/containers/ScrollableContainer.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
@@ -35,6 +36,7 @@ protected:
     /*
      * Member Declarations
      */
+    touchgfx::ScrollableContainer scrollableContainer1;
     touchgfx::Box TextAreaBackground;
     touchgfx::TextAreaWithOneWildcard textArea;
     touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButton;

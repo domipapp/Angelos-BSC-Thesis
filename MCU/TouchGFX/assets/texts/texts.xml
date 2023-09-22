@@ -6,50 +6,38 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_RJR7" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_GR4G" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZEA7" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_A2CN" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_PSQ8" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_OJWK" Alignment="Center" TypographyId="MenuBarButton">
         <Translation Language="GB">Load default</Translation>
       </Text>
       <Text Id="textArea" Alignment="Left" TypographyId="Wildcard">
         <Translation Language="GB"></Translation>
       </Text>
-      <Text Id="__SingleUse_2LYF" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB"></Translation>
-      </Text>
       <Text Id="__SingleUse_WP1Q" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Data frequency</Translation>
-      </Text>
-      <Text Id="__SingleUse_Z8R9" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_LDKT" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Wi-Fi password</Translation>
       </Text>
-      <Text Id="__SingleUse_JZTK" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB"></Translation>
-      </Text>
-      <Text Id="__SingleUse_FXY6" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
       <Text Id="__SingleUse_DV1L" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Wi-Fi SSID</Translation>
       </Text>
-      <Text Id="__SingleUse_Z0IA" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB"></Translation>
-      </Text>
-      <Text Id="__SingleUse_ZG12" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
       <Text Id="__SingleUse_XYZH" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Server IP</Translation>
-      </Text>
-      <Text Id="__SingleUse_WLHW" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB"></Translation>
-      </Text>
-      <Text Id="__SingleUse_7Y0N" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_PSQ8" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_JZW7" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Server port</Translation>
@@ -66,7 +54,7 @@
     <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Wildcard" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" WildcardCharacterRanges="0-9,a-z,A-Z" />
+    <Typography Id="Wildcard" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" WildcardCharacters="." WildcardCharacterRanges="0-9,a-z,A-Z" />
     <Typography Id="MenuBarButton" Font="verdana.ttf" Size="15" Bpp="4" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

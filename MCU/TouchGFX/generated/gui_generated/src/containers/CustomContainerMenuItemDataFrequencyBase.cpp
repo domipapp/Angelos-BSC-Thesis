@@ -10,18 +10,23 @@ CustomContainerMenuItemDataFrequencyBase::CustomContainerMenuItemDataFrequencyBa
 {
     setWidth(480);
     setHeight(52);
-    TextAreaBackground.setPosition(321, 2, 155, 50);
+    scrollableContainer1.setPosition(321, 2, 159, 50);
+    scrollableContainer1.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    scrollableContainer1.setScrollbarsAlpha(255);
+    TextAreaBackground.setPosition(0, 0, 564, 50);
     TextAreaBackground.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     TextAreaBackground.setAlpha(0);
-    add(TextAreaBackground);
+    scrollableContainer1.add(TextAreaBackground);
 
-    textArea.setPosition(324, 2, 148, 50);
+    textArea.setPosition(0, 0, 564, 50);
     textArea.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea.setLinespacing(0);
-    Unicode::snprintf(textAreaBuffer, TEXTAREA_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_2LYF).getText());
+    Unicode::snprintf(textAreaBuffer, TEXTAREA_SIZE, "%s", touchgfx::TypedText(T_TEXTAREA).getText());
     textArea.setWildcard(textAreaBuffer);
-    textArea.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Z8R9));
-    add(textArea);
+    textArea.setTypedText(touchgfx::TypedText(T___SINGLEUSE_RJR7));
+    scrollableContainer1.add(textArea);
+
+    add(scrollableContainer1);
 
     flexButton.setText(TypedText(T___SINGLEUSE_WP1Q));
     flexButton.setTextPosition(0, 0, 311, 50);

@@ -26,6 +26,14 @@ public:
     virtual ~ScreenMenuViewBase();
     virtual void setupScreen();
 
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void LoadDefaultParameters()
+    {
+        // Override and implement this function in ScreenMenu
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());
@@ -49,6 +57,16 @@ protected:
     touchgfx::ButtonWithLabel buttonLoadDefault;
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<ScreenMenuViewBase, const touchgfx::AbstractButton&> buttonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

@@ -6,7 +6,8 @@
 #include <images/BitmapDatabase.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-ScreenMenuViewBase::ScreenMenuViewBase()
+ScreenMenuViewBase::ScreenMenuViewBase() :
+    buttonCallback(this, &ScreenMenuViewBase::buttonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -17,6 +18,7 @@ ScreenMenuViewBase::ScreenMenuViewBase()
     add(Background);
 
     scrollableContainerMenu.setPosition(0, 50, 480, 222);
+    scrollableContainerMenu.enableHorizontalScroll(false);
     scrollableContainerMenu.setScrollbarsColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     scrollableContainerMenu.setScrollbarsAlpha(255);
     scrollableContainerMenu.setScrollbarsPermanentlyVisible();
@@ -58,6 +60,7 @@ ScreenMenuViewBase::ScreenMenuViewBase()
     buttonLoadDefault.setLabelText(touchgfx::TypedText(T___SINGLEUSE_OJWK));
     buttonLoadDefault.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonLoadDefault.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonLoadDefault.setAction(buttonCallback);
     containerMenuBar.add(buttonLoadDefault);
 
     add(containerMenuBar);
@@ -75,4 +78,15 @@ void ScreenMenuViewBase::setupScreen()
     customContainerMenuItemWifiSsid.initialize();
     customContainerMenuItemServerIP.initialize();
     customContainerMenuItemServerPort.initialize();
+}
+
+void ScreenMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
+{
+    if (&src == &buttonLoadDefault)
+    {
+        //LoadDefaultParameters
+        //When buttonLoadDefault clicked call virtual function
+        //Call LoadDefaultParameters
+        LoadDefaultParameters();
+    }
 }
