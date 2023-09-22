@@ -52,4 +52,5 @@ void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
 	keyboard.invalidate();
 	keyboard.getExitButton()->invalidate();
 	keyboard.getSaveButton()->invalidate();
+	keyboard.clearBuffer();
 }
