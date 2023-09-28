@@ -157,6 +157,6 @@ void CustomKeyboard::setCallingContainer(touchgfx::Container* container){
 
 }
 
-touchgfx::Container* CustomKeyboard::getCallingContainer(){
+void* CustomKeyboard::getCallingContainer(){
 	return this->container;
 }
