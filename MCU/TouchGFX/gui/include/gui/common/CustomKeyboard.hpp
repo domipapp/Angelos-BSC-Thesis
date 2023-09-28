@@ -38,6 +38,7 @@ public:
     virtual ButtonWithLabel* getExitButton ();
     virtual ButtonWithLabel* getSaveButton ();
     virtual void setCallingContainer(touchgfx::Container* container);
+    virtual touchgfx::Container* getCallingContainer();
 protected:
     ButtonWithLabel* buttonWithLabelKeyboardExit;
     ButtonWithLabel* buttonWithLabelKeyboardSave;
