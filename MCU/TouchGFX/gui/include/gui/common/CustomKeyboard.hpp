@@ -41,10 +41,10 @@ public:
 protected:
     ButtonWithLabel* buttonWithLabelKeyboardExit;
     ButtonWithLabel* buttonWithLabelKeyboardSave;
-
-private:
     // Represents the container that called the keyboard. Setting is mandatory.
     touchgfx::Container* container;
+private:
+
     /*
      * The size of the buffer that is used by the keyboard.
      * The size determines how much text the keyboard can contain in its textfield.
