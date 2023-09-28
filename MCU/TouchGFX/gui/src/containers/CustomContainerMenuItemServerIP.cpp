@@ -17,6 +17,8 @@ void CustomContainerMenuItemServerIP::FlexButtonClicked()
 	keyboard->getExitButton()->invalidate();
 	keyboard->getSaveButton()->setVisible(true);
 	keyboard->getSaveButton()->invalidate();
+	// Set, so keyboard knows where to save buffer
+	keyboard->setCallingContainer(this);
 	keyboard->invalidate();
 }
 
