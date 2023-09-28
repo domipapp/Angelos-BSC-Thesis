@@ -37,11 +37,14 @@ public:
     virtual void setButtons (ButtonWithLabel* buttonWithLabelKeyboardExit, ButtonWithLabel* buttonWithLabelKeyboardSave);
     virtual ButtonWithLabel* getExitButton ();
     virtual ButtonWithLabel* getSaveButton ();
+    virtual void setCallingContainer(touchgfx::Container* container);
 protected:
     ButtonWithLabel* buttonWithLabelKeyboardExit;
     ButtonWithLabel* buttonWithLabelKeyboardSave;
 
 private:
+    // Represents the container that called the keyboard. Setting is mandatory.
+    touchgfx::Container* container;
     /*
      * The size of the buffer that is used by the keyboard.
      * The size determines how much text the keyboard can contain in its textfield.
