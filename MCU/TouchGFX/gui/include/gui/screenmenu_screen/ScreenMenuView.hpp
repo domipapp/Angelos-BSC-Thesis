@@ -14,6 +14,13 @@ public:
     virtual void tearDownScreen();
     virtual void LoadDefaultParameters();
     virtual void buttonWithLabelKeyboardExitClicked();
+    virtual void buttonWithLabelKeyboardSaveClicked();
+    virtual void flexButtonServerPortClicked();
+    virtual void flexButtonServerIpClicked();
+    virtual void flexButtonWifiSsidClicked();
+    virtual void flexButtonWifiPassClicked();
+    virtual void flexButtonDataFrequencyClicked();
+    void popUpKeyboard();
 protected:
     CustomKeyboard keyboard;
 };

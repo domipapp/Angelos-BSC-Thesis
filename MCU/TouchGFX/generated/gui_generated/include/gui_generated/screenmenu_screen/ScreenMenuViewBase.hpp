@@ -10,11 +10,8 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/containers/ScrollableContainer.hpp>
-#include <gui/containers/CustomContainerMenuItemDataFrequency.hpp>
-#include <gui/containers/CustomContainerMenuItemWifiPassword.hpp>
-#include <gui/containers/CustomContainerMenuItemWifiSsid.hpp>
-#include <gui/containers/CustomContainerMenuItemServerIP.hpp>
-#include <gui/containers/CustomContainerMenuItemServerPort.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
@@ -37,6 +34,26 @@ public:
     {
         // Override and implement this function in ScreenMenu
     }
+    virtual void flexButtonServerPortClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
+    virtual void flexButtonServerIpClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
+    virtual void flexButtonWifiSsidClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
+    virtual void flexButtonWifiPassClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
+    virtual void flexButtonDataFrequencyClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
 
 protected:
     FrontendApplication& application() {
@@ -49,11 +66,26 @@ protected:
     touchgfx::Box __background;
     touchgfx::Image Background;
     touchgfx::ScrollableContainer scrollableContainerMenu;
-    CustomContainerMenuItemDataFrequency customContainerMenuItemDataFrequency;
-    CustomContainerMenuItemWifiPassword customContainerMenuItemWifiPassword;
-    CustomContainerMenuItemWifiSsid customContainerMenuItemWifiSsid;
-    CustomContainerMenuItemServerIP customContainerMenuItemServerIP;
-    CustomContainerMenuItemServerPort customContainerMenuItemServerPort;
+    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonDataFrequency;
+    touchgfx::ScrollableContainer scrollableContainerDataFrequency;
+    touchgfx::Box TextAreaBackgroundDataFrequency;
+    touchgfx::TextAreaWithOneWildcard textAreaDataFrequency;
+    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonWifiPass;
+    touchgfx::ScrollableContainer scrollableContainerWifiPass;
+    touchgfx::Box TextAreaBackgroundWifiPass;
+    touchgfx::TextAreaWithOneWildcard textAreaWifiPass;
+    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonWifiSsid;
+    touchgfx::ScrollableContainer scrollableContainerWifiSsid;
+    touchgfx::Box TextAreaBackgroundWifiSsid;
+    touchgfx::TextAreaWithOneWildcard textAreaWifiSsid;
+    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonServerIp;
+    touchgfx::ScrollableContainer scrollableContainerServerIp;
+    touchgfx::Box TextAreaBackgroundServerIp;
+    touchgfx::TextAreaWithOneWildcard textAreaServerIp;
+    touchgfx::TextButtonStyle< touchgfx::ClickButtonTrigger >  flexButtonServerPort;
+    touchgfx::ScrollableContainer scrollableContainerServerPort;
+    touchgfx::Box TextAreaBackgroundServerPort;
+    touchgfx::TextAreaWithOneWildcard textAreaServerPort;
     touchgfx::Image imageScrollSeparator;
     touchgfx::Container containerMenuBar;
     touchgfx::Image TopBar;
@@ -62,17 +94,33 @@ protected:
     touchgfx::ButtonWithLabel buttonWithLabelKeyboardExit;
     touchgfx::ButtonWithLabel buttonWithLabelKeyboardSave;
 
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t TEXTAREADATAFREQUENCY_SIZE = 50;
+    touchgfx::Unicode::UnicodeChar textAreaDataFrequencyBuffer[TEXTAREADATAFREQUENCY_SIZE];
+    static const uint16_t TEXTAREAWIFIPASS_SIZE = 50;
+    touchgfx::Unicode::UnicodeChar textAreaWifiPassBuffer[TEXTAREAWIFIPASS_SIZE];
+    static const uint16_t TEXTAREAWIFISSID_SIZE = 50;
+    touchgfx::Unicode::UnicodeChar textAreaWifiSsidBuffer[TEXTAREAWIFISSID_SIZE];
+    static const uint16_t TEXTAREASERVERIP_SIZE = 50;
+    touchgfx::Unicode::UnicodeChar textAreaServerIpBuffer[TEXTAREASERVERIP_SIZE];
+    static const uint16_t TEXTAREASERVERPORT_SIZE = 50;
+    touchgfx::Unicode::UnicodeChar textAreaServerPortBuffer[TEXTAREASERVERPORT_SIZE];
+
 private:
 
     /*
      * Callback Declarations
      */
     touchgfx::Callback<ScreenMenuViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<ScreenMenuViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
 
     /*
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

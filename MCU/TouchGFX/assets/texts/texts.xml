@@ -16,47 +16,47 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_OIDY" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_3X0B" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_1UL5" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_4FDR" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_IVI5" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_6TAB" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Server port</Translation>
+      </Text>
+      <Text Id="__SingleUse_0LAU" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Server IP</Translation>
+      </Text>
+      <Text Id="__SingleUse_YNN1" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Wi-Fi SSID</Translation>
+      </Text>
+      <Text Id="__SingleUse_HEII" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Wi-Fi password</Translation>
+      </Text>
+      <Text Id="__SingleUse_NTEJ" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Data frequency</Translation>
+      </Text>
       <Text Id="__SingleUse_N9FE" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">Save</Translation>
       </Text>
       <Text Id="__SingleUse_ZRWR" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">Exit</Translation>
       </Text>
-      <Text Id="__SingleUse_RJR7" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_GR4G" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_ZEA7" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_A2CN" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_PSQ8" Alignment="Left" TypographyId="Wildcard">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
       <Text Id="__SingleUse_OJWK" Alignment="Center" TypographyId="MenuBarButton">
         <Translation Language="GB">Load default</Translation>
       </Text>
       <Text Id="textArea" Alignment="Left" TypographyId="Wildcard">
         <Translation Language="GB"></Translation>
-      </Text>
-      <Text Id="__SingleUse_WP1Q" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Data frequency</Translation>
-      </Text>
-      <Text Id="__SingleUse_LDKT" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Wi-Fi password</Translation>
-      </Text>
-      <Text Id="__SingleUse_DV1L" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Wi-Fi SSID</Translation>
-      </Text>
-      <Text Id="__SingleUse_XYZH" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Server IP</Translation>
-      </Text>
-      <Text Id="__SingleUse_JZW7" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Server port</Translation>
       </Text>
       <Text Id="__SingleUse_G20V" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Menu</Translation>

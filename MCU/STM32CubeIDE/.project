@@ -615,31 +615,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/common/FrontendApplication.cpp</locationURI>
 		</link>
 		<link>
-			<name>Application/User/gui/CustomContainerMenuItemDataFrequency.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/containers/CustomContainerMenuItemDataFrequency.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/gui/CustomContainerMenuItemServerIP.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/containers/CustomContainerMenuItemServerIP.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/gui/CustomContainerMenuItemServerPort.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/containers/CustomContainerMenuItemServerPort.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/gui/CustomContainerMenuItemWifiPassword.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/containers/CustomContainerMenuItemWifiPassword.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/gui/CustomContainerMenuItemWifiSsid.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/containers/CustomContainerMenuItemWifiSsid.cpp</locationURI>
-		</link>
-		<link>
 			<name>Application/User/gui/Model.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/model/Model.cpp</locationURI>
@@ -758,31 +733,6 @@
 			<name>Application/User/generated/FrontendApplicationBase.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/generated/CustomContainerMenuItemDataFrequencyBase.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/gui_generated/src/containers/CustomContainerMenuItemDataFrequencyBase.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/generated/CustomContainerMenuItemServerIPBase.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/gui_generated/src/containers/CustomContainerMenuItemServerIPBase.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/generated/CustomContainerMenuItemServerPortBase.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/gui_generated/src/containers/CustomContainerMenuItemServerPortBase.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/generated/CustomContainerMenuItemWifiPasswordBase.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/gui_generated/src/containers/CustomContainerMenuItemWifiPasswordBase.cpp</locationURI>
-		</link>
-		<link>
-			<name>Application/User/generated/CustomContainerMenuItemWifiSsidBase.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/gui_generated/src/containers/CustomContainerMenuItemWifiSsidBase.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/ScreenMenuViewBase.cpp</name>

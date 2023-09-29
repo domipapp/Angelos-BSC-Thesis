@@ -37,13 +37,10 @@ public:
     virtual void setButtons (ButtonWithLabel* buttonWithLabelKeyboardExit, ButtonWithLabel* buttonWithLabelKeyboardSave);
     virtual ButtonWithLabel* getExitButton ();
     virtual ButtonWithLabel* getSaveButton ();
-    virtual void setCallingContainer(touchgfx::Container* container);
-    virtual void* getCallingContainer();
+
 protected:
     ButtonWithLabel* buttonWithLabelKeyboardExit;
     ButtonWithLabel* buttonWithLabelKeyboardSave;
-    // Represents the container that called the keyboard. Setting is mandatory.
-    void* container;
 private:
 
     /*

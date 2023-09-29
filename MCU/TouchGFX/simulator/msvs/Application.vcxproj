@@ -27,16 +27,6 @@
     <ClCompile Include="..\..\gui\src\screenwelcome_screen\ScreenWelcomePresenter.cpp"/>
     <ClCompile Include="..\..\gui\src\screenwelcome_screen\ScreenWelcomeView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\screenwelcome_screen\ScreenWelcomeViewBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemServerPort.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemServerPortBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemDataFrequency.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemDataFrequencyBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemServerIP.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemServerIPBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemWifiPassword.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemWifiPasswordBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemWifiSsid.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemWifiSsidBase.cpp"/>
     <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp"/>
   </ItemGroup>
   <ItemGroup>
@@ -194,16 +184,6 @@
     <ClInclude Include="..\..\gui\include\gui\screenwelcome_screen\ScreenWelcomePresenter.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\screenwelcome_screen\ScreenWelcomeView.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenwelcome_screen\ScreenWelcomeViewBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemServerPort.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemServerPortBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemDataFrequency.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemDataFrequencyBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemServerIP.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemServerIPBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemWifiPassword.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemWifiPasswordBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemWifiSsid.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemWifiSsidBase.hpp"/>
     <ClInclude Include="..\..\gui\include\simulator_main.h"/>
     <ClInclude Include="..\..\gui\include\gui\common\CustomKeyboard.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardKeyMapping.hpp"/>

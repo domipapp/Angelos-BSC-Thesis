@@ -196,12 +196,6 @@
     <Filter Include="Source Files\generated\gui_generated\screenmenu_screen">
       <UniqueIdentifier>607B0426-7687-090A-71CF-C5F18714ED47</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\gui\containers">
-      <UniqueIdentifier>0B8CC781-1A6B-F4EB-F5EA-731CA2857E71</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\containers">
-      <UniqueIdentifier>B462EB5A-C5B6-C14E-BDB5-8CF3F39F5A36</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\generated\gui_generated\containers">
       <UniqueIdentifier>7CEB49CB-3A58-6E0D-A62B-9E51B7A971C1</UniqueIdentifier>
     </Filter>
@@ -209,7 +203,7 @@
       <UniqueIdentifier>19583780-005B-53BE-812F-22B53C1CEF03</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\gui\include">
-      <UniqueIdentifier>D470C4D3-CE4F-E961-B84F-8905175BD949</UniqueIdentifier>
+      <UniqueIdentifier>7D6F14AC-B4D7-162F-45D4-46E492CB4FC7</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -260,36 +254,6 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\screenwelcome_screen\ScreenWelcomeViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\screenwelcome_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemServerPort.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemServerPortBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemDataFrequency.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemDataFrequencyBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemServerIP.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemServerIPBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemWifiPassword.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemWifiPasswordBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\CustomContainerMenuItemWifiSsid.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\CustomContainerMenuItemWifiSsidBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp">
       <Filter>Source Files\gui\common</Filter>
@@ -753,36 +717,6 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenwelcome_screen\ScreenWelcomeViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\screenwelcome_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemServerPort.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemServerPortBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemDataFrequency.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemDataFrequencyBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemServerIP.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemServerIPBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemWifiPassword.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemWifiPasswordBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\CustomContainerMenuItemWifiSsid.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CustomContainerMenuItemWifiSsidBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\simulator_main.h">
       <Filter>Source Files\gui\include</Filter>

@@ -151,12 +151,3 @@ ButtonWithLabel* CustomKeyboard::getExitButton (){
 ButtonWithLabel* CustomKeyboard::getSaveButton (){
 	return this->buttonWithLabelKeyboardSave;
 }
-
-void CustomKeyboard::setCallingContainer(touchgfx::Container* container){
-	this->container = container;
-
-}
-
-void* CustomKeyboard::getCallingContainer(){
-	return this->container;
-}

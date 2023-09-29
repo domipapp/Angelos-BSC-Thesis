@@ -4,11 +4,6 @@
 ScreenMenuView::ScreenMenuView()
 {
 	keyboard.setButtons(&buttonWithLabelKeyboardExit, &buttonWithLabelKeyboardSave);
-	customContainerMenuItemServerPort.SetKeyboard(&keyboard);
-	customContainerMenuItemServerIP.SetKeyboard(&keyboard);
-	customContainerMenuItemWifiSsid.SetKeyboard(&keyboard);
-	customContainerMenuItemWifiPassword.SetKeyboard(&keyboard);
-	customContainerMenuItemDataFrequency.SetKeyboard(&keyboard);
 	keyboard.setPosition(80, 16, 320, 240);
 	add(keyboard);
 	keyboard.setVisible(false);
@@ -30,19 +25,29 @@ void ScreenMenuView::LoadDefaultParameters()
 	Unicode::UnicodeChar string[50];
 
 	Unicode::strncpy(string, "AAA", 50);
-	customContainerMenuItemDataFrequency.LoadParameter(string);
+	Unicode::strncpy(textAreaDataFrequencyBuffer, string, TEXTAREADATAFREQUENCY_SIZE);
+	TextAreaBackgroundDataFrequency.setAlpha(100);
+	TextAreaBackgroundDataFrequency.invalidate();
 
 	Unicode::strncpy(string, IP_ADDRESS, 50);
-	customContainerMenuItemServerIP.LoadParameter(string);
+	Unicode::strncpy(textAreaServerIpBuffer, string, TEXTAREASERVERIP_SIZE);
+	TextAreaBackgroundServerIp.setAlpha(100);
+	TextAreaBackgroundServerIp.invalidate();
 
 	Unicode::strncpy(string, PORT, 50);
-	customContainerMenuItemServerPort.LoadParameter(string);
+	Unicode::strncpy(textAreaServerPortBuffer, string, TEXTAREASERVERPORT_SIZE);
+	TextAreaBackgroundServerPort.setAlpha(100);
+	TextAreaBackgroundServerPort.invalidate();
 
 	Unicode::strncpy(string, WIFI_PASS, 50);
-	customContainerMenuItemWifiPassword.LoadParameter(string);
+	Unicode::strncpy(textAreaWifiPassBuffer, string, TEXTAREAWIFIPASS_SIZE);
+	TextAreaBackgroundWifiPass.setAlpha(100);
+	TextAreaBackgroundWifiPass.invalidate();
 
 	Unicode::strncpy(string, WIFI_SSID, 50);
-	customContainerMenuItemWifiSsid.LoadParameter(string);
+	Unicode::strncpy(textAreaWifiSsidBuffer, string, TEXTAREAWIFISSID_SIZE);
+	TextAreaBackgroundWifiSsid.setAlpha(100);
+	TextAreaBackgroundWifiSsid.invalidate();
 }
 
 void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
@@ -53,4 +58,37 @@ void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
 	keyboard.getExitButton()->invalidate();
 	keyboard.getSaveButton()->invalidate();
 	keyboard.clearBuffer();
+}
+
+void ScreenMenuView::buttonWithLabelKeyboardSaveClicked(){
+
+}
+
+void ScreenMenuView::flexButtonServerPortClicked(){
+	popUpKeyboard();
+}
+
+void ScreenMenuView::flexButtonServerIpClicked(){
+	popUpKeyboard();
+}
+
+void ScreenMenuView::flexButtonWifiSsidClicked(){
+	popUpKeyboard();
+}
+
+void ScreenMenuView::flexButtonWifiPassClicked(){
+	popUpKeyboard();
+}
+
+void ScreenMenuView::flexButtonDataFrequencyClicked(){
+	popUpKeyboard();
+}
+
+void ScreenMenuView::popUpKeyboard(){
+	keyboard.setVisible(true);
+	keyboard.getExitButton()->setVisible(true);
+	keyboard.getExitButton()->invalidate();
+	keyboard.getSaveButton()->setVisible(true);
+	keyboard.getSaveButton()->invalidate();
+	keyboard.invalidate();
 }
