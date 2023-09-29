@@ -175,6 +175,12 @@ enum state currentState = STATE_READY;
 uint8_t received_message[RECEIVED_MESSAGE_SIZE] = {'\0'};
 uint8_t rx_buffer;	// Global variable for UART callback func.
 uint8_t expectedESPResponse[64] = {'\0'};
+
+char server_connect_command [50];
+char wifi_ssid[50];
+char wifi_pass[50];
+char wifi_connect_command [116];
+uint16_t data_frequency = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

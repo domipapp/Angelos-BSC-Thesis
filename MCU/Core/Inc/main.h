@@ -90,15 +90,23 @@ void Error_Handler(void);
 #define CHE_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
+
+#define DATA_FREQUENCY "5000"		// 5000ms data frequency
 #define RECEIVED_MESSAGE_SIZE 512	// Max size for ESP message
 #define IP_ADDRESS "192.168.1.249"	// Server IP Address
 #define PORT "9000"					// Server Port number
 // AT command for connecting to server
 #define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
+extern char server_connect_command [50];
 #define WIFI_SSID "Telekom-2D6325"	// Local WIFI SSID
+extern char wifi_ssid[50];
 #define WIFI_PASS "4njteenm6s7cx4cb"// Local WIFI password
+extern char wifi_pass[50];
 // AT command for connecting to wifi
 #define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
+extern char wifi_connect_command [116];
+
+extern uint16_t data_frequency;
 // Event flag
 #define EVENT_FLAG1 0x00000001U
 #define EVENT_FLAG_ESP_ERROR 0x00000001U
