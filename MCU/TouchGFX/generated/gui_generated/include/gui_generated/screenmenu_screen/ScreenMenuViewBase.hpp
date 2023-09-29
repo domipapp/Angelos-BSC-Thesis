@@ -54,6 +54,10 @@ public:
     {
         // Override and implement this function in ScreenMenu
     }
+    virtual void buttonWithLabelKeyboardSaveClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
 
 protected:
     FrontendApplication& application() {

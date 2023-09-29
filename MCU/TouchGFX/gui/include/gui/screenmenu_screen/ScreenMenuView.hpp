@@ -23,6 +23,13 @@ public:
     void setVisibilityKeyboard(bool state);
 protected:
     CustomKeyboard keyboard;
+    /* Holds a pointer to the button that called the keyboard.
+     * Button clicked methods are responsible for handling this.
+     * CALLINGBUTTONBUFFER_SIZE and CallingTextAreaBackground should also be set.
+    */
+    touchgfx::Unicode::UnicodeChar* CallingButtonBuffer = nullptr;
+    uint16_t CALLINGBUTTONBUFFER_SIZE = 0;
+    touchgfx::Box* CallingTextAreaBackground = nullptr;
 };
 
 #endif // SCREENMENUVIEW_HPP

@@ -634,6 +634,17 @@
               "Type": "ActionCustom",
               "FunctionName": "flexButtonDataFrequencyClicked"
             }
+          },
+          {
+            "InteractionName": "buttonWithLabelKeyboardSaveClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonWithLabelKeyboardSave"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "buttonWithLabelKeyboardSaveClicked"
+            }
           }
         ]
       }

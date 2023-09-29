@@ -56,28 +56,49 @@ void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
 }
 
 void ScreenMenuView::buttonWithLabelKeyboardSaveClicked(){
-
+	if (CallingButtonBuffer == nullptr || CALLINGBUTTONBUFFER_SIZE == 0 || CallingTextAreaBackground == nullptr)
+		return;
+	Unicode::strncpy(CallingButtonBuffer, keyboard.getBuffer(), CALLINGBUTTONBUFFER_SIZE);
+	buttonWithLabelKeyboardExitClicked();
+	CallingTextAreaBackground->setAlpha(100);
+	CallingTextAreaBackground->invalidate();
 }
 
 void ScreenMenuView::flexButtonServerPortClicked(){
 	setVisibilityKeyboard(true);
+	CallingButtonBuffer = textAreaServerPortBuffer;
+	CALLINGBUTTONBUFFER_SIZE = TEXTAREASERVERPORT_SIZE;
+	CallingTextAreaBackground = &TextAreaBackgroundServerPort;
 }
 
 void ScreenMenuView::flexButtonServerIpClicked(){
 	setVisibilityKeyboard(true);
+	CallingButtonBuffer = textAreaServerIpBuffer;
+	CALLINGBUTTONBUFFER_SIZE = TEXTAREASERVERIP_SIZE;
+	CallingTextAreaBackground = &TextAreaBackgroundServerIp;
 }
 
 void ScreenMenuView::flexButtonWifiSsidClicked(){
 	setVisibilityKeyboard(true);
+	CallingButtonBuffer = textAreaWifiSsidBuffer;
+	CALLINGBUTTONBUFFER_SIZE = TEXTAREAWIFISSID_SIZE;
+	CallingTextAreaBackground = &TextAreaBackgroundWifiSsid;
 }
 
 void ScreenMenuView::flexButtonWifiPassClicked(){
 	setVisibilityKeyboard(true);
+	CallingButtonBuffer = textAreaWifiPassBuffer;
+	CALLINGBUTTONBUFFER_SIZE = TEXTAREAWIFIPASS_SIZE;
+	CallingTextAreaBackground = &TextAreaBackgroundWifiPass;
 }
 
 void ScreenMenuView::flexButtonDataFrequencyClicked(){
 	setVisibilityKeyboard(true);
+	CallingButtonBuffer = textAreaDataFrequencyBuffer;
+	CALLINGBUTTONBUFFER_SIZE = TEXTAREADATAFREQUENCY_SIZE;
+	CallingTextAreaBackground = &TextAreaBackgroundDataFrequency;
 }
+
 
 void ScreenMenuView::setVisibilityKeyboard(bool state){
 	keyboard.setVisible(state);
