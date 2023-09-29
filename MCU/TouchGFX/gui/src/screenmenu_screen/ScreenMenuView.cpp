@@ -51,12 +51,7 @@ void ScreenMenuView::LoadDefaultParameters()
 }
 
 void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
-	keyboard.setVisible(false);
-	keyboard.getExitButton()->setVisible(false);
-	keyboard.getSaveButton()->setVisible(false);
-	keyboard.invalidate();
-	keyboard.getExitButton()->invalidate();
-	keyboard.getSaveButton()->invalidate();
+	setVisibilityKeyboard(false);
 	keyboard.clearBuffer();
 }
 
