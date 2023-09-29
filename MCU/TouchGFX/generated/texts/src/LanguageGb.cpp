@@ -11,8 +11,9 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     30,  // T_ENTEREDTEXT: "<>"
-    110, // T_NUMMODE: "ABC"
-    106, // T_ALPHAMODE: "123"
+    118, // T_NUMMODE: "ABC"
+    114, // T_ALPHAMODE: "123"
+    96,  // T___SINGLEUSE_9MJY: "Connect"
     30,  // T___SINGLEUSE_OIDY: "<>"
     30,  // T___SINGLEUSE_3X0B: "<>"
     30,  // T___SINGLEUSE_1UL5: "<>"
@@ -23,8 +24,8 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     57,  // T___SINGLEUSE_YNN1: "Wi-Fi SSID"
     15,  // T___SINGLEUSE_HEII: "Wi-Fi password"
     0,   // T___SINGLEUSE_NTEJ: "Data frequency"
-    101, // T___SINGLEUSE_N9FE: "Save"
-    96,  // T___SINGLEUSE_ZRWR: "Exit"
+    109, // T___SINGLEUSE_N9FE: "Save"
+    104, // T___SINGLEUSE_ZRWR: "Exit"
     32,  // T___SINGLEUSE_OJWK: "Load default"
     14,  // T_TEXTAREA: ""
     78,  // T___SINGLEUSE_G20V: "Settings"

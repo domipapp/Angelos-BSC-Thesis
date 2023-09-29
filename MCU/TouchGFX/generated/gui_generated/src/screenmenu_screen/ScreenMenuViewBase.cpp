@@ -113,7 +113,7 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     TextAreaBackgroundServerIp.setAlpha(0);
     scrollableContainerServerIp.add(TextAreaBackgroundServerIp);
 
-    textAreaServerIp.setPosition(0, 0, 564, 49);
+    textAreaServerIp.setPosition(0, 1, 564, 49);
     textAreaServerIp.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textAreaServerIp.setLinespacing(0);
     Unicode::snprintf(textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, "%s", touchgfx::TypedText(T_TEXTAREA).getText());
@@ -173,6 +173,13 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonLoadDefault.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonLoadDefault.setAction(buttonCallback);
     containerMenuBar.add(buttonLoadDefault);
+
+    buttonConnect.setXY(370, 0);
+    buttonConnect.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    buttonConnect.setLabelText(touchgfx::TypedText(T___SINGLEUSE_9MJY));
+    buttonConnect.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonConnect.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    containerMenuBar.add(buttonConnect);
 
     add(containerMenuBar);
 

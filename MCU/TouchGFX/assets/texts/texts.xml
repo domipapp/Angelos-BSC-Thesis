@@ -16,6 +16,9 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_9MJY" Alignment="Center" TypographyId="MenuBarButton">
+        <Translation Language="GB">Connect</Translation>
+      </Text>
       <Text Id="__SingleUse_OIDY" Alignment="Left" TypographyId="Wildcard">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
