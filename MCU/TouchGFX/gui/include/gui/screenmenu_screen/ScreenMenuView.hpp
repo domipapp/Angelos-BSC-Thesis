@@ -20,7 +20,7 @@ public:
     virtual void flexButtonWifiSsidClicked();
     virtual void flexButtonWifiPassClicked();
     virtual void flexButtonDataFrequencyClicked();
-    void popUpKeyboard();
+    void setVisibilityKeyboard(bool state);
 protected:
     CustomKeyboard keyboard;
 };

@@ -65,30 +65,30 @@ void ScreenMenuView::buttonWithLabelKeyboardSaveClicked(){
 }
 
 void ScreenMenuView::flexButtonServerPortClicked(){
-	popUpKeyboard();
+	setVisibilityKeyboard(true);
 }
 
 void ScreenMenuView::flexButtonServerIpClicked(){
-	popUpKeyboard();
+	setVisibilityKeyboard(true);
 }
 
 void ScreenMenuView::flexButtonWifiSsidClicked(){
-	popUpKeyboard();
+	setVisibilityKeyboard(true);
 }
 
 void ScreenMenuView::flexButtonWifiPassClicked(){
-	popUpKeyboard();
+	setVisibilityKeyboard(true);
 }
 
 void ScreenMenuView::flexButtonDataFrequencyClicked(){
-	popUpKeyboard();
+	setVisibilityKeyboard(true);
 }
 
-void ScreenMenuView::popUpKeyboard(){
-	keyboard.setVisible(true);
-	keyboard.getExitButton()->setVisible(true);
+void ScreenMenuView::setVisibilityKeyboard(bool state){
+	keyboard.setVisible(state);
+	keyboard.getExitButton()->setVisible(state);
 	keyboard.getExitButton()->invalidate();
-	keyboard.getSaveButton()->setVisible(true);
+	keyboard.getSaveButton()->setVisible(state);
 	keyboard.getSaveButton()->invalidate();
 	keyboard.invalidate();
 }
