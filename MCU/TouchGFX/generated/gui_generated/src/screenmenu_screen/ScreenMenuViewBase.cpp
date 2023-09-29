@@ -160,7 +160,7 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     TopBar.setAlpha(135);
     containerMenuBar.add(TopBar);
 
-    textAreaMenu.setXY(180, 5);
+    textAreaMenu.setXY(158, 1);
     textAreaMenu.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     textAreaMenu.setLinespacing(0);
     textAreaMenu.setTypedText(touchgfx::TypedText(T___SINGLEUSE_G20V));

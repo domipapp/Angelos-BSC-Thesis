@@ -59,7 +59,7 @@
         <Translation Language="GB"></Translation>
       </Text>
       <Text Id="__SingleUse_G20V" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Menu</Translation>
+        <Translation Language="GB">Settings</Translation>
       </Text>
       <Text Id="__SingleUse_872K" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Welcome!</Translation>
