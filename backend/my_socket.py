@@ -1,10 +1,22 @@
 import socket
 import time
 
+def get_local_ip():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))  # Google's DNS server
+        local_ip = s.getsockname()[0]
+        s.close()
+        return local_ip
+    except Exception as e:
+        print(f"Error getting local IP: {e}")
+        return None
+
 # Returns a valid socket
 def _set_up_socket(port):
     # Define the host and port to listen on
-    host = socket.gethostbyname(socket.gethostname())
+        # socket.gethostbyname(socket.gethostname()) suddenly returns localhost instead of ip
+    host = get_local_ip() #socket.gethostbyname(socket.gethostname())
     # Create a TCP socket object
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serversocket.setblocking(True)
