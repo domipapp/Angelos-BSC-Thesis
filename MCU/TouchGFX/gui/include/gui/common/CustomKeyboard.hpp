@@ -37,6 +37,7 @@ public:
     virtual void setButtons (ButtonWithLabel* buttonWithLabelKeyboardExit, ButtonWithLabel* buttonWithLabelKeyboardSave);
     virtual ButtonWithLabel* getExitButton ();
     virtual ButtonWithLabel* getSaveButton ();
+    virtual void setBufferCopy(touchgfx::Unicode::UnicodeChar* string);
 
 protected:
     ButtonWithLabel* buttonWithLabelKeyboardExit;

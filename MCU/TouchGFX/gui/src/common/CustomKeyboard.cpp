@@ -151,3 +151,8 @@ ButtonWithLabel* CustomKeyboard::getExitButton (){
 ButtonWithLabel* CustomKeyboard::getSaveButton (){
 	return this->buttonWithLabelKeyboardSave;
 }
+
+void CustomKeyboard::setBufferCopy(touchgfx::Unicode::UnicodeChar* string){
+	Unicode::strncpy(buffer, string, BUFFER_SIZE);
+	keyboard.setBufferPosition(Unicode::strlen(buffer));
+}
