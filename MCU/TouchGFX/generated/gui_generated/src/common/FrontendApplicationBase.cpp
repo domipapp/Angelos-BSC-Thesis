@@ -13,6 +13,8 @@
 #include <gui/screenwelcome_screen/ScreenWelcomePresenter.hpp>
 #include <gui/screenmenu_screen/ScreenMenuView.hpp>
 #include <gui/screenmenu_screen/ScreenMenuPresenter.hpp>
+#include <gui/screenhome_screen/ScreenHomeView.hpp>
+#include <gui/screenhome_screen/ScreenHomePresenter.hpp>
 
 using namespace touchgfx;
 
@@ -56,4 +58,17 @@ void FrontendApplicationBase::gotoScreenMenuScreenCoverTransitionEast()
 void FrontendApplicationBase::gotoScreenMenuScreenCoverTransitionEastImpl()
 {
     touchgfx::makeTransition<ScreenMenuView, ScreenMenuPresenter, touchgfx::CoverTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// ScreenHome
+
+void FrontendApplicationBase::gotoScreenHomeScreenCoverTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenHomeScreenCoverTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenHomeScreenCoverTransitionEastImpl()
+{
+    touchgfx::makeTransition<ScreenHomeView, ScreenHomePresenter, touchgfx::CoverTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

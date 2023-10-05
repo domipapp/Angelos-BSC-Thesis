@@ -18,6 +18,8 @@
 #include <gui/screenwelcome_screen/ScreenWelcomePresenter.hpp>
 #include <gui/screenmenu_screen/ScreenMenuView.hpp>
 #include <gui/screenmenu_screen/ScreenMenuPresenter.hpp>
+#include <gui/screenhome_screen/ScreenHomeView.hpp>
+#include <gui/screenhome_screen/ScreenHomePresenter.hpp>
 
 
 /**
@@ -42,7 +44,8 @@ public:
      */
     typedef touchgfx::meta::TypeList< ScreenWelcomeView,
             touchgfx::meta::TypeList< ScreenMenuView,
-            touchgfx::meta::Nil >
+            touchgfx::meta::TypeList< ScreenHomeView,
+            touchgfx::meta::Nil > >
             > GeneratedViewTypes;
 
     /**
@@ -56,7 +59,8 @@ public:
      */
     typedef touchgfx::meta::TypeList< ScreenWelcomePresenter,
             touchgfx::meta::TypeList< ScreenMenuPresenter,
-            touchgfx::meta::Nil >
+            touchgfx::meta::TypeList< ScreenHomePresenter,
+            touchgfx::meta::Nil > >
             > GeneratedPresenterTypes;
 
     /**

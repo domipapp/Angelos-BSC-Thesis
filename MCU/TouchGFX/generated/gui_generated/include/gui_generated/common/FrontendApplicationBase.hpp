@@ -26,6 +26,9 @@ public:
     // ScreenMenu
     void gotoScreenMenuScreenCoverTransitionEast();
 
+    // ScreenHome
+    void gotoScreenHomeScreenCoverTransitionEast();
+
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
@@ -36,6 +39,9 @@ protected:
 
     // ScreenMenu
     void gotoScreenMenuScreenCoverTransitionEastImpl();
+
+    // ScreenHome
+    void gotoScreenHomeScreenCoverTransitionEastImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

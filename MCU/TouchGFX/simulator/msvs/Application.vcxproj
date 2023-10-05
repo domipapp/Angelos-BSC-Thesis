@@ -28,6 +28,9 @@
     <ClCompile Include="..\..\gui\src\screenwelcome_screen\ScreenWelcomeView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\screenwelcome_screen\ScreenWelcomeViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenhome_screen\ScreenHomePresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenhome_screen\ScreenHomeView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenhome_screen\ScreenHomeViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -188,6 +191,9 @@
     <ClInclude Include="..\..\gui\include\gui\common\CustomKeyboard.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardKeyMapping.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenhome_screen\ScreenHomePresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenhome_screen\ScreenHomeView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenhome_screen\ScreenHomeViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

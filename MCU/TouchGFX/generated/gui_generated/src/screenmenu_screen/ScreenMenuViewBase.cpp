@@ -242,6 +242,11 @@ void ScreenMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //When buttonConnect clicked call virtual function
         //Call buttonConnectClicked
         buttonConnectClicked();
+    
+        //ChangeScreen
+        //When buttonConnectClicked completed change screen to ScreenHome
+        //Go to ScreenHome with screen transition towards East
+        application().gotoScreenHomeScreenCoverTransitionEast();
     }
 }
 

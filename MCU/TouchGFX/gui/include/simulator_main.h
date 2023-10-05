@@ -16,11 +16,19 @@ extern "C" {
 #define WIFI_PASS "atc7habf4xt6"// Local WIFI password
 #define DATA_FREQUENCY "5000"		// 5000ms data frequency
 
-char server_ip[50];
-char server_port[50];
-char wifi_ssid[50];
-char wifi_pass[50];
-uint16_t data_frequency;
+extern char server_ip[50];
+extern char server_port[50];
+extern char wifi_ssid[50];
+extern char wifi_pass[50];
+extern uint16_t data_frequency;
+
+extern osEventFlagsId_t eventConfigurationsLoadedHandle;
+// Event flag
+#define EVENT_FLAG1 0x00000001U
+#define EVENT_FLAG_ESP_ERROR 0x00000001U
+#define EVENT_FLAG_ESP_RESPONSE_TIMEOUT 0x00000010U
+// Wait for event flags for 5000 ticks
+#define EVENT_FLAG_WAIT 5000
 
 
 #ifdef __cplusplus

@@ -202,8 +202,20 @@
     <Filter Include="Header Files\generated\gui_generated\containers">
       <UniqueIdentifier>19583780-005B-53BE-812F-22B53C1CEF03</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui\screenhome_screen">
+      <UniqueIdentifier>C0C73C2C-8775-7639-EE4E-8D26736EF4CA</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screenhome_screen">
+      <UniqueIdentifier>CC8F41C4-B47C-3950-81C5-0011321A4BB0</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screenhome_screen">
+      <UniqueIdentifier>096ADDFB-3561-AB50-8A00-6ABA2731FCF3</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screenhome_screen">
+      <UniqueIdentifier>A785BEEE-8979-C07A-061E-15E0A93265D2</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\gui\include">
-      <UniqueIdentifier>B4960B94-4F99-121C-461B-EDEF851735DE</UniqueIdentifier>
+      <UniqueIdentifier>10403FB9-20F3-7BDA-7E90-710D336979B4</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +269,15 @@
     </ClCompile>
     <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp">
       <Filter>Source Files\gui\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenhome_screen\ScreenHomePresenter.cpp">
+      <Filter>Source Files\gui\screenhome_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenhome_screen\ScreenHomeView.cpp">
+      <Filter>Source Files\gui\screenhome_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenhome_screen\ScreenHomeViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screenhome_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -729,6 +750,15 @@
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp">
       <Filter>Header Files\gui\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenhome_screen\ScreenHomePresenter.hpp">
+      <Filter>Header Files\gui\screenhome_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenhome_screen\ScreenHomeView.hpp">
+      <Filter>Header Files\gui\screenhome_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenhome_screen\ScreenHomeViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screenhome_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

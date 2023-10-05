@@ -1,5 +1,5 @@
 #include <gui/screenmenu_screen/ScreenMenuView.hpp>
-//#include <simulator_main.h>
+
 #include "main.h"
 
 ScreenMenuView::ScreenMenuView()
