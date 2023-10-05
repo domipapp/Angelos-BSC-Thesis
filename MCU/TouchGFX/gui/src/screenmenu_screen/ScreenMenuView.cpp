@@ -1,5 +1,6 @@
 #include <gui/screenmenu_screen/ScreenMenuView.hpp>
-#include <simulator_main.h>
+//#include <simulator_main.h>
+#include "main.h"
 
 ScreenMenuView::ScreenMenuView()
 {
@@ -24,7 +25,7 @@ void ScreenMenuView::LoadDefaultParameters()
 {
 	Unicode::UnicodeChar string[50];
 
-	Unicode::strncpy(string, "AAA", 50);
+	Unicode::strncpy(string, DATA_FREQUENCY, 50);
 	Unicode::strncpy(textAreaDataFrequencyBuffer, string, TEXTAREADATAFREQUENCY_SIZE);
 	TextAreaBackgroundDataFrequency.setAlpha(100);
 	TextAreaBackgroundDataFrequency.invalidate();
@@ -107,4 +108,23 @@ void ScreenMenuView::setVisibilityKeyboard(bool state){
 	keyboard.getSaveButton()->setVisible(state);
 	keyboard.getSaveButton()->invalidate();
 	keyboard.invalidate();
+}
+
+void ScreenMenuView::buttonConnectClicked(){
+	char tmp[50];
+	Unicode::toUTF8(textAreaServerIpBuffer, (uint8_t*)tmp, 50);
+	strncpy(server_ip, tmp, 50);
+
+	Unicode::toUTF8(textAreaServerPortBuffer, (uint8_t*)tmp, 50);
+	strncpy(server_port, tmp, 50);
+
+	Unicode::toUTF8(textAreaWifiSsidBuffer, (uint8_t*)tmp, 50);
+	strncpy(wifi_ssid, tmp, 50);
+
+	Unicode::toUTF8(textAreaWifiPassBuffer, (uint8_t*)tmp, 50);
+	strncpy(wifi_pass, tmp, 50);
+
+	data_frequency = Unicode::atoi(textAreaDataFrequencyBuffer);
+
+	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG1);
 }

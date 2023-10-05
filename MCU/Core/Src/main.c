@@ -49,8 +49,8 @@
 #define PORT "9000"					// Server Port number
 // AT command for connecting to server
 #define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
-#define WIFI_SSID "Telekom-2D6325"	// Local WIFI SSID
-#define WIFI_PASS "4njteenm6s7cx4cb"// Local WIFI password
+#define WIFI_SSID "Telekom-072404"	// Local WIFI SSID
+#define WIFI_PASS "atc7habf4xt6"// Local WIFI password
 // AT command for connecting to wifi
 #define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
 // Event flag
@@ -90,7 +90,7 @@ SDRAM_HandleTypeDef hsdram2;
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 256 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for GUITask */
@@ -111,28 +111,28 @@ const osThreadAttr_t videoTask_attributes = {
 osThreadId_t SendDataWithESPHandle;
 const osThreadAttr_t SendDataWithESP_attributes = {
   .name = "SendDataWithESP",
-  .stack_size = 256 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for SetUpESP */
 osThreadId_t SetUpESPHandle;
 const osThreadAttr_t SetUpESP_attributes = {
   .name = "SetUpESP",
-  .stack_size = 256 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for ReadSensorData */
 osThreadId_t ReadSensorDataHandle;
 const osThreadAttr_t ReadSensorData_attributes = {
   .name = "ReadSensorData",
-  .stack_size = 256 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for ReadESP */
 osThreadId_t ReadESPHandle;
 const osThreadAttr_t ReadESP_attributes = {
   .name = "ReadESP",
-  .stack_size = 256 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityHigh,
 };
 /* Definitions for queueTempAndHumid */
@@ -165,6 +165,11 @@ osEventFlagsId_t eventESPResponseHandle;
 const osEventFlagsAttr_t eventESPResponse_attributes = {
   .name = "eventESPResponse"
 };
+/* Definitions for eventConfigurationsLoaded */
+osEventFlagsId_t eventConfigurationsLoadedHandle;
+const osEventFlagsAttr_t eventConfigurationsLoaded_attributes = {
+  .name = "eventConfigurationsLoaded"
+};
 /* USER CODE BEGIN PV */
 // Sensor handle
 sht3x_handle_t sht31 = {&hi2c4, SHT3X_I2C_DEVICE_ADDRESS_ADDR_PIN_LOW};
@@ -176,10 +181,10 @@ uint8_t received_message[RECEIVED_MESSAGE_SIZE] = {'\0'};
 uint8_t rx_buffer;	// Global variable for UART callback func.
 uint8_t expectedESPResponse[64] = {'\0'};
 
-char server_connect_command [50];
+char server_ip[50];
+char server_port[50];
 char wifi_ssid[50];
 char wifi_pass[50];
-char wifi_connect_command [116];
 uint16_t data_frequency = 0;
 /* USER CODE END PV */
 
@@ -329,6 +334,9 @@ int main(void)
 
   /* creation of eventESPResponse */
   eventESPResponseHandle = osEventFlagsNew(&eventESPResponse_attributes);
+
+  /* creation of eventConfigurationsLoaded */
+  eventConfigurationsLoadedHandle = osEventFlagsNew(&eventConfigurationsLoaded_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
@@ -945,12 +953,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 
 bool send_and_recieve(char* send, char* recieve){
-    HAL_UART_Transmit(&huart2, (uint8_t*) send, strlen(send), HAL_MAX_DELAY);
 
     // Set expected response
     osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
     strcpy((char*) expectedESPResponse, recieve);
     osSemaphoreRelease(semaphoreHaltUntilStringHandle);
+
+    HAL_UART_Transmit(&huart2, (uint8_t*) send, strlen(send), HAL_MAX_DELAY);
 
     uint32_t flags = osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, EVENT_FLAG_WAIT);
     if (flags & EVENT_FLAG1) {
@@ -1045,7 +1054,7 @@ void prvTaskSetUpESP(void *argument)
   for(;;)
   {
 	  // Halts threads until setup complete
-
+	  	// Make configurations so user doesnt have to wait so long
 	  	  // Restart ESP
 	  	    if(!send_and_recieve("AT+RST\r\n", "ready\r\n"))
 	  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
@@ -1061,12 +1070,19 @@ void prvTaskSetUpESP(void *argument)
 	  	    if(!send_and_recieve("AT+CWMODE=1\r\n", "OK\r\n"))
 	  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
+	  	  // Wait for user to connect
+	  	  	osEventFlagsWait(eventConfigurationsLoadedHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
+
 	  	  // Connect to WIFI
-	  	    if(!send_and_recieve(WIFI_CONNECT, "OK\r\n"))
+	  	  	char command[120];
+
+	  	    snprintf(command, sizeof(command), "AT+CWJAP=\"%s\",\"%s\"\r\n", wifi_ssid, wifi_pass);
+	  	    if(!send_and_recieve(command, "OK"))
 	  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
-	  	  // Connect to server
-	  	    if(!send_and_recieve(SERVER_CONNECT, "OK\r\n"))
+	  	  //Connect to server
+	  	    snprintf(command, sizeof(command), "AT+CIPSTART=\"TCP\",\"%s\",%s\r\n", server_ip, server_port);
+	  	    if(!send_and_recieve(command, "OK\r\n"))
 	  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
 	  	  // Signal setup finish
@@ -1136,6 +1152,7 @@ void prvTaskReadESP(void *argument)
 		  osEventFlagsSet(eventESPResponseValidHandle, EVENT_FLAG1);
 		  memset(received_message, '\0', strlen((char*)received_message));
 		  received_message_index = 0;
+
 	  }
 	  else{
 		  // Signal if "ERROR" is recieved

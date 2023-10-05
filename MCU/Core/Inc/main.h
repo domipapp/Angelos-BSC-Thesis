@@ -29,6 +29,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
+#include "cmsis_os.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -97,16 +98,21 @@ void Error_Handler(void);
 #define PORT "9000"					// Server Port number
 // AT command for connecting to server
 #define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
-extern char server_connect_command [50];
-#define WIFI_SSID "Telekom-2D6325"	// Local WIFI SSID
-extern char wifi_ssid[50];
-#define WIFI_PASS "4njteenm6s7cx4cb"// Local WIFI password
-extern char wifi_pass[50];
+
+#define WIFI_SSID "Telekom-072404"	// Local WIFI SSID
+
+#define WIFI_PASS "atc7habf4xt6"// Local WIFI password
+
 // AT command for connecting to wifi
 #define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
-extern char wifi_connect_command [116];
 
+extern char server_ip[50];
+extern char server_port[50];
+extern char wifi_ssid[50];
+extern char wifi_pass[50];
 extern uint16_t data_frequency;
+
+extern osEventFlagsId_t eventConfigurationsLoadedHandle;
 // Event flag
 #define EVENT_FLAG1 0x00000001U
 #define EVENT_FLAG_ESP_ERROR 0x00000001U

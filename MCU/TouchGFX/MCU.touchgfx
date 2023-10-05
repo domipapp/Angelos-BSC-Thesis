@@ -668,6 +668,17 @@
               "Type": "ActionCustom",
               "FunctionName": "buttonWithLabelKeyboardSaveClicked"
             }
+          },
+          {
+            "InteractionName": "buttonConnectClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonConnect"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "buttonConnectClicked"
+            }
           }
         ]
       }

@@ -179,6 +179,7 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonConnect.setLabelText(touchgfx::TypedText(T___SINGLEUSE_9MJY));
     buttonConnect.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonConnect.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonConnect.setAction(buttonCallback);
     containerMenuBar.add(buttonConnect);
 
     add(containerMenuBar);
@@ -234,6 +235,13 @@ void ScreenMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //When buttonWithLabelKeyboardSave clicked call virtual function
         //Call buttonWithLabelKeyboardSaveClicked
         buttonWithLabelKeyboardSaveClicked();
+    }
+    if (&src == &buttonConnect)
+    {
+        //buttonConnectClicked
+        //When buttonConnect clicked call virtual function
+        //Call buttonConnectClicked
+        buttonConnectClicked();
     }
 }
 

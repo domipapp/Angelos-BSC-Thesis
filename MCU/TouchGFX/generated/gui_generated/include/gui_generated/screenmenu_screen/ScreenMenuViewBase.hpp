@@ -58,6 +58,10 @@ public:
     {
         // Override and implement this function in ScreenMenu
     }
+    virtual void buttonConnectClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
 
 protected:
     FrontendApplication& application() {

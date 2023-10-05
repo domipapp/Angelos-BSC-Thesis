@@ -4,6 +4,7 @@
 #include <gui_generated/screenmenu_screen/ScreenMenuViewBase.hpp>
 #include <gui/screenmenu_screen/ScreenMenuPresenter.hpp>
 #include <gui/common/CustomKeyboard.hpp>
+#include <string.h>
 
 class ScreenMenuView : public ScreenMenuViewBase
 {
@@ -21,6 +22,7 @@ public:
     virtual void flexButtonWifiPassClicked();
     virtual void flexButtonDataFrequencyClicked();
     void setVisibilityKeyboard(bool state);
+    virtual void buttonConnectClicked();
 protected:
     CustomKeyboard keyboard;
     /* Holds a pointer to the button that called the keyboard.
