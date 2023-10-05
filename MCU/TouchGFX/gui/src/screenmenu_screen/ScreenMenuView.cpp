@@ -70,6 +70,8 @@ void ScreenMenuView::flexButtonServerPortClicked(){
 	CallingButtonBuffer = textAreaServerPortBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREASERVERPORT_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundServerPort;
+	// Copy content into keyboard so it can be seen
+	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 void ScreenMenuView::flexButtonServerIpClicked(){
@@ -77,6 +79,8 @@ void ScreenMenuView::flexButtonServerIpClicked(){
 	CallingButtonBuffer = textAreaServerIpBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREASERVERIP_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundServerIp;
+	// Copy content into keyboard so it can be seen
+	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 void ScreenMenuView::flexButtonWifiSsidClicked(){
@@ -84,6 +88,8 @@ void ScreenMenuView::flexButtonWifiSsidClicked(){
 	CallingButtonBuffer = textAreaWifiSsidBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREAWIFISSID_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundWifiSsid;
+	// Copy content into keyboard so it can be seen
+	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 void ScreenMenuView::flexButtonWifiPassClicked(){
@@ -91,6 +97,8 @@ void ScreenMenuView::flexButtonWifiPassClicked(){
 	CallingButtonBuffer = textAreaWifiPassBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREAWIFIPASS_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundWifiPass;
+	// Copy content into keyboard so it can be seen
+	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 void ScreenMenuView::flexButtonDataFrequencyClicked(){
@@ -98,6 +106,8 @@ void ScreenMenuView::flexButtonDataFrequencyClicked(){
 	CallingButtonBuffer = textAreaDataFrequencyBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREADATAFREQUENCY_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundDataFrequency;
+	// Copy content into keyboard so it can be seen
+	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 
