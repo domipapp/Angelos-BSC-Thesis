@@ -136,5 +136,8 @@ void ScreenMenuView::buttonConnectClicked(){
 
 	data_frequency = Unicode::atoi(textAreaDataFrequencyBuffer);
 
-	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG1);
+	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_WIFI_CONNECT);
+	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_SERVER_CONNECT);
+
+	osEventFlagsWait(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED,  osFlagsWaitAny, osWaitForever);
 }

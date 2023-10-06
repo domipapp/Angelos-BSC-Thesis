@@ -90,7 +90,7 @@ SDRAM_HandleTypeDef hsdram2;
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 512 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for GUITask */
@@ -111,29 +111,43 @@ const osThreadAttr_t videoTask_attributes = {
 osThreadId_t SendDataWithESPHandle;
 const osThreadAttr_t SendDataWithESP_attributes = {
   .name = "SendDataWithESP",
-  .stack_size = 512 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for SetUpESP */
 osThreadId_t SetUpESPHandle;
 const osThreadAttr_t SetUpESP_attributes = {
   .name = "SetUpESP",
-  .stack_size = 512 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for ReadSensorData */
 osThreadId_t ReadSensorDataHandle;
 const osThreadAttr_t ReadSensorData_attributes = {
   .name = "ReadSensorData",
-  .stack_size = 512 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for ReadESP */
 osThreadId_t ReadESPHandle;
 const osThreadAttr_t ReadESP_attributes = {
   .name = "ReadESP",
-  .stack_size = 512 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityHigh,
+};
+/* Definitions for ConnectToWifi */
+osThreadId_t ConnectToWifiHandle;
+const osThreadAttr_t ConnectToWifi_attributes = {
+  .name = "ConnectToWifi",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for ConnectToServer */
+osThreadId_t ConnectToServerHandle;
+const osThreadAttr_t ConnectToServer_attributes = {
+  .name = "ConnectToServer",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for queueTempAndHumid */
 osMessageQueueId_t queueTempAndHumidHandle;
@@ -150,10 +164,10 @@ osSemaphoreId_t semaphoreHaltUntilStringHandle;
 const osSemaphoreAttr_t semaphoreHaltUntilString_attributes = {
   .name = "semaphoreHaltUntilString"
 };
-/* Definitions for eventESPSetUpFinished */
-osEventFlagsId_t eventESPSetUpFinishedHandle;
-const osEventFlagsAttr_t eventESPSetUpFinished_attributes = {
-  .name = "eventESPSetUpFinished"
+/* Definitions for eventESPBasicSetUpFinished */
+osEventFlagsId_t eventESPBasicSetUpFinishedHandle;
+const osEventFlagsAttr_t eventESPBasicSetUpFinished_attributes = {
+  .name = "eventESPBasicSetUpFinished"
 };
 /* Definitions for eventESPResponseValid */
 osEventFlagsId_t eventESPResponseValidHandle;
@@ -169,6 +183,16 @@ const osEventFlagsAttr_t eventESPResponse_attributes = {
 osEventFlagsId_t eventConfigurationsLoadedHandle;
 const osEventFlagsAttr_t eventConfigurationsLoaded_attributes = {
   .name = "eventConfigurationsLoaded"
+};
+/* Definitions for eventESPWifiConnected */
+osEventFlagsId_t eventESPWifiConnectedHandle;
+const osEventFlagsAttr_t eventESPWifiConnected_attributes = {
+  .name = "eventESPWifiConnected"
+};
+/* Definitions for eventESPServerConnected */
+osEventFlagsId_t eventESPServerConnectedHandle;
+const osEventFlagsAttr_t eventESPServerConnected_attributes = {
+  .name = "eventESPServerConnected"
 };
 /* USER CODE BEGIN PV */
 // Sensor handle
@@ -209,6 +233,8 @@ void prvTaskSendDataWithESP(void *argument);
 void prvTaskSetUpESP(void *argument);
 void prvTaskReadTempAndHumidity(void *argument);
 void prvTaskReadESP(void *argument);
+void prvTaskConnectToWifi(void *argument);
+void prvTaskConnectToServer(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -321,13 +347,19 @@ int main(void)
   /* creation of ReadESP */
   ReadESPHandle = osThreadNew(prvTaskReadESP, NULL, &ReadESP_attributes);
 
+  /* creation of ConnectToWifi */
+  ConnectToWifiHandle = osThreadNew(prvTaskConnectToWifi, NULL, &ConnectToWifi_attributes);
+
+  /* creation of ConnectToServer */
+  ConnectToServerHandle = osThreadNew(prvTaskConnectToServer, NULL, &ConnectToServer_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
   /* Create the event(s) */
-  /* creation of eventESPSetUpFinished */
-  eventESPSetUpFinishedHandle = osEventFlagsNew(&eventESPSetUpFinished_attributes);
+  /* creation of eventESPBasicSetUpFinished */
+  eventESPBasicSetUpFinishedHandle = osEventFlagsNew(&eventESPBasicSetUpFinished_attributes);
 
   /* creation of eventESPResponseValid */
   eventESPResponseValidHandle = osEventFlagsNew(&eventESPResponseValid_attributes);
@@ -337,6 +369,12 @@ int main(void)
 
   /* creation of eventConfigurationsLoaded */
   eventConfigurationsLoadedHandle = osEventFlagsNew(&eventConfigurationsLoaded_attributes);
+
+  /* creation of eventESPWifiConnected */
+  eventESPWifiConnectedHandle = osEventFlagsNew(&eventESPWifiConnected_attributes);
+
+  /* creation of eventESPServerConnected */
+  eventESPServerConnectedHandle = osEventFlagsNew(&eventESPServerConnected_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
@@ -1010,7 +1048,7 @@ void prvTaskSendDataWithESP(void *argument)
   /* USER CODE BEGIN prvTaskSendDataWithESP */
   /* Infinite loop */
 	// Wait for ESP setup to finish
-	osEventFlagsWait(eventESPSetUpFinishedHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
+	osEventFlagsWait(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED,  osFlagsWaitAny, osWaitForever);
 
 	float temperature, humidity;
 
@@ -1070,23 +1108,8 @@ void prvTaskSetUpESP(void *argument)
 	  	    if(!send_and_recieve("AT+CWMODE=1\r\n", "OK\r\n"))
 	  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
-	  	  // Wait for user to connect
-	  	  	osEventFlagsWait(eventConfigurationsLoadedHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
-
-	  	  // Connect to WIFI
-	  	  	char command[120];
-
-	  	    snprintf(command, sizeof(command), "AT+CWJAP=\"%s\",\"%s\"\r\n", wifi_ssid, wifi_pass);
-	  	    if(!send_and_recieve(command, "OK"))
-	  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
-
-	  	  //Connect to server
-	  	    snprintf(command, sizeof(command), "AT+CIPSTART=\"TCP\",\"%s\",%s\r\n", server_ip, server_port);
-	  	    if(!send_and_recieve(command, "OK\r\n"))
-	  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
-
 	  	  // Signal setup finish
-	  		osEventFlagsSet(eventESPSetUpFinishedHandle, EVENT_FLAG1);
+	  		osEventFlagsSet(eventESPBasicSetUpFinishedHandle, EVENT_FLAG1);
 	  	  // Task has to run only once
 	  		osThreadSuspend(SetUpESPHandle);
   }
@@ -1105,7 +1128,7 @@ void prvTaskReadTempAndHumidity(void *argument)
   /* USER CODE BEGIN prvTaskReadTempAndHumidity */
   /* Infinite loop */
 	// Wait for ESP setup to finish
-	osEventFlagsWait(eventESPSetUpFinishedHandle, EVENT_FLAG1,  osFlagsWaitAny, osWaitForever);
+	osEventFlagsWait(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED,  osFlagsWaitAny, osWaitForever);
 
 	float temperature;
 	float humidity;
@@ -1166,6 +1189,65 @@ void prvTaskReadESP(void *argument)
 
   }
   /* USER CODE END prvTaskReadESP */
+}
+
+/* USER CODE BEGIN Header_prvTaskConnectToWifi */
+/**
+* @brief Function implementing the ConnectToWifi thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_prvTaskConnectToWifi */
+void prvTaskConnectToWifi(void *argument)
+{
+  /* USER CODE BEGIN prvTaskConnectToWifi */
+  /* Infinite loop */
+	char command[120];
+	// Must not try before setup complete
+	osEventFlagsWait(eventESPBasicSetUpFinishedHandle, EVENT_FLAG_ESP_BASIC_SETUP_FINISHED,  osFlagsWaitAny, osWaitForever);
+  for(;;)
+  {
+  	  // Wait for user to connect
+  	  	osEventFlagsWait(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_WIFI_CONNECT,  osFlagsWaitAny, osWaitForever);
+
+  	  // Connect to WIFI
+  	    snprintf(command, sizeof(command), "AT+CWJAP=\"%s\",\"%s\"\r\n", wifi_ssid, wifi_pass);
+  	    if(!send_and_recieve(command, "OK"))
+  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
+
+  	    osEventFlagsSet(eventESPWifiConnectedHandle, EVENT_FLAG_ESP_WIFI_CONNECTED);
+  }
+  /* USER CODE END prvTaskConnectToWifi */
+}
+
+/* USER CODE BEGIN Header_prvTaskConnectToServer */
+/**
+* @brief Function implementing the ConnectToServer thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_prvTaskConnectToServer */
+void prvTaskConnectToServer(void *argument)
+{
+  /* USER CODE BEGIN prvTaskConnectToServer */
+  /* Infinite loop */
+	char command[120];
+	// Must not try before setup complete
+	osEventFlagsWait(eventESPBasicSetUpFinishedHandle, EVENT_FLAG_ESP_BASIC_SETUP_FINISHED,  osFlagsWaitAny, osWaitForever);
+	// must wait to be connected to wifi
+	osEventFlagsWait(eventESPWifiConnectedHandle, EVENT_FLAG_ESP_WIFI_CONNECTED,  osFlagsWaitAny, osWaitForever);
+  for(;;)
+  {
+  	  // Wait for user to connect
+	  	osEventFlagsWait(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_SERVER_CONNECT,  osFlagsWaitAny, osWaitForever);
+  	  //Connect to server
+  	    snprintf(command, sizeof(command), "AT+CIPSTART=\"TCP\",\"%s\",%s\r\n", server_ip, server_port);
+  	    if(!send_and_recieve(command, "OK\r\n"))
+  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
+
+  	  osEventFlagsSet(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED);
+  }
+  /* USER CODE END prvTaskConnectToServer */
 }
 
 /* MPU Configuration */

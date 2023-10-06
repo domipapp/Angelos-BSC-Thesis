@@ -29,7 +29,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
-#include "cmsis_os.h"
+#include "cmsis_os2.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -113,10 +113,16 @@ extern char wifi_pass[50];
 extern uint16_t data_frequency;
 
 extern osEventFlagsId_t eventConfigurationsLoadedHandle;
+
+extern osEventFlagsId_t eventESPServerConnectedHandle;
 // Event flag
-#define EVENT_FLAG1 0x00000001U
-#define EVENT_FLAG_ESP_ERROR 0x00000001U
-#define EVENT_FLAG_ESP_RESPONSE_TIMEOUT 0x00000010U
+#define EVENT_FLAG_ESP_BASIC_SETUP_FINISHED 0x00000001U
+#define EVENT_FLAG_ESP_WIFI_CONNECTED 		0x00000001U
+#define EVENT_FLAG_ESP_SERVER_CONNECTED 	0x00000001U
+#define EVENT_FLAG_ESP_WIFI_CONNECT 		0x00000001U
+#define EVENT_FLAG_ESP_SERVER_CONNECT 		0x00000010U
+#define EVENT_FLAG_ESP_ERROR 				0x00000001U
+#define EVENT_FLAG_ESP_RESPONSE_TIMEOUT 	0x00000010U
 // Wait for event flags for 5000 ticks
 #define EVENT_FLAG_WAIT 5000
 /* USER CODE END Private defines */
