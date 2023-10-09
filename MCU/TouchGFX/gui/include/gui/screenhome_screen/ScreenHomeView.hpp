@@ -3,6 +3,7 @@
 
 #include <gui_generated/screenhome_screen/ScreenHomeViewBase.hpp>
 #include <gui/screenhome_screen/ScreenHomePresenter.hpp>
+#include "main.h"
 
 class ScreenHomeView : public ScreenHomeViewBase
 {
@@ -11,6 +12,7 @@ public:
     virtual ~ScreenHomeView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    virtual void signalTransitionSource();
 protected:
 };
 

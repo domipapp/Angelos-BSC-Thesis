@@ -65,5 +65,10 @@ void ScreenHomeViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //When buttonSettings clicked change screen to ScreenMenu
         //Go to ScreenMenu with screen transition towards East
         application().gotoScreenMenuScreenSlideTransitionEast();
+    
+        //signalTransitionSource
+        //When ChangeSrceen completed call virtual function
+        //Call signalTransitionSource
+        signalTransitionSource();
     }
 }

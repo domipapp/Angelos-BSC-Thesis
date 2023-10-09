@@ -829,6 +829,7 @@
         "Interactions": [
           {
             "InteractionName": "ChangeSrceen",
+            "HasCompletedTrigger": true,
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "buttonSettings"
@@ -838,6 +839,17 @@
               "ScreenTransitionType": "ScreenTransitionSlide",
               "ScreenTransitionDirection": "East",
               "ActionComponent": "ScreenMenu"
+            }
+          },
+          {
+            "InteractionName": "signalTransitionSource",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "ChangeSrceen"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "signalTransitionSource"
             }
           }
         ]

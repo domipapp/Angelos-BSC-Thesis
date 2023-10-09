@@ -12,6 +12,32 @@ ScreenMenuView::ScreenMenuView()
 void ScreenMenuView::setupScreen()
 {
     ScreenMenuViewBase::setupScreen();
+
+    // If transitioning from home screen reload all previous settings
+    osStatus_t status = osSemaphoreAcquire(semaphoreTransitionFromHomeHandle, 0);
+
+    if (status == osOK) {
+        // The semaphore was acquired successfully
+    	Unicode::itoa(data_frequency, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, 10);
+    	TextAreaBackgroundDataFrequency.setAlpha(100);
+    	TextAreaBackgroundDataFrequency.invalidate();
+    	;
+    	Unicode::strncpy(textAreaServerIpBuffer, server_ip, TEXTAREASERVERIP_SIZE);
+    	TextAreaBackgroundServerIp.setAlpha(100);
+    	TextAreaBackgroundServerIp.invalidate();
+
+    	Unicode::strncpy(textAreaServerPortBuffer, server_port, TEXTAREASERVERPORT_SIZE);
+    	TextAreaBackgroundServerPort.setAlpha(100);
+    	TextAreaBackgroundServerPort.invalidate();
+
+    	Unicode::strncpy(textAreaWifiPassBuffer, wifi_pass, TEXTAREAWIFIPASS_SIZE);
+    	TextAreaBackgroundWifiPass.setAlpha(100);
+    	TextAreaBackgroundWifiPass.invalidate();
+
+    	Unicode::strncpy(textAreaWifiSsidBuffer, wifi_ssid, TEXTAREAWIFISSID_SIZE);
+    	TextAreaBackgroundWifiSsid.setAlpha(100);
+    	TextAreaBackgroundWifiSsid.invalidate();
+    }
 }
 
 void ScreenMenuView::tearDownScreen()

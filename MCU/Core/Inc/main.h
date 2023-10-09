@@ -37,7 +37,18 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+// Used to signal screen transition coming from Home screen
+extern osSemaphoreId_t semaphoreTransitionFromHomeHandle;
 
+extern char server_ip[50];
+extern char server_port[50];
+extern char wifi_ssid[50];
+extern char wifi_pass[50];
+extern uint16_t data_frequency;
+
+extern osEventFlagsId_t eventConfigurationsLoadedHandle;
+
+extern osEventFlagsId_t eventESPServerConnectedHandle;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -105,15 +116,6 @@ void Error_Handler(void);
 // AT command for connecting to wifi
 #define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
 
-extern char server_ip[50];
-extern char server_port[50];
-extern char wifi_ssid[50];
-extern char wifi_pass[50];
-extern uint16_t data_frequency;
-
-extern osEventFlagsId_t eventConfigurationsLoadedHandle;
-
-extern osEventFlagsId_t eventESPServerConnectedHandle;
 // Event flag
 #define EVENT_FLAG_ESP_BASIC_SETUP_FINISHED 0x00000001U
 #define EVENT_FLAG_ESP_WIFI_CONNECTED 		0x00000001U

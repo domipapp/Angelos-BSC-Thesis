@@ -20,6 +20,14 @@ public:
     virtual ~ScreenHomeViewBase();
     virtual void setupScreen();
 
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void signalTransitionSource()
+    {
+        // Override and implement this function in ScreenHome
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());

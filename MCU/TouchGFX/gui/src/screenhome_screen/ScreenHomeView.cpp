@@ -14,3 +14,7 @@ void ScreenHomeView::tearDownScreen()
 {
     ScreenHomeViewBase::tearDownScreen();
 }
+
+void ScreenHomeView::signalTransitionSource(){
+	osSemaphoreRelease(semaphoreTransitionFromHomeHandle);
+}
