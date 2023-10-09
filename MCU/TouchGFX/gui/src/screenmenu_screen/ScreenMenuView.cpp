@@ -1,7 +1,5 @@
 #include <gui/screenmenu_screen/ScreenMenuView.hpp>
 
-#include "main.h"
-
 ScreenMenuView::ScreenMenuView()
 {
 	keyboard.setButtons(&buttonWithLabelKeyboardExit, &buttonWithLabelKeyboardSave);
@@ -121,6 +119,16 @@ void ScreenMenuView::setVisibilityKeyboard(bool state){
 }
 
 void ScreenMenuView::buttonConnectClicked(){
+    //Show textAreaConnecting
+    textAreaConnecting.setVisible(true);
+    textAreaConnecting.invalidate();
+    // Force an immediate redraw of the invalidated area on the screen
+	//Application::getInstance()->invalidateArea(textAreaConnecting.getAbsoluteRect());
+    Rect rectToRedraw = textAreaConnecting.getAbsoluteRect();
+    Application::getInstance()->requestRedraw();
+    OSWrappers::giveFrameBufferSemaphore();
+    Application::getInstance()->requestRedraw();
+
 	char tmp[50];
 	Unicode::toUTF8(textAreaServerIpBuffer, (uint8_t*)tmp, 50);
 	strncpy(server_ip, tmp, 50);
@@ -139,5 +147,15 @@ void ScreenMenuView::buttonConnectClicked(){
 	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_WIFI_CONNECT);
 	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_SERVER_CONNECT);
 
+}
+
+
+void ScreenMenuView::waitForConnection()
+{
 	osEventFlagsWait(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED,  osFlagsWaitAny, osWaitForever);
+	// Set text to green to show successful connection. Touchgfx will wait according to WaitAfterConnection interaction
+	textAreaConnecting.setColor(touchgfx::Color::getColorFromRGB(0, 255, 0));
+	textAreaConnecting.invalidate();
+    // Force an immediate redraw of the invalidated area on the screen
+	Application::getInstance()->invalidateArea(textAreaConnecting.getAbsoluteRect());
 }

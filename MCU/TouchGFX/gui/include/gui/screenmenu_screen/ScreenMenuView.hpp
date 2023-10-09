@@ -4,7 +4,10 @@
 #include <gui_generated/screenmenu_screen/ScreenMenuViewBase.hpp>
 #include <gui/screenmenu_screen/ScreenMenuPresenter.hpp>
 #include <gui/common/CustomKeyboard.hpp>
+#include <touchgfx/Color.hpp>
+#include <touchgfx/hal/OSWrappers.hpp>
 #include <string.h>
+#include "main.h"
 
 class ScreenMenuView : public ScreenMenuViewBase
 {
@@ -23,7 +26,7 @@ public:
     virtual void flexButtonDataFrequencyClicked();
     void setVisibilityKeyboard(bool state);
     virtual void buttonConnectClicked();
-protected:
+    virtual void waitForConnection();
     CustomKeyboard keyboard;
     /* Holds a pointer to the button that called the keyboard.
      * Button clicked methods are responsible for handling this.

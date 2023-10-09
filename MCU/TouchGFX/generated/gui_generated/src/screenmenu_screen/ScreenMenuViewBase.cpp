@@ -8,7 +8,8 @@
 
 ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonCallback(this, &ScreenMenuViewBase::buttonCallbackHandler),
-    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler)
+    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler),
+    waitAfterConnectionCounter(0)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -201,6 +202,13 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonWithLabelKeyboardSave.setVisible(false);
     buttonWithLabelKeyboardSave.setAction(buttonCallback);
     add(buttonWithLabelKeyboardSave);
+
+    textAreaConnecting.setXY(106, 137);
+    textAreaConnecting.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textAreaConnecting.setLinespacing(0);
+    textAreaConnecting.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QEQU));
+    textAreaConnecting.setVisible(false);
+    add(textAreaConnecting);
 }
 
 ScreenMenuViewBase::~ScreenMenuViewBase()
@@ -243,10 +251,15 @@ void ScreenMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //Call buttonConnectClicked
         buttonConnectClicked();
     
-        //ChangeScreen
-        //When buttonConnectClicked completed change screen to ScreenHome
-        //Go to ScreenHome with screen transition towards East
-        application().gotoScreenHomeScreenCoverTransitionEast();
+        //waitForConnection
+        //When buttonConnectClicked completed call virtual function
+        //Call waitForConnection
+        waitForConnection();
+    
+        //WaitAfterConnection
+        //When waitForConnection completed delay
+        //Delay for 1500 ms (90 Ticks)
+        waitAfterConnectionCounter = WAITAFTERCONNECTION_DURATION;
     }
 }
 
@@ -286,5 +299,20 @@ void ScreenMenuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButto
         //When flexButtonDataFrequency clicked call virtual function
         //Call flexButtonDataFrequencyClicked
         flexButtonDataFrequencyClicked();
+    }
+}
+
+void ScreenMenuViewBase::handleTickEvent()
+{
+    if (waitAfterConnectionCounter > 0)
+    {
+        waitAfterConnectionCounter--;
+        if (waitAfterConnectionCounter == 0)
+        {
+                //ChangeScreen
+                //When WaitAfterConnection completed change screen to ScreenHome
+                //Go to ScreenHome with screen transition towards West
+                application().gotoScreenHomeScreenSlideTransitionWest();
+        }
     }
 }

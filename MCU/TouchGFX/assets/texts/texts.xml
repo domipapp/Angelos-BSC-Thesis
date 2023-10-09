@@ -16,6 +16,18 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_FKC0" Alignment="Center" TypographyId="MenuBarButton">
+        <Translation Language="GB">Disconnect</Translation>
+      </Text>
+      <Text Id="__SingleUse_R00K" Alignment="Center" TypographyId="MenuBarButton">
+        <Translation Language="GB">Settings</Translation>
+      </Text>
+      <Text Id="__SingleUse_5MHQ" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Home</Translation>
+      </Text>
+      <Text Id="__SingleUse_QEQU" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">Connecting...</Translation>
+      </Text>
       <Text Id="__SingleUse_9MJY" Alignment="Center" TypographyId="MenuBarButton">
         <Translation Language="GB">Connect</Translation>
       </Text>

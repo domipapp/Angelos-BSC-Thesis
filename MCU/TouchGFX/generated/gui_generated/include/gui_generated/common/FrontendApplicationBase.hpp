@@ -26,8 +26,10 @@ public:
     // ScreenMenu
     void gotoScreenMenuScreenCoverTransitionEast();
 
+    void gotoScreenMenuScreenSlideTransitionEast();
+
     // ScreenHome
-    void gotoScreenHomeScreenCoverTransitionEast();
+    void gotoScreenHomeScreenSlideTransitionWest();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
@@ -40,8 +42,10 @@ protected:
     // ScreenMenu
     void gotoScreenMenuScreenCoverTransitionEastImpl();
 
+    void gotoScreenMenuScreenSlideTransitionEastImpl();
+
     // ScreenHome
-    void gotoScreenHomeScreenCoverTransitionEastImpl();
+    void gotoScreenHomeScreenSlideTransitionWestImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

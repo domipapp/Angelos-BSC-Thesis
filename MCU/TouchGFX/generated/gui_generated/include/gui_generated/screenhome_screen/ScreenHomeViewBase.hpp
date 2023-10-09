@@ -8,6 +8,10 @@
 #include <mvp/View.hpp>
 #include <gui/screenhome_screen/ScreenHomePresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/containers/Container.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 class ScreenHomeViewBase : public touchgfx::View<ScreenHomePresenter>
 {
@@ -25,8 +29,24 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::Image Background;
+    touchgfx::Container containerMenuBar;
+    touchgfx::Image TopBar;
+    touchgfx::TextArea textAreaMenu;
+    touchgfx::ButtonWithLabel buttonSettings;
+    touchgfx::ButtonWithLabel buttonDisconnect;
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<ScreenHomeViewBase, const touchgfx::AbstractButton&> buttonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 
