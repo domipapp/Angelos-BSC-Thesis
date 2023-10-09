@@ -21,7 +21,7 @@ void ScreenMenuView::setupScreen()
     	Unicode::itoa(data_frequency, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, 10);
     	TextAreaBackgroundDataFrequency.setAlpha(100);
     	TextAreaBackgroundDataFrequency.invalidate();
-    	;
+
     	Unicode::strncpy(textAreaServerIpBuffer, server_ip, TEXTAREASERVERIP_SIZE);
     	TextAreaBackgroundServerIp.setAlpha(100);
     	TextAreaBackgroundServerIp.invalidate();

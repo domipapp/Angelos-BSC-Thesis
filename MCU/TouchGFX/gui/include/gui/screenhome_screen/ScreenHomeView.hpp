@@ -13,6 +13,7 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void signalTransitionSource();
+    virtual void displayTemperatureAndHumidity();
 protected:
 };
 

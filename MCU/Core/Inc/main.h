@@ -49,6 +49,8 @@ extern uint16_t data_frequency;
 extern osEventFlagsId_t eventConfigurationsLoadedHandle;
 
 extern osEventFlagsId_t eventESPServerConnectedHandle;
+
+extern osMessageQueueId_t queueTouchgfxTempAndHumidHandle;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

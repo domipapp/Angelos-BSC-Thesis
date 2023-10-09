@@ -159,6 +159,11 @@ osMessageQueueId_t queueRxDataCharHandle;
 const osMessageQueueAttr_t queueRxDataChar_attributes = {
   .name = "queueRxDataChar"
 };
+/* Definitions for queueTouchgfxTempAndHumid */
+osMessageQueueId_t queueTouchgfxTempAndHumidHandle;
+const osMessageQueueAttr_t queueTouchgfxTempAndHumid_attributes = {
+  .name = "queueTouchgfxTempAndHumid"
+};
 /* Definitions for semaphoreHaltUntilString */
 osSemaphoreId_t semaphoreHaltUntilStringHandle;
 const osSemaphoreAttr_t semaphoreHaltUntilString_attributes = {
@@ -328,6 +333,9 @@ int main(void)
 
   /* creation of queueRxDataChar */
   queueRxDataCharHandle = osMessageQueueNew (512, sizeof(uint8_t), &queueRxDataChar_attributes);
+
+  /* creation of queueTouchgfxTempAndHumid */
+  queueTouchgfxTempAndHumidHandle = osMessageQueueNew (16, sizeof(float), &queueTouchgfxTempAndHumid_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -1148,6 +1156,8 @@ void prvTaskReadTempAndHumidity(void *argument)
 	 if(sht3x_read_temperature_and_humidity(&sht31, &temperature, &humidity))	{
 		 osMessageQueuePut(queueTempAndHumidHandle, &temperature, 0, osWaitForever);
 		 osMessageQueuePut(queueTempAndHumidHandle, &humidity, 0, osWaitForever);
+		 osMessageQueuePut(queueTouchgfxTempAndHumidHandle, &temperature, 0, osWaitForever);
+		 osMessageQueuePut(queueTouchgfxTempAndHumidHandle, &humidity, 0, osWaitForever);
 	 }
 
 	 // Delay for 1 second

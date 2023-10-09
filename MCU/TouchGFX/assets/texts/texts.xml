@@ -16,6 +16,18 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_OROW" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZUM9" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_NMKU" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+      </Text>
+      <Text Id="__SingleUse_NISC" Alignment="Left" TypographyId="Wildcard">
+        <Translation Language="GB">&lt;value&gt;°C</Translation>
+      </Text>
       <Text Id="__SingleUse_FKC0" Alignment="Center" TypographyId="MenuBarButton">
         <Translation Language="GB">Disconnect</Translation>
       </Text>

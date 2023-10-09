@@ -368,7 +368,6 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaServerIp",
-                    "Y": 1,
                     "Width": 564,
                     "Height": 49,
                     "TextId": "__SingleUse_4FDR",
@@ -422,7 +421,7 @@
                   {
                     "Type": "Box",
                     "Name": "TextAreaBackgroundServerPort",
-                    "Width": 564,
+                    "Width": 161,
                     "Height": 49,
                     "Color": {
                       "Red": 255,
@@ -434,10 +433,10 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaServerPort",
-                    "Width": 564,
-                    "Height": 49,
+                    "Height": 48,
                     "TextId": "__SingleUse_IVI5",
                     "TextRotation": "0",
+                    "AutoSize": true,
                     "Wildcard1": {
                       "TextId": "textArea",
                       "UseBuffer": true,
@@ -824,6 +823,38 @@
                 "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_active.json"
               }
             ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textAreaTemerature",
+            "X": 73,
+            "Y": 137,
+            "Width": 75,
+            "Height": 48,
+            "TextId": "__SingleUse_NISC",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_OROW",
+              "UseBuffer": true,
+              "BufferSize": 8
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textAreaHumidity",
+            "X": 336,
+            "Y": 137,
+            "Width": 68,
+            "Height": 48,
+            "TextId": "__SingleUse_NMKU",
+            "TextRotation": "0",
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_ZUM9",
+              "UseBuffer": true,
+              "BufferSize": 8
+            }
           }
         ],
         "Interactions": [
@@ -850,6 +881,17 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "signalTransitionSource"
+            }
+          },
+          {
+            "InteractionName": "displayTemperatureAndHumidity",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 30
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "displayTemperatureAndHumidity"
             }
           }
         ]

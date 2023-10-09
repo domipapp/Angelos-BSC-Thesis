@@ -12,6 +12,7 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class ScreenHomeViewBase : public touchgfx::View<ScreenHomePresenter>
 {
@@ -19,11 +20,16 @@ public:
     ScreenHomeViewBase();
     virtual ~ScreenHomeViewBase();
     virtual void setupScreen();
+    virtual void handleTickEvent();
 
     /*
      * Virtual Action Handlers
      */
     virtual void signalTransitionSource()
+    {
+        // Override and implement this function in ScreenHome
+    }
+    virtual void displayTemperatureAndHumidity()
     {
         // Override and implement this function in ScreenHome
     }
@@ -43,6 +49,16 @@ protected:
     touchgfx::TextArea textAreaMenu;
     touchgfx::ButtonWithLabel buttonSettings;
     touchgfx::ButtonWithLabel buttonDisconnect;
+    touchgfx::TextAreaWithOneWildcard textAreaTemerature;
+    touchgfx::TextAreaWithOneWildcard textAreaHumidity;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t TEXTAREATEMERATURE_SIZE = 8;
+    touchgfx::Unicode::UnicodeChar textAreaTemeratureBuffer[TEXTAREATEMERATURE_SIZE];
+    static const uint16_t TEXTAREAHUMIDITY_SIZE = 8;
+    touchgfx::Unicode::UnicodeChar textAreaHumidityBuffer[TEXTAREAHUMIDITY_SIZE];
 
 private:
 
@@ -55,6 +71,12 @@ private:
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+
+    /*
+     * Tick Counter Declarations
+     */
+    static const uint32_t TICK_DISPLAYTEMPERATUREANDHUMIDITY_INTERVAL = 30;
+    uint32_t frameCountDisplayTemperatureAndHumidityInterval;
 
 };
 

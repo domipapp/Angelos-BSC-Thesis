@@ -7,7 +7,8 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 ScreenHomeViewBase::ScreenHomeViewBase() :
-    buttonCallback(this, &ScreenHomeViewBase::buttonCallbackHandler)
+    buttonCallback(this, &ScreenHomeViewBase::buttonCallbackHandler),
+    frameCountDisplayTemperatureAndHumidityInterval(0)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -45,6 +46,24 @@ ScreenHomeViewBase::ScreenHomeViewBase() :
     containerMenuBar.add(buttonDisconnect);
 
     add(containerMenuBar);
+
+    textAreaTemerature.setXY(73, 137);
+    textAreaTemerature.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textAreaTemerature.setLinespacing(0);
+    Unicode::snprintf(textAreaTemeratureBuffer, TEXTAREATEMERATURE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_OROW).getText());
+    textAreaTemerature.setWildcard(textAreaTemeratureBuffer);
+    textAreaTemerature.resizeToCurrentText();
+    textAreaTemerature.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NISC));
+    add(textAreaTemerature);
+
+    textAreaHumidity.setXY(336, 137);
+    textAreaHumidity.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textAreaHumidity.setLinespacing(0);
+    Unicode::snprintf(textAreaHumidityBuffer, TEXTAREAHUMIDITY_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_ZUM9).getText());
+    textAreaHumidity.setWildcard(textAreaHumidityBuffer);
+    textAreaHumidity.resizeToCurrentText();
+    textAreaHumidity.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NMKU));
+    add(textAreaHumidity);
 }
 
 ScreenHomeViewBase::~ScreenHomeViewBase()
@@ -70,5 +89,18 @@ void ScreenHomeViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //When ChangeSrceen completed call virtual function
         //Call signalTransitionSource
         signalTransitionSource();
+    }
+}
+
+void ScreenHomeViewBase::handleTickEvent()
+{
+    frameCountDisplayTemperatureAndHumidityInterval++;
+    if(frameCountDisplayTemperatureAndHumidityInterval == TICK_DISPLAYTEMPERATUREANDHUMIDITY_INTERVAL)
+    {
+        //displayTemperatureAndHumidity
+        //When every N tick call virtual function
+        //Call displayTemperatureAndHumidity
+        displayTemperatureAndHumidity();
+        frameCountDisplayTemperatureAndHumidityInterval = 0;
     }
 }

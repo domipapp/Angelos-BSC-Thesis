@@ -114,7 +114,7 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     TextAreaBackgroundServerIp.setAlpha(0);
     scrollableContainerServerIp.add(TextAreaBackgroundServerIp);
 
-    textAreaServerIp.setPosition(0, 1, 564, 49);
+    textAreaServerIp.setPosition(0, 0, 564, 49);
     textAreaServerIp.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textAreaServerIp.setLinespacing(0);
     Unicode::snprintf(textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, "%s", touchgfx::TypedText(T_TEXTAREA).getText());
@@ -134,16 +134,17 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     scrollableContainerServerPort.setPosition(319, 1, 161, 49);
     scrollableContainerServerPort.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     scrollableContainerServerPort.setScrollbarsAlpha(255);
-    TextAreaBackgroundServerPort.setPosition(0, 0, 564, 49);
+    TextAreaBackgroundServerPort.setPosition(0, 0, 161, 49);
     TextAreaBackgroundServerPort.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     TextAreaBackgroundServerPort.setAlpha(0);
     scrollableContainerServerPort.add(TextAreaBackgroundServerPort);
 
-    textAreaServerPort.setPosition(0, 0, 564, 49);
+    textAreaServerPort.setXY(0, 0);
     textAreaServerPort.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textAreaServerPort.setLinespacing(0);
     Unicode::snprintf(textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, "%s", touchgfx::TypedText(T_TEXTAREA).getText());
     textAreaServerPort.setWildcard(textAreaServerPortBuffer);
+    textAreaServerPort.resizeToCurrentText();
     textAreaServerPort.setTypedText(touchgfx::TypedText(T___SINGLEUSE_IVI5));
     scrollableContainerServerPort.add(textAreaServerPort);
 
