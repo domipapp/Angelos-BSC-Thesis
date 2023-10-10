@@ -19,15 +19,15 @@ void ScreenMenuView::setupScreen()
 
     if (status == osOK) {
         // The semaphore was acquired successfully
-    	setText(data_frequency, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, &textAreaDataFrequency, &TextAreaBackgroundDataFrequency);
+    	setText(data_frequency, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, &textAreaDataFrequency, &TextAreaBackgroundDataFrequency, &scrollableContainerDataFrequency);
 
-    	setText(server_ip, textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, &textAreaServerIp, &TextAreaBackgroundServerIp);
+    	setText(server_ip, textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, &textAreaServerIp, &TextAreaBackgroundServerIp, &scrollableContainerServerIp);
 
-    	setText(server_port, textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, &textAreaServerPort, &TextAreaBackgroundServerPort);
+    	setText(server_port, textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, &textAreaServerPort, &TextAreaBackgroundServerPort, &scrollableContainerServerPort);
 
-    	setText(wifi_pass, textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, &textAreaWifiPass, &TextAreaBackgroundWifiPass);
+    	setText(wifi_pass, textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, &textAreaWifiPass, &TextAreaBackgroundWifiPass, &scrollableContainerWifiPass);
 
-    	setText(wifi_ssid, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid);
+    	setText(wifi_ssid, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid, &scrollableContainerWifiSsid);
 
     }
 }
@@ -40,15 +40,15 @@ void ScreenMenuView::tearDownScreen()
 void ScreenMenuView::LoadDefaultParameters()
 {
 
-	setText(DATA_FREQUENCY, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, &textAreaDataFrequency, &TextAreaBackgroundDataFrequency);
+	setText(DATA_FREQUENCY, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, &textAreaDataFrequency, &TextAreaBackgroundDataFrequency, &scrollableContainerDataFrequency);
 
-	setText(IP_ADDRESS, textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, &textAreaServerIp, &TextAreaBackgroundServerIp);
+	setText(IP_ADDRESS, textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, &textAreaServerIp, &TextAreaBackgroundServerIp, &scrollableContainerServerIp);
 
-	setText(PORT, textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, &textAreaServerPort, &TextAreaBackgroundServerPort);
+	setText(PORT, textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, &textAreaServerPort, &TextAreaBackgroundServerPort, &scrollableContainerServerPort);
 
-	setText(WIFI_PASS, textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, &textAreaWifiPass, &TextAreaBackgroundWifiPass);
+	setText(WIFI_PASS, textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, &textAreaWifiPass, &TextAreaBackgroundWifiPass, &scrollableContainerWifiPass);
 
-	setText(WIFI_SSID, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid);
+	setText(WIFI_SSID, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid, &scrollableContainerWifiSsid);
 
 }
 
@@ -62,7 +62,7 @@ void ScreenMenuView::buttonWithLabelKeyboardSaveClicked(){
 		return;
 
 	// Set data
-	setText(keyboard.getBuffer(), CallingButtonBuffer, CALLINGBUTTONBUFFER_SIZE, CallingTextArea, CallingTextAreaBackground);
+	setText(keyboard.getBuffer(), CallingButtonBuffer, CALLINGBUTTONBUFFER_SIZE, CallingTextArea, CallingTextAreaBackground, CallingScrollableContainer);
 
 	// Clear buffer so on next reopen of the keyboard there is no data.
 	buttonWithLabelKeyboardExitClicked();
@@ -179,7 +179,7 @@ void ScreenMenuView::waitForConnection()
 	textAreaConnecting.invalidate();
 }
 
-void ScreenMenuView::setText(const char* data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground){
+void ScreenMenuView::setText(const char* data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground, touchgfx::ScrollableContainer* ScrollableContainer){
 	static Unicode::UnicodeChar string[50];
 	static uint16_t textSize;
 
@@ -200,9 +200,13 @@ void ScreenMenuView::setText(const char* data, Unicode::UnicodeChar * textAreaBu
 
 	TextAreaBackground->invalidate();
 
+	// Scroll to the leftmost position (by 50 so it doesn't take long)
+	while(ScrollableContainer->doScroll(50, 0) != false){}
+	ScrollableContainer->invalidate();
+
 }
 
-void ScreenMenuView::setText(const Unicode::UnicodeChar * data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground){
+void ScreenMenuView::setText(const Unicode::UnicodeChar * data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground, touchgfx::ScrollableContainer* ScrollableContainer){
 	static uint16_t textSize;
 
 	// Copy data
@@ -219,10 +223,14 @@ void ScreenMenuView::setText(const Unicode::UnicodeChar * data, Unicode::Unicode
 	TextAreaBackground->setAlpha(100);
 
 	TextAreaBackground->invalidate();
+
+	// Scroll to the leftmost position (by 50 so it doesn't take long)
+	while(ScrollableContainer->doScroll(50, 0) != false){}
+	ScrollableContainer->invalidate();
 }
 
 
-void ScreenMenuView::setText(const uint16_t data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground){
+void ScreenMenuView::setText(const uint16_t data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground, touchgfx::ScrollableContainer* ScrollableContainer){
 	static uint16_t textSize;
 
 	// Copy data
@@ -240,4 +248,8 @@ void ScreenMenuView::setText(const uint16_t data, Unicode::UnicodeChar * textAre
 	TextAreaBackground->setAlpha(100);
 
 	TextAreaBackground->invalidate();
+
+	// Scroll to the leftmost position (by 50 so it doesn't take long)
+	while(ScrollableContainer->doScroll(50, 0) != false){}
+	ScrollableContainer->invalidate();
 }
