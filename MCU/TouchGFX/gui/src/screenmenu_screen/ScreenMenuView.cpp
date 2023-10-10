@@ -2,6 +2,7 @@
 
 ScreenMenuView::ScreenMenuView()
 {
+	// Set up keyboard and hide it
 	keyboard.setButtons(&buttonWithLabelKeyboardExit, &buttonWithLabelKeyboardSave);
 	keyboard.setPosition(80, 16, 320, 240);
 	add(keyboard);
@@ -18,25 +19,16 @@ void ScreenMenuView::setupScreen()
 
     if (status == osOK) {
         // The semaphore was acquired successfully
-    	Unicode::itoa(data_frequency, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, 10);
-    	TextAreaBackgroundDataFrequency.setAlpha(100);
-    	TextAreaBackgroundDataFrequency.invalidate();
+    	setText(data_frequency, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, &textAreaDataFrequency, &TextAreaBackgroundDataFrequency);
 
-    	Unicode::strncpy(textAreaServerIpBuffer, server_ip, TEXTAREASERVERIP_SIZE);
-    	TextAreaBackgroundServerIp.setAlpha(100);
-    	TextAreaBackgroundServerIp.invalidate();
+    	setText(server_ip, textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, &textAreaServerIp, &TextAreaBackgroundServerIp);
 
-    	Unicode::strncpy(textAreaServerPortBuffer, server_port, TEXTAREASERVERPORT_SIZE);
-    	TextAreaBackgroundServerPort.setAlpha(100);
-    	TextAreaBackgroundServerPort.invalidate();
+    	setText(server_port, textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, &textAreaServerPort, &TextAreaBackgroundServerPort);
 
-    	Unicode::strncpy(textAreaWifiPassBuffer, wifi_pass, TEXTAREAWIFIPASS_SIZE);
-    	TextAreaBackgroundWifiPass.setAlpha(100);
-    	TextAreaBackgroundWifiPass.invalidate();
+    	setText(wifi_pass, textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, &textAreaWifiPass, &TextAreaBackgroundWifiPass);
 
-    	Unicode::strncpy(textAreaWifiSsidBuffer, wifi_ssid, TEXTAREAWIFISSID_SIZE);
-    	TextAreaBackgroundWifiSsid.setAlpha(100);
-    	TextAreaBackgroundWifiSsid.invalidate();
+    	setText(wifi_ssid, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid);
+
     }
 }
 
@@ -47,32 +39,17 @@ void ScreenMenuView::tearDownScreen()
 
 void ScreenMenuView::LoadDefaultParameters()
 {
-	Unicode::UnicodeChar string[50];
 
-	Unicode::strncpy(string, DATA_FREQUENCY, 50);
-	Unicode::strncpy(textAreaDataFrequencyBuffer, string, TEXTAREADATAFREQUENCY_SIZE);
-	TextAreaBackgroundDataFrequency.setAlpha(100);
-	TextAreaBackgroundDataFrequency.invalidate();
+	setText(DATA_FREQUENCY, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, &textAreaDataFrequency, &TextAreaBackgroundDataFrequency);
 
-	Unicode::strncpy(string, IP_ADDRESS, 50);
-	Unicode::strncpy(textAreaServerIpBuffer, string, TEXTAREASERVERIP_SIZE);
-	TextAreaBackgroundServerIp.setAlpha(100);
-	TextAreaBackgroundServerIp.invalidate();
+	setText(IP_ADDRESS, textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, &textAreaServerIp, &TextAreaBackgroundServerIp);
 
-	Unicode::strncpy(string, PORT, 50);
-	Unicode::strncpy(textAreaServerPortBuffer, string, TEXTAREASERVERPORT_SIZE);
-	TextAreaBackgroundServerPort.setAlpha(100);
-	TextAreaBackgroundServerPort.invalidate();
+	setText(PORT, textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, &textAreaServerPort, &TextAreaBackgroundServerPort);
 
-	Unicode::strncpy(string, WIFI_PASS, 50);
-	Unicode::strncpy(textAreaWifiPassBuffer, string, TEXTAREAWIFIPASS_SIZE);
-	TextAreaBackgroundWifiPass.setAlpha(100);
-	TextAreaBackgroundWifiPass.invalidate();
+	setText(WIFI_PASS, textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, &textAreaWifiPass, &TextAreaBackgroundWifiPass);
 
-	Unicode::strncpy(string, WIFI_SSID, 50);
-	Unicode::strncpy(textAreaWifiSsidBuffer, string, TEXTAREAWIFISSID_SIZE);
-	TextAreaBackgroundWifiSsid.setAlpha(100);
-	TextAreaBackgroundWifiSsid.invalidate();
+	setText(WIFI_SSID, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid);
+
 }
 
 void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
@@ -81,55 +58,67 @@ void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
 }
 
 void ScreenMenuView::buttonWithLabelKeyboardSaveClicked(){
-	if (CallingButtonBuffer == nullptr || CALLINGBUTTONBUFFER_SIZE == 0 || CallingTextAreaBackground == nullptr)
+	if (CallingButtonBuffer == nullptr || CALLINGBUTTONBUFFER_SIZE == 0 || CallingTextAreaBackground == nullptr || CallingTextArea == nullptr)
 		return;
-	Unicode::strncpy(CallingButtonBuffer, keyboard.getBuffer(), CALLINGBUTTONBUFFER_SIZE);
+
+	// Set data
+	setText(keyboard.getBuffer(), CallingButtonBuffer, CALLINGBUTTONBUFFER_SIZE, CallingTextArea, CallingTextAreaBackground);
+
+	// Clear buffer so on next reopen of the keyboard there is no data.
 	buttonWithLabelKeyboardExitClicked();
-	CallingTextAreaBackground->setAlpha(100);
-	CallingTextAreaBackground->invalidate();
 }
 
 void ScreenMenuView::flexButtonServerPortClicked(){
 	setVisibilityKeyboard(true);
+	// Set parameters of calling types
 	CallingButtonBuffer = textAreaServerPortBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREASERVERPORT_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundServerPort;
+	CallingTextArea = &textAreaServerPort;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 void ScreenMenuView::flexButtonServerIpClicked(){
 	setVisibilityKeyboard(true);
+	// Set parameters of calling types
 	CallingButtonBuffer = textAreaServerIpBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREASERVERIP_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundServerIp;
+	CallingTextArea = &textAreaServerIp;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 void ScreenMenuView::flexButtonWifiSsidClicked(){
 	setVisibilityKeyboard(true);
+	// Set parameters of calling types
 	CallingButtonBuffer = textAreaWifiSsidBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREAWIFISSID_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundWifiSsid;
+	CallingTextArea = &textAreaWifiSsid;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 void ScreenMenuView::flexButtonWifiPassClicked(){
 	setVisibilityKeyboard(true);
+	// Set parameters of calling types
 	CallingButtonBuffer = textAreaWifiPassBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREAWIFIPASS_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundWifiPass;
+	CallingTextArea = &textAreaWifiPass;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
 
 void ScreenMenuView::flexButtonDataFrequencyClicked(){
 	setVisibilityKeyboard(true);
+	// Set parameters of calling types
 	CallingButtonBuffer = textAreaDataFrequencyBuffer;
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREADATAFREQUENCY_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundDataFrequency;
+	CallingTextArea = &textAreaDataFrequency;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
@@ -148,13 +137,8 @@ void ScreenMenuView::buttonConnectClicked(){
     //Show textAreaConnecting
     textAreaConnecting.setVisible(true);
     textAreaConnecting.invalidate();
-    // Force an immediate redraw of the invalidated area on the screen
-	//Application::getInstance()->invalidateArea(textAreaConnecting.getAbsoluteRect());
-    Rect rectToRedraw = textAreaConnecting.getAbsoluteRect();
-    Application::getInstance()->requestRedraw();
-    OSWrappers::giveFrameBufferSemaphore();
-    Application::getInstance()->requestRedraw();
 
+    // Save data into main.c
 	char tmp[50];
 	Unicode::toUTF8(textAreaServerIpBuffer, (uint8_t*)tmp, 50);
 	strncpy(server_ip, tmp, 50);
@@ -170,6 +154,7 @@ void ScreenMenuView::buttonConnectClicked(){
 
 	data_frequency = Unicode::atoi(textAreaDataFrequencyBuffer);
 
+	// Signal for connection
 	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_WIFI_CONNECT);
 	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_SERVER_CONNECT);
 
@@ -182,6 +167,67 @@ void ScreenMenuView::waitForConnection()
 	// Set text to green to show successful connection. Touchgfx will wait according to WaitAfterConnection interaction
 	textAreaConnecting.setColor(touchgfx::Color::getColorFromRGB(0, 255, 0));
 	textAreaConnecting.invalidate();
-    // Force an immediate redraw of the invalidated area on the screen
-	Application::getInstance()->invalidateArea(textAreaConnecting.getAbsoluteRect());
+}
+
+void ScreenMenuView::setText(const char* data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground){
+	static Unicode::UnicodeChar string[50];
+	static uint16_t textSize;
+
+	// Copy data
+	Unicode::strncpy(string, data, 50);
+	Unicode::strncpy(textAreaBuffer, string, TEXTAREA_SIZE);
+
+	// Resize text and background
+	textArea->resizeToCurrentText();
+	textSize = textArea->getTextWidth();
+	if(textSize < MIN_CALLINGTEXTAREABACKGROUND_WIDTH)
+		TextAreaBackground->setWidth(MIN_CALLINGTEXTAREABACKGROUND_WIDTH);
+	else
+		TextAreaBackground->setWidth(textSize);
+
+	// Set "color"
+	TextAreaBackground->setAlpha(100);
+
+	TextAreaBackground->invalidate();
+
+}
+
+void ScreenMenuView::setText(const Unicode::UnicodeChar * data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground){
+	static uint16_t textSize;
+
+	// Copy data
+	Unicode::strncpy(textAreaBuffer, data, TEXTAREA_SIZE);
+
+	// Resize text and background
+	textArea->resizeToCurrentText();
+	textSize = textArea->getTextWidth();
+	if(textSize < MIN_CALLINGTEXTAREABACKGROUND_WIDTH)
+		TextAreaBackground->setWidth(MIN_CALLINGTEXTAREABACKGROUND_WIDTH);
+	else
+		TextAreaBackground->setWidth(textSize);
+	// Set "color"
+	TextAreaBackground->setAlpha(100);
+
+	TextAreaBackground->invalidate();
+}
+
+
+void ScreenMenuView::setText(const uint16_t data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground){
+	static uint16_t textSize;
+
+	// Copy data
+	Unicode::itoa(data, textAreaBuffer, TEXTAREA_SIZE, 10);
+
+	// Resize text and background
+	textArea->resizeToCurrentText();
+	textSize = textArea->getTextWidth();
+	if(textSize < MIN_CALLINGTEXTAREABACKGROUND_WIDTH)
+		TextAreaBackground->setWidth(MIN_CALLINGTEXTAREABACKGROUND_WIDTH);
+	else
+		TextAreaBackground->setWidth(textSize);
+
+	// Set "color"
+	TextAreaBackground->setAlpha(100);
+
+	TextAreaBackground->invalidate();
 }

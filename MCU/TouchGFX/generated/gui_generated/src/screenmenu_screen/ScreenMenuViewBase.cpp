@@ -34,16 +34,17 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     scrollableContainerDataFrequency.setPosition(319, 201, 161, 49);
     scrollableContainerDataFrequency.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     scrollableContainerDataFrequency.setScrollbarsAlpha(255);
-    TextAreaBackgroundDataFrequency.setPosition(0, 0, 564, 49);
+    TextAreaBackgroundDataFrequency.setPosition(0, 0, 161, 49);
     TextAreaBackgroundDataFrequency.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     TextAreaBackgroundDataFrequency.setAlpha(0);
     scrollableContainerDataFrequency.add(TextAreaBackgroundDataFrequency);
 
-    textAreaDataFrequency.setPosition(0, 0, 564, 49);
+    textAreaDataFrequency.setXY(0, 0);
     textAreaDataFrequency.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textAreaDataFrequency.setLinespacing(0);
     Unicode::snprintf(textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, "%s", touchgfx::TypedText(T_TEXTAREA).getText());
     textAreaDataFrequency.setWildcard(textAreaDataFrequencyBuffer);
+    textAreaDataFrequency.resizeToCurrentText();
     textAreaDataFrequency.setTypedText(touchgfx::TypedText(T___SINGLEUSE_OIDY));
     scrollableContainerDataFrequency.add(textAreaDataFrequency);
 
@@ -59,16 +60,17 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     scrollableContainerWifiPass.setPosition(319, 151, 161, 49);
     scrollableContainerWifiPass.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     scrollableContainerWifiPass.setScrollbarsAlpha(255);
-    TextAreaBackgroundWifiPass.setPosition(0, 0, 564, 49);
+    TextAreaBackgroundWifiPass.setPosition(0, 0, 161, 49);
     TextAreaBackgroundWifiPass.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     TextAreaBackgroundWifiPass.setAlpha(0);
     scrollableContainerWifiPass.add(TextAreaBackgroundWifiPass);
 
-    textAreaWifiPass.setPosition(0, 0, 564, 49);
+    textAreaWifiPass.setXY(0, 0);
     textAreaWifiPass.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textAreaWifiPass.setLinespacing(0);
     Unicode::snprintf(textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, "%s", touchgfx::TypedText(T_TEXTAREA).getText());
     textAreaWifiPass.setWildcard(textAreaWifiPassBuffer);
+    textAreaWifiPass.resizeToCurrentText();
     textAreaWifiPass.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3X0B));
     scrollableContainerWifiPass.add(textAreaWifiPass);
 
@@ -84,16 +86,17 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     scrollableContainerWifiSsid.setPosition(319, 101, 161, 49);
     scrollableContainerWifiSsid.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     scrollableContainerWifiSsid.setScrollbarsAlpha(255);
-    TextAreaBackgroundWifiSsid.setPosition(0, 0, 564, 49);
+    TextAreaBackgroundWifiSsid.setPosition(0, 0, 161, 49);
     TextAreaBackgroundWifiSsid.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     TextAreaBackgroundWifiSsid.setAlpha(0);
     scrollableContainerWifiSsid.add(TextAreaBackgroundWifiSsid);
 
-    textAreaWifiSsid.setPosition(0, 0, 564, 49);
+    textAreaWifiSsid.setXY(0, 0);
     textAreaWifiSsid.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textAreaWifiSsid.setLinespacing(0);
     Unicode::snprintf(textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, "%s", touchgfx::TypedText(T_TEXTAREA).getText());
     textAreaWifiSsid.setWildcard(textAreaWifiSsidBuffer);
+    textAreaWifiSsid.resizeToCurrentText();
     textAreaWifiSsid.setTypedText(touchgfx::TypedText(T___SINGLEUSE_1UL5));
     scrollableContainerWifiSsid.add(textAreaWifiSsid);
 
@@ -109,16 +112,17 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     scrollableContainerServerIp.setPosition(319, 51, 161, 49);
     scrollableContainerServerIp.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     scrollableContainerServerIp.setScrollbarsAlpha(255);
-    TextAreaBackgroundServerIp.setPosition(0, 0, 564, 49);
+    TextAreaBackgroundServerIp.setPosition(0, 0, 161, 49);
     TextAreaBackgroundServerIp.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     TextAreaBackgroundServerIp.setAlpha(0);
     scrollableContainerServerIp.add(TextAreaBackgroundServerIp);
 
-    textAreaServerIp.setPosition(0, 0, 564, 49);
+    textAreaServerIp.setXY(0, 0);
     textAreaServerIp.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textAreaServerIp.setLinespacing(0);
     Unicode::snprintf(textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, "%s", touchgfx::TypedText(T_TEXTAREA).getText());
     textAreaServerIp.setWildcard(textAreaServerIpBuffer);
+    textAreaServerIp.resizeToCurrentText();
     textAreaServerIp.setTypedText(touchgfx::TypedText(T___SINGLEUSE_4FDR));
     scrollableContainerServerIp.add(textAreaServerIp);
 
