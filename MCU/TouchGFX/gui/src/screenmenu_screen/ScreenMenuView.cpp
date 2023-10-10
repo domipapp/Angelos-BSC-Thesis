@@ -58,7 +58,7 @@ void ScreenMenuView::buttonWithLabelKeyboardExitClicked(){
 }
 
 void ScreenMenuView::buttonWithLabelKeyboardSaveClicked(){
-	if (CallingButtonBuffer == nullptr || CALLINGBUTTONBUFFER_SIZE == 0 || CallingTextAreaBackground == nullptr || CallingTextArea == nullptr)
+	if (CallingButtonBuffer == nullptr || CALLINGBUTTONBUFFER_SIZE == 0 || CallingTextAreaBackground == nullptr || CallingTextArea == nullptr || CallingScrollableContainer == nullptr)
 		return;
 
 	// Set data
@@ -66,6 +66,11 @@ void ScreenMenuView::buttonWithLabelKeyboardSaveClicked(){
 
 	// Clear buffer so on next reopen of the keyboard there is no data.
 	buttonWithLabelKeyboardExitClicked();
+
+	// Scroll to the leftmost position (by 50 so it doesn't take long)
+	while(CallingScrollableContainer->doScroll(50, 0) != false){}
+	CallingScrollableContainer->invalidate();
+
 }
 
 void ScreenMenuView::flexButtonServerPortClicked(){
@@ -75,6 +80,7 @@ void ScreenMenuView::flexButtonServerPortClicked(){
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREASERVERPORT_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundServerPort;
 	CallingTextArea = &textAreaServerPort;
+	CallingScrollableContainer = &scrollableContainerServerPort;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
@@ -86,6 +92,7 @@ void ScreenMenuView::flexButtonServerIpClicked(){
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREASERVERIP_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundServerIp;
 	CallingTextArea = &textAreaServerIp;
+	CallingScrollableContainer = &scrollableContainerServerIp;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
@@ -97,6 +104,7 @@ void ScreenMenuView::flexButtonWifiSsidClicked(){
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREAWIFISSID_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundWifiSsid;
 	CallingTextArea = &textAreaWifiSsid;
+	CallingScrollableContainer = &scrollableContainerWifiSsid;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
@@ -108,6 +116,7 @@ void ScreenMenuView::flexButtonWifiPassClicked(){
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREAWIFIPASS_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundWifiPass;
 	CallingTextArea = &textAreaWifiPass;
+	CallingScrollableContainer = &scrollableContainerWifiPass;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }
@@ -119,6 +128,7 @@ void ScreenMenuView::flexButtonDataFrequencyClicked(){
 	CALLINGBUTTONBUFFER_SIZE = TEXTAREADATAFREQUENCY_SIZE;
 	CallingTextAreaBackground = &TextAreaBackgroundDataFrequency;
 	CallingTextArea = &textAreaDataFrequency;
+	CallingScrollableContainer = &scrollableContainerDataFrequency;
 	// Copy content into keyboard so it can be seen
 	keyboard.setBufferCopy(CallingButtonBuffer);
 }

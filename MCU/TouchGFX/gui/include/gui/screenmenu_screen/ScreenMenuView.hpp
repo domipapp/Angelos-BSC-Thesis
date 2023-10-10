@@ -32,14 +32,14 @@ private:
     CustomKeyboard keyboard;
     /* Holds a pointer to the button that called the keyboard.
      * Button clicked methods are responsible for handling this.
-     * CALLINGBUTTONBUFFER_SIZE, CallingTextAreaBackground and CallingTextArea
+     * CALLINGBUTTONBUFFER_SIZE, CallingTextAreaBackground, callingScrollableContainer and CallingTextArea
      *  should also be set.
     */
     touchgfx::Unicode::UnicodeChar* CallingButtonBuffer = nullptr;
     uint16_t CALLINGBUTTONBUFFER_SIZE = 0;
     touchgfx::Box* CallingTextAreaBackground = nullptr;
     touchgfx::TextAreaWithOneWildcard* CallingTextArea = nullptr;
-
+    touchgfx::ScrollableContainer* CallingScrollableContainer = nullptr;
     /*  Minimum width for the CallingTextAreaBackground, so in case text is shorter
      * it doesn't look ugly
      */
