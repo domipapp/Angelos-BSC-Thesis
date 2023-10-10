@@ -44,21 +44,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define RECEIVED_MESSAGE_SIZE 512	// Max size for ESP message
-#define IP_ADDRESS "192.168.1.249"	// Server IP Address
-#define PORT "9000"					// Server Port number
-// AT command for connecting to server
-#define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
-#define WIFI_SSID "Telekom-072404"	// Local WIFI SSID
-#define WIFI_PASS "atc7habf4xt6"// Local WIFI password
-// AT command for connecting to wifi
-#define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
-// Event flag
-#define EVENT_FLAG1 0x00000001U
-#define EVENT_FLAG_ESP_ERROR 0x00000001U
-#define EVENT_FLAG_ESP_RESPONSE_TIMEOUT 0x00000010U
-// Wait for event flags for 5000 ticks
-#define EVENT_FLAG_WAIT 5000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -1017,8 +1002,8 @@ bool send_and_recieve(char* send, char* recieve){
 
     HAL_UART_Transmit(&huart2, (uint8_t*) send, strlen(send), HAL_MAX_DELAY);
 
-    uint32_t flags = osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG1,  osFlagsWaitAny, EVENT_FLAG_WAIT);
-    if (flags & EVENT_FLAG1) {
+    uint32_t flags = osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG_ESP_RESPONSE_VALID,  osFlagsWaitAny, EVENT_FLAG_WAIT);
+    if (flags & EVENT_FLAG_ESP_RESPONSE_VALID) {
         // Valid response received
     	return true;
     } else {
@@ -1127,7 +1112,7 @@ void prvTaskSetUpESP(void *argument)
 	  	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
 	  	  // Signal setup finish
-	  		osEventFlagsSet(eventESPBasicSetUpFinishedHandle, EVENT_FLAG1);
+	  		osEventFlagsSet(eventESPBasicSetUpFinishedHandle, EVENT_FLAG_ESP_BASIC_SETUP_FINISHED);
 	  	  // Task has to run only once
 	  		osThreadSuspend(SetUpESPHandle);
   }
@@ -1192,7 +1177,7 @@ void prvTaskReadESP(void *argument)
 	  osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
 	  // If message is valid, signal and clear message
 	  if(strstr((char*)received_message, (char*)expectedESPResponse) != NULL){
-		  osEventFlagsSet(eventESPResponseValidHandle, EVENT_FLAG1);
+		  osEventFlagsSet(eventESPResponseValidHandle, EVENT_FLAG_ESP_RESPONSE_VALID);
 		  memset(received_message, '\0', strlen((char*)received_message));
 		  received_message_index = 0;
 
