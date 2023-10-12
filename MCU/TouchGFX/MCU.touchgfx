@@ -825,8 +825,18 @@
             ]
           },
           {
+            "Type": "Image",
+            "Name": "textAreaTemperatureBackground",
+            "X": 3,
+            "Y": 62,
+            "Width": 214,
+            "Height": 150,
+            "RelativeFilename": "__generated\\alternate_theme_images_containers_small_wide_outlined_light.png",
+            "Alpha": 150
+          },
+          {
             "Type": "TextArea",
-            "Name": "textAreaTemerature",
+            "Name": "textAreaTemeratureNum",
             "X": 73,
             "Y": 137,
             "Width": 75,
@@ -842,7 +852,28 @@
           },
           {
             "Type": "TextArea",
-            "Name": "textAreaHumidity",
+            "Name": "textAreaTemperature",
+            "X": 46,
+            "Y": 78,
+            "Width": 128,
+            "Height": 24,
+            "TextId": "__SingleUse_WQ0B",
+            "TextRotation": "0",
+            "AutoSize": true
+          },
+          {
+            "Type": "Image",
+            "Name": "textAreaHumidityBackground",
+            "X": 266,
+            "Y": 62,
+            "Width": 214,
+            "Height": 150,
+            "RelativeFilename": "__generated\\alternate_theme_images_containers_small_wide_outlined_light.png",
+            "Alpha": 150
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textAreaHumidityNum",
             "X": 336,
             "Y": 137,
             "Width": 68,
@@ -855,6 +886,17 @@
               "UseBuffer": true,
               "BufferSize": 8
             }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textAreaHumidity",
+            "X": 326,
+            "Y": 78,
+            "Width": 89,
+            "Height": 24,
+            "TextId": "__SingleUse_YRSU",
+            "TextRotation": "0",
+            "AutoSize": true
           }
         ],
         "Interactions": [

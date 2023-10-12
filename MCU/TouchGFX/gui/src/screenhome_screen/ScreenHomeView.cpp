@@ -29,19 +29,19 @@ void ScreenHomeView::displayTemperatureAndHumidity(){
 
     // Calculate resize position and print data on screen
     static uint16_t oldsize, newsize;
-    oldsize = textAreaTemerature.getTextWidth();
-	Unicode::snprintfFloat(textAreaTemeratureBuffer, TEXTAREATEMERATURE_SIZE, "%.2f", temperature);
-	textAreaTemerature.resizeToCurrentTextWithAlignment();
-	newsize = textAreaTemerature.getTextWidth();
-	textAreaTemerature.setX(textAreaTemerature.getX() - ((newsize - oldsize)/2));
-	textAreaTemerature.invalidate();
+    oldsize = textAreaTemeratureNum.getTextWidth();
+	Unicode::snprintfFloat(textAreaTemeratureNumBuffer, TEXTAREATEMERATURENUM_SIZE, "%.2f", temperature);
+	textAreaTemeratureNum.resizeToCurrentTextWithAlignment();
+	newsize = textAreaTemeratureNum.getTextWidth();
+	textAreaTemeratureNum.setX(textAreaTemeratureNum.getX() - ((newsize - oldsize)/2));
+	textAreaTemeratureNum.invalidate();
 
 	// Calculate resize position and print data on screen
-	oldsize = textAreaHumidity.getTextWidth();
-	Unicode::snprintfFloat(textAreaHumidityBuffer, TEXTAREAHUMIDITY_SIZE, "%.2f", humidity);
-	textAreaHumidity.resizeToCurrentTextWithAlignment();
-	newsize = textAreaHumidity.getTextWidth();
-	textAreaHumidity.setX(textAreaHumidity.getX() - ((newsize - oldsize)/2));
-	textAreaHumidity.invalidate();
+	oldsize = textAreaHumidityNum.getTextWidth();
+	Unicode::snprintfFloat(textAreaHumidityNumBuffer, TEXTAREAHUMIDITYNUM_SIZE, "%.2f", humidity);
+	textAreaHumidityNum.resizeToCurrentTextWithAlignment();
+	newsize = textAreaHumidityNum.getTextWidth();
+	textAreaHumidityNum.setX(textAreaHumidityNum.getX() - ((newsize - oldsize)/2));
+	textAreaHumidityNum.invalidate();
 
 }

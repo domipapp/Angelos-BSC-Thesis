@@ -49,16 +49,20 @@ protected:
     touchgfx::TextArea textAreaMenu;
     touchgfx::ButtonWithLabel buttonSettings;
     touchgfx::ButtonWithLabel buttonDisconnect;
-    touchgfx::TextAreaWithOneWildcard textAreaTemerature;
-    touchgfx::TextAreaWithOneWildcard textAreaHumidity;
+    touchgfx::Image textAreaTemperatureBackground;
+    touchgfx::TextAreaWithOneWildcard textAreaTemeratureNum;
+    touchgfx::TextArea textAreaTemperature;
+    touchgfx::Image textAreaHumidityBackground;
+    touchgfx::TextAreaWithOneWildcard textAreaHumidityNum;
+    touchgfx::TextArea textAreaHumidity;
 
     /*
      * Wildcard Buffers
      */
-    static const uint16_t TEXTAREATEMERATURE_SIZE = 8;
-    touchgfx::Unicode::UnicodeChar textAreaTemeratureBuffer[TEXTAREATEMERATURE_SIZE];
-    static const uint16_t TEXTAREAHUMIDITY_SIZE = 8;
-    touchgfx::Unicode::UnicodeChar textAreaHumidityBuffer[TEXTAREAHUMIDITY_SIZE];
+    static const uint16_t TEXTAREATEMERATURENUM_SIZE = 8;
+    touchgfx::Unicode::UnicodeChar textAreaTemeratureNumBuffer[TEXTAREATEMERATURENUM_SIZE];
+    static const uint16_t TEXTAREAHUMIDITYNUM_SIZE = 8;
+    touchgfx::Unicode::UnicodeChar textAreaHumidityNumBuffer[TEXTAREAHUMIDITYNUM_SIZE];
 
 private:
 

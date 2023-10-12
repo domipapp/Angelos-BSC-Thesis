@@ -16,6 +16,12 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_YRSU" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Humidity</Translation>
+      </Text>
+      <Text Id="__SingleUse_WQ0B" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Temperature</Translation>
+      </Text>
       <Text Id="__SingleUse_OROW" Alignment="Left" TypographyId="Wildcard">
         <Translation Language="GB">0</Translation>
       </Text>

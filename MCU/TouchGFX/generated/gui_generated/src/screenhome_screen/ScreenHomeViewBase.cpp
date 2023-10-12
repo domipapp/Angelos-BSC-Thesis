@@ -47,22 +47,44 @@ ScreenHomeViewBase::ScreenHomeViewBase() :
 
     add(containerMenuBar);
 
-    textAreaTemerature.setXY(73, 137);
-    textAreaTemerature.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    textAreaTemerature.setLinespacing(0);
-    Unicode::snprintf(textAreaTemeratureBuffer, TEXTAREATEMERATURE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_OROW).getText());
-    textAreaTemerature.setWildcard(textAreaTemeratureBuffer);
-    textAreaTemerature.resizeToCurrentText();
-    textAreaTemerature.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NISC));
-    add(textAreaTemerature);
+    textAreaTemperatureBackground.setXY(3, 62);
+    textAreaTemperatureBackground.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_CONTAINERS_SMALL_WIDE_OUTLINED_LIGHT_ID));
+    textAreaTemperatureBackground.setAlpha(150);
+    add(textAreaTemperatureBackground);
 
-    textAreaHumidity.setXY(336, 137);
+    textAreaTemeratureNum.setXY(73, 137);
+    textAreaTemeratureNum.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textAreaTemeratureNum.setLinespacing(0);
+    Unicode::snprintf(textAreaTemeratureNumBuffer, TEXTAREATEMERATURENUM_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_OROW).getText());
+    textAreaTemeratureNum.setWildcard(textAreaTemeratureNumBuffer);
+    textAreaTemeratureNum.resizeToCurrentText();
+    textAreaTemeratureNum.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NISC));
+    add(textAreaTemeratureNum);
+
+    textAreaTemperature.setXY(46, 78);
+    textAreaTemperature.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textAreaTemperature.setLinespacing(0);
+    textAreaTemperature.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WQ0B));
+    add(textAreaTemperature);
+
+    textAreaHumidityBackground.setXY(266, 62);
+    textAreaHumidityBackground.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_CONTAINERS_SMALL_WIDE_OUTLINED_LIGHT_ID));
+    textAreaHumidityBackground.setAlpha(150);
+    add(textAreaHumidityBackground);
+
+    textAreaHumidityNum.setXY(336, 137);
+    textAreaHumidityNum.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textAreaHumidityNum.setLinespacing(0);
+    Unicode::snprintf(textAreaHumidityNumBuffer, TEXTAREAHUMIDITYNUM_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_ZUM9).getText());
+    textAreaHumidityNum.setWildcard(textAreaHumidityNumBuffer);
+    textAreaHumidityNum.resizeToCurrentText();
+    textAreaHumidityNum.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NMKU));
+    add(textAreaHumidityNum);
+
+    textAreaHumidity.setXY(326, 78);
     textAreaHumidity.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textAreaHumidity.setLinespacing(0);
-    Unicode::snprintf(textAreaHumidityBuffer, TEXTAREAHUMIDITY_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_ZUM9).getText());
-    textAreaHumidity.setWildcard(textAreaHumidityBuffer);
-    textAreaHumidity.resizeToCurrentText();
-    textAreaHumidity.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NMKU));
+    textAreaHumidity.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YRSU));
     add(textAreaHumidity);
 }
 
