@@ -821,6 +821,29 @@
                 },
                 "TextRotation": "0",
                 "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_active.json"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "buttonReconnect",
+                "X": 370,
+                "Width": 110,
+                "Height": 50,
+                "Visible": false,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png",
+                "TextId": "__SingleUse_IZQG",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0",
+                "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_active.json"
               }
             ]
           },

@@ -49,6 +49,7 @@ protected:
     touchgfx::TextArea textAreaMenu;
     touchgfx::ButtonWithLabel buttonSettings;
     touchgfx::ButtonWithLabel buttonDisconnect;
+    touchgfx::ButtonWithLabel buttonReconnect;
     touchgfx::Image textAreaTemperatureBackground;
     touchgfx::TextAreaWithOneWildcard textAreaTemeratureNum;
     touchgfx::TextArea textAreaTemperature;
