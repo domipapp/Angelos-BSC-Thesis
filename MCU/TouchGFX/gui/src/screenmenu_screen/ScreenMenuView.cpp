@@ -15,7 +15,7 @@ void ScreenMenuView::setupScreen()
     ScreenMenuViewBase::setupScreen();
 
     // If transitioning from home screen reload all previous settings and show Home button instead of Connect
-    osStatus_t status = osSemaphoreAcquire(semaphoreTransitionFromHomeHandle, 0);
+    osStatus_t status = osSemaphoreAcquire(semaphoreTransitionFromHomeByButtonSettingsHandle, 0);
 
     if (status == osOK) {
         // The semaphore was acquired successfully

@@ -38,7 +38,7 @@ extern "C" {
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 // Used to signal screen transition coming from Home screen
-extern osSemaphoreId_t semaphoreTransitionFromHomeHandle;
+extern osSemaphoreId_t semaphoreTransitionFromHomeByButtonSettingsHandle;
 
 extern char server_ip[50];
 extern char server_port[50];

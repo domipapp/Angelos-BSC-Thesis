@@ -161,10 +161,10 @@ osSemaphoreId_t semaphoreHaltUntilStringHandle;
 const osSemaphoreAttr_t semaphoreHaltUntilString_attributes = {
   .name = "semaphoreHaltUntilString"
 };
-/* Definitions for semaphoreTransitionFromHome */
-osSemaphoreId_t semaphoreTransitionFromHomeHandle;
-const osSemaphoreAttr_t semaphoreTransitionFromHome_attributes = {
-  .name = "semaphoreTransitionFromHome"
+/* Definitions for semaphoreTransitionFromHomeByButtonSettings */
+osSemaphoreId_t semaphoreTransitionFromHomeByButtonSettingsHandle;
+const osSemaphoreAttr_t semaphoreTransitionFromHomeByButtonSettings_attributes = {
+  .name = "semaphoreTransitionFromHomeByButtonSettings"
 };
 /* Definitions for semaphoreUART */
 osSemaphoreId_t semaphoreUARTHandle;
@@ -319,8 +319,8 @@ int main(void)
   /* creation of semaphoreHaltUntilString */
   semaphoreHaltUntilStringHandle = osSemaphoreNew(1, 1, &semaphoreHaltUntilString_attributes);
 
-  /* creation of semaphoreTransitionFromHome */
-  semaphoreTransitionFromHomeHandle = osSemaphoreNew(1, 1, &semaphoreTransitionFromHome_attributes);
+  /* creation of semaphoreTransitionFromHomeByButtonSettings */
+  semaphoreTransitionFromHomeByButtonSettingsHandle = osSemaphoreNew(1, 1, &semaphoreTransitionFromHomeByButtonSettings_attributes);
 
   /* creation of semaphoreUART */
   semaphoreUARTHandle = osSemaphoreNew(1, 1, &semaphoreUART_attributes);
@@ -410,7 +410,7 @@ int main(void)
   HAL_UART_Receive_IT(&huart2, &rx_buffer, 1);
   __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
   // Take semaphore because transition has not occurred when setting up
-  osSemaphoreAcquire(semaphoreTransitionFromHomeHandle, osWaitForever);
+  osSemaphoreAcquire(semaphoreTransitionFromHomeByButtonSettingsHandle, osWaitForever);
 
   MX_TouchGFX_Init();
   /* USER CODE END RTOS_EVENTS */

@@ -18,7 +18,7 @@ void ScreenHomeView::tearDownScreen()
 }
 
 void ScreenHomeView::signalTransitionSource(){
-	osSemaphoreRelease(semaphoreTransitionFromHomeHandle);
+	osSemaphoreRelease(semaphoreTransitionFromHomeByButtonSettingsHandle);
 }
 
 void ScreenHomeView::displayTemperatureAndHumidity(){
