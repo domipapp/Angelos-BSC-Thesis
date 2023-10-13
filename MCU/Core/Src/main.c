@@ -1279,12 +1279,13 @@ void prvTaskConnectToServer(void *argument)
 	char command[120];
 	// Must not try before setup complete
 	osEventFlagsWait(eventESPBasicSetUpFinishedHandle, EVENT_FLAG_ESP_BASIC_SETUP_FINISHED,  osFlagsWaitAny, osWaitForever);
-	// must wait to be connected to wifi
-	osEventFlagsWait(eventESPWifiConnectedHandle, EVENT_FLAG_ESP_WIFI_CONNECTED,  osFlagsWaitAny, osWaitForever);
+
   for(;;)
   {
   	  // Wait for user to connect
 	  	osEventFlagsWait(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_SERVER_CONNECT,  osFlagsWaitAny, osWaitForever);
+	  // must wait to be connected to wifi
+		osEventFlagsWait(eventESPWifiConnectedHandle, EVENT_FLAG_ESP_WIFI_CONNECTED,  osFlagsWaitAny, osWaitForever);
   	  //Connect to server
   	    snprintf(command, sizeof(command), "AT+CIPSTART=\"TCP\",\"%s\",%s\r\n", server_ip, server_port);
   	    if(!send_and_recieve(command, "OK\r\n"))

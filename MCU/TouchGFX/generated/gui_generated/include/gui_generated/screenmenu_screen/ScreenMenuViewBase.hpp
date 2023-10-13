@@ -67,6 +67,10 @@ public:
     {
         // Override and implement this function in ScreenMenu
     }
+    virtual void buttonReconnectClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
 
 protected:
     FrontendApplication& application() {

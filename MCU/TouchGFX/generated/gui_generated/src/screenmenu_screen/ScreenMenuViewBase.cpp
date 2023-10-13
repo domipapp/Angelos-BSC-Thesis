@@ -195,6 +195,7 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonReconnect.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonReconnect.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonReconnect.setVisible(false);
+    buttonReconnect.setAction(buttonCallback);
     containerMenuBar.add(buttonReconnect);
 
     buttonConnect.setXY(370, 0);
@@ -287,6 +288,18 @@ void ScreenMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
     {
         //ChangeScreenBackHome
         //When buttonHome clicked change screen to ScreenHome
+        //Go to ScreenHome with screen transition towards West
+        application().gotoScreenHomeScreenSlideTransitionWest();
+    }
+    if (&src == &buttonReconnect)
+    {
+        //buttonReconnectClicked
+        //When buttonReconnect clicked call virtual function
+        //Call buttonReconnectClicked
+        buttonReconnectClicked();
+    
+        //ChangeScreenButtonReconnect
+        //When buttonReconnectClicked completed change screen to ScreenHome
         //Go to ScreenHome with screen transition towards West
         application().gotoScreenHomeScreenSlideTransitionWest();
     }

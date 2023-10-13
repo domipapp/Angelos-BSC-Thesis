@@ -275,3 +275,9 @@ void ScreenMenuView::loadPreviousSettings(){
 
 	setText(wifi_ssid, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid, &scrollableContainerWifiSsid);
 }
+
+void ScreenMenuView::buttonReconnectClicked(){
+	buttonConnectClicked();
+	waitForConnection();
+	osThreadResume(SendDataWithESPHandle);
+}

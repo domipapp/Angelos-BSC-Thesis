@@ -792,6 +792,31 @@
               "ScreenTransitionDirection": "West",
               "ActionComponent": "ScreenHome"
             }
+          },
+          {
+            "InteractionName": "buttonReconnectClicked",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonReconnect"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "buttonReconnectClicked"
+            }
+          },
+          {
+            "InteractionName": "ChangeScreenButtonReconnect",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "buttonReconnectClicked"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "West",
+              "ActionComponent": "ScreenHome"
+            }
           }
         ]
       },

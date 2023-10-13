@@ -41,6 +41,8 @@ extern "C" {
 extern osSemaphoreId_t semaphoreTransitionFromHomeByButtonSettingsHandle;
 extern osSemaphoreId_t semaphoreTransitionFromHomeByButtonDisconnectHandle;
 
+extern osThreadId_t SendDataWithESPHandle;
+
 extern char server_ip[50];
 extern char server_port[50];
 extern char wifi_ssid[50];

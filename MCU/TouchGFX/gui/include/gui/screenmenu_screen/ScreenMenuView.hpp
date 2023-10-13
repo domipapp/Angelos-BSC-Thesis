@@ -27,6 +27,7 @@ public:
     void setVisibilityKeyboard(bool state);
     virtual void buttonConnectClicked();
     virtual void waitForConnection();
+    virtual void buttonReconnectClicked();
 
 private:
     CustomKeyboard keyboard;
