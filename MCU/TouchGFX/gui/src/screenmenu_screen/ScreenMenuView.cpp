@@ -19,19 +19,12 @@ void ScreenMenuView::setupScreen()
 
     if (status == osOK) {
         // The semaphore was acquired successfully
-    	setText(data_frequency, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, &textAreaDataFrequency, &TextAreaBackgroundDataFrequency, &scrollableContainerDataFrequency);
-
-    	setText(server_ip, textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, &textAreaServerIp, &TextAreaBackgroundServerIp, &scrollableContainerServerIp);
-
-    	setText(server_port, textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, &textAreaServerPort, &TextAreaBackgroundServerPort, &scrollableContainerServerPort);
-
-    	setText(wifi_pass, textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, &textAreaWifiPass, &TextAreaBackgroundWifiPass, &scrollableContainerWifiPass);
-
-    	setText(wifi_ssid, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid, &scrollableContainerWifiSsid);
+		loadPreviousSettings();
 
     	buttonHome.setVisible(true);
     	buttonConnect.setVisible(false);
     	buttonConnect.invalidate();
+		return;
     }
 }
 
@@ -255,4 +248,16 @@ void ScreenMenuView::setText(const uint16_t data, Unicode::UnicodeChar * textAre
 	// Scroll to the leftmost position (by 50 so it doesn't take long)
 	while(ScrollableContainer->doScroll(50, 0) != false){}
 	ScrollableContainer->invalidate();
+}
+
+void ScreenMenuView::loadPreviousSettings(){
+	setText(data_frequency, textAreaDataFrequencyBuffer, TEXTAREADATAFREQUENCY_SIZE, &textAreaDataFrequency, &TextAreaBackgroundDataFrequency, &scrollableContainerDataFrequency);
+
+	setText(server_ip, textAreaServerIpBuffer, TEXTAREASERVERIP_SIZE, &textAreaServerIp, &TextAreaBackgroundServerIp, &scrollableContainerServerIp);
+
+	setText(server_port, textAreaServerPortBuffer, TEXTAREASERVERPORT_SIZE, &textAreaServerPort, &TextAreaBackgroundServerPort, &scrollableContainerServerPort);
+
+	setText(wifi_pass, textAreaWifiPassBuffer, TEXTAREAWIFIPASS_SIZE, &textAreaWifiPass, &TextAreaBackgroundWifiPass, &scrollableContainerWifiPass);
+
+	setText(wifi_ssid, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid, &scrollableContainerWifiSsid);
 }
