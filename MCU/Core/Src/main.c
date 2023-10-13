@@ -171,6 +171,11 @@ osSemaphoreId_t semaphoreUARTHandle;
 const osSemaphoreAttr_t semaphoreUART_attributes = {
   .name = "semaphoreUART"
 };
+/* Definitions for semaphoreTransitionFromHomeByButtonDisconnect */
+osSemaphoreId_t semaphoreTransitionFromHomeByButtonDisconnectHandle;
+const osSemaphoreAttr_t semaphoreTransitionFromHomeByButtonDisconnect_attributes = {
+  .name = "semaphoreTransitionFromHomeByButtonDisconnect"
+};
 /* Definitions for eventESPBasicSetUpFinished */
 osEventFlagsId_t eventESPBasicSetUpFinishedHandle;
 const osEventFlagsAttr_t eventESPBasicSetUpFinished_attributes = {
@@ -324,6 +329,9 @@ int main(void)
 
   /* creation of semaphoreUART */
   semaphoreUARTHandle = osSemaphoreNew(1, 1, &semaphoreUART_attributes);
+
+  /* creation of semaphoreTransitionFromHomeByButtonDisconnect */
+  semaphoreTransitionFromHomeByButtonDisconnectHandle = osSemaphoreNew(1, 1, &semaphoreTransitionFromHomeByButtonDisconnect_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
