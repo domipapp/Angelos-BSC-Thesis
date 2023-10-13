@@ -25,11 +25,11 @@ public:
     /*
      * Virtual Action Handlers
      */
-    virtual void signalTransitionSource()
+    virtual void displayTemperatureAndHumidity()
     {
         // Override and implement this function in ScreenHome
     }
-    virtual void displayTemperatureAndHumidity()
+    virtual void buttonDisconnectClicked()
     {
         // Override and implement this function in ScreenHome
     }

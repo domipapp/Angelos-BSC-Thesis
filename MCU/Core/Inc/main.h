@@ -50,6 +50,8 @@ extern osEventFlagsId_t eventConfigurationsLoadedHandle;
 
 extern osEventFlagsId_t eventESPServerConnectedHandle;
 
+extern osEventFlagsId_t eventDisconnectHandle;
+
 extern osMessageQueueId_t queueTouchgfxTempAndHumidHandle;
 /* USER CODE END ET */
 
@@ -128,6 +130,7 @@ void Error_Handler(void);
 #define EVENT_FLAG_ESP_RESPONSE_TIMEOUT 	0x00000010U
 #define EVENT_FLAG_ESP_RESPONSE_VALID		0x00000001U
 #define EVENT_FLAG_DISCONNECT_REQUEST		0x00000001U
+#define EVENT_FLAG_DISCONNECT_SUCCESSFUL	0x00000010U
 // Wait for event flags for 5000 ticks
 #define EVENT_FLAG_WAIT 5000
 /* USER CODE END Private defines */

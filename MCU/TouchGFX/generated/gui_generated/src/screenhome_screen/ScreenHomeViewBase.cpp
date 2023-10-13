@@ -43,6 +43,7 @@ ScreenHomeViewBase::ScreenHomeViewBase() :
     buttonDisconnect.setLabelText(touchgfx::TypedText(T___SINGLEUSE_FKC0));
     buttonDisconnect.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonDisconnect.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonDisconnect.setAction(buttonCallback);
     containerMenuBar.add(buttonDisconnect);
 
     add(containerMenuBar);
@@ -102,15 +103,22 @@ void ScreenHomeViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
 {
     if (&src == &buttonSettings)
     {
-        //ChangeSrceen
+        //ChangeSrceenSettingsButton
         //When buttonSettings clicked change screen to ScreenMenu
         //Go to ScreenMenu with screen transition towards East
         application().gotoScreenMenuScreenSlideTransitionEast();
+    }
+    if (&src == &buttonDisconnect)
+    {
+        //buttonDisconnectClicked
+        //When buttonDisconnect clicked call virtual function
+        //Call buttonDisconnectClicked
+        buttonDisconnectClicked();
     
-        //signalTransitionSource
-        //When ChangeSrceen completed call virtual function
-        //Call signalTransitionSource
-        signalTransitionSource();
+        //ChangeScreenDisconnectButton
+        //When buttonDisconnectClicked completed change screen to ScreenMenu
+        //Go to ScreenMenu with screen transition towards East
+        application().gotoScreenMenuScreenSlideTransitionEast();
     }
 }
 

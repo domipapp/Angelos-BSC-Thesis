@@ -139,7 +139,7 @@ osThreadId_t DisconnectHandle;
 const osThreadAttr_t Disconnect_attributes = {
   .name = "Disconnect",
   .stack_size = 256 * 4,
-  .priority = (osPriority_t) osPriorityAboveNormal,
+  .priority = (osPriority_t) osPriorityHigh,
 };
 /* Definitions for queueTempAndHumid */
 osMessageQueueId_t queueTempAndHumidHandle;
@@ -165,6 +165,11 @@ const osSemaphoreAttr_t semaphoreHaltUntilString_attributes = {
 osSemaphoreId_t semaphoreTransitionFromHomeHandle;
 const osSemaphoreAttr_t semaphoreTransitionFromHome_attributes = {
   .name = "semaphoreTransitionFromHome"
+};
+/* Definitions for semaphoreUART */
+osSemaphoreId_t semaphoreUARTHandle;
+const osSemaphoreAttr_t semaphoreUART_attributes = {
+  .name = "semaphoreUART"
 };
 /* Definitions for eventESPBasicSetUpFinished */
 osEventFlagsId_t eventESPBasicSetUpFinishedHandle;
@@ -196,10 +201,10 @@ osEventFlagsId_t eventESPServerConnectedHandle;
 const osEventFlagsAttr_t eventESPServerConnected_attributes = {
   .name = "eventESPServerConnected"
 };
-/* Definitions for eventDisconnectRequest */
-osEventFlagsId_t eventDisconnectRequestHandle;
-const osEventFlagsAttr_t eventDisconnectRequest_attributes = {
-  .name = "eventDisconnectRequest"
+/* Definitions for eventDisconnect */
+osEventFlagsId_t eventDisconnectHandle;
+const osEventFlagsAttr_t eventDisconnect_attributes = {
+  .name = "eventDisconnect"
 };
 /* USER CODE BEGIN PV */
 // Sensor handle
@@ -317,6 +322,9 @@ int main(void)
   /* creation of semaphoreTransitionFromHome */
   semaphoreTransitionFromHomeHandle = osSemaphoreNew(1, 1, &semaphoreTransitionFromHome_attributes);
 
+  /* creation of semaphoreUART */
+  semaphoreUARTHandle = osSemaphoreNew(1, 1, &semaphoreUART_attributes);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -393,8 +401,8 @@ int main(void)
   /* creation of eventESPServerConnected */
   eventESPServerConnectedHandle = osEventFlagsNew(&eventESPServerConnected_attributes);
 
-  /* creation of eventDisconnectRequest */
-  eventDisconnectRequestHandle = osEventFlagsNew(&eventDisconnectRequest_attributes);
+  /* creation of eventDisconnect */
+  eventDisconnectHandle = osEventFlagsNew(&eventDisconnect_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
@@ -1023,6 +1031,7 @@ bool send_and_recieve(char* send, char* recieve){
 
     // wait for 5000ms to get response
     uint32_t flags = osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG_ESP_RESPONSE_VALID,  osFlagsWaitAny, EVENT_FLAG_WAIT);
+
     if (flags & EVENT_FLAG_ESP_RESPONSE_VALID) {
         // Valid response received
     	return true;
@@ -1090,12 +1099,14 @@ void prvTaskSendDataWithESP(void *argument)
 	    snprintf((char*)cipsendString, 16, "AT+CIPSEND=%d\r\n", (int)strlen((char*)dataString));
 
 	    // Send CMD to send data
+	    osSemaphoreAcquire(semaphoreUARTHandle, osWaitForever);
 	    if(!send_and_recieve((char*) cipsendString, "OK\r\n"))
 	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
 	    // Send data
 	    if(!send_and_recieve((char*) dataString, "OK\r\n"))
 	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
+	    osSemaphoreRelease(semaphoreUARTHandle);
 
   }
   /* USER CODE END prvTaskSendDataWithESP */
@@ -1288,13 +1299,23 @@ void prvTaskDisconnect(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osEventFlagsWait(eventDisconnectRequestHandle, EVENT_FLAG_DISCONNECT_REQUEST, osFlagsWaitAny, osWaitForever);
+    osEventFlagsWait(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_REQUEST, osFlagsWaitAny, osWaitForever);
 
     // Disconnect from server
-    send_and_recieve("AT+CIPCLOSE\r\n", "OK");
+    osSemaphoreAcquire(semaphoreUARTHandle, osWaitForever);
+    if(!send_and_recieve("AT+CIPSEND=6\r\n", "OK\r\n"))
+    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
+
+    if(!send_and_recieve("closeq", "CLOSED\r\n"))
+    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
+    osSemaphoreRelease(semaphoreUARTHandle);
 
     // Disconnect from wifi
-    send_and_recieve("AT+CWQAP\r\n", "OK");
+	if(!send_and_recieve("AT+CWQAP\r\n", "OK"))
+		osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
+    // Signal successful disconnection
+    osEventFlagsSet(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_SUCCESSFUL);
+    osThreadSuspend(SendDataWithESPHandle);
   }
   /* USER CODE END prvTaskDisconnect */
 }

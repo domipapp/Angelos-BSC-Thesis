@@ -937,8 +937,7 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "ChangeSrceen",
-            "HasCompletedTrigger": true,
+            "InteractionName": "ChangeSrceenSettingsButton",
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "buttonSettings"
@@ -953,8 +952,7 @@
           {
             "InteractionName": "signalTransitionSource",
             "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "ChangeSrceen"
+              "Type": "TriggerInteractionCompleted"
             },
             "Action": {
               "Type": "ActionCustom",
@@ -970,6 +968,31 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "displayTemperatureAndHumidity"
+            }
+          },
+          {
+            "InteractionName": "buttonDisconnectClicked",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonDisconnect"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "buttonDisconnectClicked"
+            }
+          },
+          {
+            "InteractionName": "ChangeScreenDisconnectButton",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "buttonDisconnectClicked"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "East",
+              "ActionComponent": "ScreenMenu"
             }
           }
         ]

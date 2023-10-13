@@ -14,6 +14,7 @@ public:
     virtual void tearDownScreen();
     virtual void signalTransitionSource();
     virtual void displayTemperatureAndHumidity();
+    virtual void buttonDisconnectClicked();
 protected:
 };
 
