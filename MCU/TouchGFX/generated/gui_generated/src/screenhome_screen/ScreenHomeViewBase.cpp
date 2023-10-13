@@ -115,6 +115,12 @@ void ScreenHomeViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //Call buttonDisconnectClicked
         buttonDisconnectClicked();
     
+        //signalTransitionSource
+        //When buttonDisconnectClicked completed call virtual function
+        //Call signalTransitionSource
+        signalTransitionSource();
+    
+    
         //ChangeScreenDisconnectButton
         //When buttonDisconnectClicked completed change screen to ScreenMenu
         //Go to ScreenMenu with screen transition towards East

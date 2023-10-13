@@ -16,6 +16,9 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_JWO8" Alignment="Center" TypographyId="MenuBarButton">
+        <Translation Language="GB">Reconnect</Translation>
+      </Text>
       <Text Id="__SingleUse_XTTU" Alignment="Center" TypographyId="MenuBarButton">
         <Translation Language="GB">Home</Translation>
       </Text>

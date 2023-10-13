@@ -25,6 +25,10 @@ public:
     /*
      * Virtual Action Handlers
      */
+    virtual void signalTransitionSource()
+    {
+        // Override and implement this function in ScreenHome
+    }
     virtual void displayTemperatureAndHumidity()
     {
         // Override and implement this function in ScreenHome

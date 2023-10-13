@@ -189,6 +189,14 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonHome.setAction(buttonCallback);
     containerMenuBar.add(buttonHome);
 
+    buttonReconnect.setXY(370, 0);
+    buttonReconnect.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    buttonReconnect.setLabelText(touchgfx::TypedText(T___SINGLEUSE_JWO8));
+    buttonReconnect.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonReconnect.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonReconnect.setVisible(false);
+    containerMenuBar.add(buttonReconnect);
+
     buttonConnect.setXY(370, 0);
     buttonConnect.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
     buttonConnect.setLabelText(touchgfx::TypedText(T___SINGLEUSE_9MJY));

@@ -105,6 +105,7 @@ protected:
     touchgfx::TextArea textAreaMenu;
     touchgfx::ButtonWithLabel buttonLoadDefault;
     touchgfx::ButtonWithLabel buttonHome;
+    touchgfx::ButtonWithLabel buttonReconnect;
     touchgfx::ButtonWithLabel buttonConnect;
     touchgfx::ButtonWithLabel buttonWithLabelKeyboardExit;
     touchgfx::ButtonWithLabel buttonWithLabelKeyboardSave;
