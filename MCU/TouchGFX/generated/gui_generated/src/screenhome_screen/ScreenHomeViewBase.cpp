@@ -45,14 +45,6 @@ ScreenHomeViewBase::ScreenHomeViewBase() :
     buttonDisconnect.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     containerMenuBar.add(buttonDisconnect);
 
-    buttonReconnect.setXY(370, 0);
-    buttonReconnect.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
-    buttonReconnect.setLabelText(touchgfx::TypedText(T___SINGLEUSE_IZQG));
-    buttonReconnect.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    buttonReconnect.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    buttonReconnect.setVisible(false);
-    containerMenuBar.add(buttonReconnect);
-
     add(containerMenuBar);
 
     textAreaTemperatureBackground.setXY(3, 62);

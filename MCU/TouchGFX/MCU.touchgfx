@@ -804,7 +804,7 @@
                 "X": 182,
                 "Y": 1,
                 "Width": 117,
-                "Height": 49,
+                "Height": 48,
                 "LockPosition": true,
                 "TextId": "__SingleUse_5MHQ",
                 "TextRotation": "0",
@@ -857,29 +857,6 @@
                 },
                 "TextRotation": "0",
                 "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_active.json"
-              },
-              {
-                "Type": "ButtonWithLabel",
-                "Name": "buttonReconnect",
-                "X": 370,
-                "Width": 110,
-                "Height": 50,
-                "Visible": false,
-                "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
-                "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png",
-                "TextId": "__SingleUse_IZQG",
-                "ReleasedColor": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
-                },
-                "PressedColor": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
-                },
-                "TextRotation": "0",
-                "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_active.json"
               }
             ]
           },
@@ -899,7 +876,7 @@
             "X": 73,
             "Y": 137,
             "Width": 75,
-            "Height": 49,
+            "Height": 48,
             "TextId": "__SingleUse_NISC",
             "TextRotation": "0",
             "AutoSize": true,
@@ -936,7 +913,7 @@
             "X": 336,
             "Y": 137,
             "Width": 68,
-            "Height": 49,
+            "Height": 48,
             "TextId": "__SingleUse_NMKU",
             "TextRotation": "0",
             "AutoSize": true,

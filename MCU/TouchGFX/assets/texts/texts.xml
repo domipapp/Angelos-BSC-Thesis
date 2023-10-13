@@ -19,9 +19,6 @@
       <Text Id="__SingleUse_XTTU" Alignment="Center" TypographyId="MenuBarButton">
         <Translation Language="GB">Home</Translation>
       </Text>
-      <Text Id="__SingleUse_IZQG" Alignment="Center" TypographyId="MenuBarButton">
-        <Translation Language="GB">Reconnect</Translation>
-      </Text>
       <Text Id="__SingleUse_YRSU" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Humidity</Translation>
       </Text>
