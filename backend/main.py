@@ -12,6 +12,7 @@ PORT_START = 9000
 PORT_END = 9999
 MAX_RETRYS = 1
 TIMEOUT_SEC = 40
+CLOSING_STRING = "close"
 
 def process_socket_handle(clientSocket: socket.socket):
     binaryData = b""
@@ -27,7 +28,11 @@ def process_socket_handle(clientSocket: socket.socket):
             return 
         # Always update binaryData so bytes are not lost
         data, dataDate, binaryData = data_handling.excract_data(clientSocket=clientSocket, binaryData=binaryData)
+        
         if data != None:
+            # Explicitly asked to close the socket
+            if CLOSING_STRING in data:
+                return
             # bytes, so it doesnt leak into next message
             binaryData = b""
             if not data_handling.is_data_valid(data):
@@ -57,6 +62,7 @@ def process_update_ports():
                 processesSemaphore.acquire()
                 processes.remove([serverSocket, clientSocket, thread])
                 processesSemaphore.release()
+
 
 def main():
     thread = threading.Thread(target=process_update_ports)
