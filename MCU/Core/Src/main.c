@@ -419,6 +419,7 @@ int main(void)
   __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
   // Take semaphore because transition has not occurred when setting up
   osSemaphoreAcquire(semaphoreTransitionFromHomeByButtonSettingsHandle, osWaitForever);
+  osSemaphoreAcquire(semaphoreTransitionFromHomeByButtonDisconnectHandle, osWaitForever);
 
   MX_TouchGFX_Init();
   /* USER CODE END RTOS_EVENTS */

@@ -25,15 +25,15 @@ public:
     /*
      * Virtual Action Handlers
      */
-    virtual void signalTransitionSource()
-    {
-        // Override and implement this function in ScreenHome
-    }
     virtual void displayTemperatureAndHumidity()
     {
         // Override and implement this function in ScreenHome
     }
     virtual void buttonDisconnectClicked()
+    {
+        // Override and implement this function in ScreenHome
+    }
+    virtual void buttonSettingsClicked()
     {
         // Override and implement this function in ScreenHome
     }
@@ -71,6 +71,12 @@ protected:
 private:
 
     /*
+     * Tick Counter Declarations
+     */
+    static const uint32_t TICK_DISPLAYTEMPERATUREANDHUMIDITY_INTERVAL = 30;
+    uint32_t frameCountDisplayTemperatureAndHumidityInterval;
+
+    /*
      * Callback Declarations
      */
     touchgfx::Callback<ScreenHomeViewBase, const touchgfx::AbstractButton&> buttonCallback;
@@ -79,12 +85,6 @@ private:
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
-
-    /*
-     * Tick Counter Declarations
-     */
-    static const uint32_t TICK_DISPLAYTEMPERATUREANDHUMIDITY_INTERVAL = 30;
-    uint32_t frameCountDisplayTemperatureAndHumidityInterval;
 
 };
 

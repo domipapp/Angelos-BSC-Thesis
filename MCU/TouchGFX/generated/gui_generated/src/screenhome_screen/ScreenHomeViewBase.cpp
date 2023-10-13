@@ -7,8 +7,8 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 ScreenHomeViewBase::ScreenHomeViewBase() :
-    buttonCallback(this, &ScreenHomeViewBase::buttonCallbackHandler),
-    frameCountDisplayTemperatureAndHumidityInterval(0)
+    frameCountDisplayTemperatureAndHumidityInterval(0),
+    buttonCallback(this, &ScreenHomeViewBase::buttonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -101,13 +101,6 @@ void ScreenHomeViewBase::setupScreen()
 
 void ScreenHomeViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
-    if (&src == &buttonSettings)
-    {
-        //ChangeSrceenSettingsButton
-        //When buttonSettings clicked change screen to ScreenMenu
-        //Go to ScreenMenu with screen transition towards East
-        application().gotoScreenMenuScreenSlideTransitionEast();
-    }
     if (&src == &buttonDisconnect)
     {
         //buttonDisconnectClicked
@@ -115,14 +108,20 @@ void ScreenHomeViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //Call buttonDisconnectClicked
         buttonDisconnectClicked();
     
-        //signalTransitionSource
-        //When buttonDisconnectClicked completed call virtual function
-        //Call signalTransitionSource
-        signalTransitionSource();
-    
-    
         //ChangeScreenDisconnectButton
         //When buttonDisconnectClicked completed change screen to ScreenMenu
+        //Go to ScreenMenu with screen transition towards East
+        application().gotoScreenMenuScreenSlideTransitionEast();
+    }
+    if (&src == &buttonSettings)
+    {
+        //buttonSettingsClicked
+        //When buttonSettings clicked call virtual function
+        //Call buttonSettingsClicked
+        buttonSettingsClicked();
+    
+        //ChangeScreenSettingsButton
+        //When buttonSettingsClicked completed change screen to ScreenMenu
         //Go to ScreenMenu with screen transition towards East
         application().gotoScreenMenuScreenSlideTransitionEast();
     }

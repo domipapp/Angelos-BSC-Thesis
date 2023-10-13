@@ -12,9 +12,9 @@ public:
     virtual ~ScreenHomeView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
-    virtual void signalTransitionSource();
     virtual void displayTemperatureAndHumidity();
     virtual void buttonDisconnectClicked();
+    virtual void buttonSettingsClicked();
 protected:
 };
 

@@ -23,7 +23,21 @@ void ScreenMenuView::setupScreen()
 
     	buttonHome.setVisible(true);
     	buttonConnect.setVisible(false);
+		buttonReconnect.setVisible(false);
     	buttonConnect.invalidate();
+		return;
+    }
+
+	status = osSemaphoreAcquire(semaphoreTransitionFromHomeByButtonDisconnectHandle, 0);
+
+    if (status == osOK) {
+        // The semaphore was acquired successfully
+		loadPreviousSettings();
+
+    	buttonHome.setVisible(false);
+    	buttonConnect.setVisible(false);
+		buttonReconnect.setVisible(true);
+    	buttonReconnect.invalidate();
 		return;
     }
 }

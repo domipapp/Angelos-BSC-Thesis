@@ -17,10 +17,6 @@ void ScreenHomeView::tearDownScreen()
     ScreenHomeViewBase::tearDownScreen();
 }
 
-void ScreenHomeView::signalTransitionSource(){
-	osSemaphoreRelease(semaphoreTransitionFromHomeByButtonSettingsHandle);
-}
-
 void ScreenHomeView::displayTemperatureAndHumidity(){
 	// Get data
 	static float temperature, humidity;
@@ -51,4 +47,9 @@ void ScreenHomeView::displayTemperatureAndHumidity(){
 void ScreenHomeView::buttonDisconnectClicked(){
 	osEventFlagsSet(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_REQUEST);
 	osEventFlagsWait(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_SUCCESSFUL, osFlagsWaitAll, osWaitForever);
+	osSemaphoreRelease(semaphoreTransitionFromHomeByButtonDisconnectHandle);
+}
+
+void ScreenHomeView::buttonSettingsClicked(){
+	osSemaphoreRelease(semaphoreTransitionFromHomeByButtonSettingsHandle);
 }
