@@ -134,6 +134,13 @@ const osThreadAttr_t ConnectToServer_attributes = {
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for Disconnect */
+osThreadId_t DisconnectHandle;
+const osThreadAttr_t Disconnect_attributes = {
+  .name = "Disconnect",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityAboveNormal,
+};
 /* Definitions for queueTempAndHumid */
 osMessageQueueId_t queueTempAndHumidHandle;
 const osMessageQueueAttr_t queueTempAndHumid_attributes = {
@@ -189,6 +196,11 @@ osEventFlagsId_t eventESPServerConnectedHandle;
 const osEventFlagsAttr_t eventESPServerConnected_attributes = {
   .name = "eventESPServerConnected"
 };
+/* Definitions for eventDisconnectRequest */
+osEventFlagsId_t eventDisconnectRequestHandle;
+const osEventFlagsAttr_t eventDisconnectRequest_attributes = {
+  .name = "eventDisconnectRequest"
+};
 /* USER CODE BEGIN PV */
 // Sensor handle
 sht3x_handle_t sht31 = {&hi2c4, SHT3X_I2C_DEVICE_ADDRESS_ADDR_PIN_LOW};
@@ -230,6 +242,7 @@ void prvTaskReadTempAndHumidity(void *argument);
 void prvTaskReadESP(void *argument);
 void prvTaskConnectToWifi(void *argument);
 void prvTaskConnectToServer(void *argument);
+void prvTaskDisconnect(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -354,6 +367,9 @@ int main(void)
   /* creation of ConnectToServer */
   ConnectToServerHandle = osThreadNew(prvTaskConnectToServer, NULL, &ConnectToServer_attributes);
 
+  /* creation of Disconnect */
+  DisconnectHandle = osThreadNew(prvTaskDisconnect, NULL, &Disconnect_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -376,6 +392,9 @@ int main(void)
 
   /* creation of eventESPServerConnected */
   eventESPServerConnectedHandle = osEventFlagsNew(&eventESPServerConnected_attributes);
+
+  /* creation of eventDisconnectRequest */
+  eventDisconnectRequestHandle = osEventFlagsNew(&eventDisconnectRequest_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
@@ -1002,6 +1021,7 @@ bool send_and_recieve(char* send, char* recieve){
 
     HAL_UART_Transmit(&huart2, (uint8_t*) send, strlen(send), HAL_MAX_DELAY);
 
+    // wait for 5000ms to get response
     uint32_t flags = osEventFlagsWait(eventESPResponseValidHandle, EVENT_FLAG_ESP_RESPONSE_VALID,  osFlagsWaitAny, EVENT_FLAG_WAIT);
     if (flags & EVENT_FLAG_ESP_RESPONSE_VALID) {
         // Valid response received
@@ -1253,6 +1273,30 @@ void prvTaskConnectToServer(void *argument)
   	  osEventFlagsSet(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED);
   }
   /* USER CODE END prvTaskConnectToServer */
+}
+
+/* USER CODE BEGIN Header_prvTaskDisconnect */
+/**
+* @brief Function implementing the Disconnect thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_prvTaskDisconnect */
+void prvTaskDisconnect(void *argument)
+{
+  /* USER CODE BEGIN prvTaskDisconnect */
+  /* Infinite loop */
+  for(;;)
+  {
+    osEventFlagsWait(eventDisconnectRequestHandle, EVENT_FLAG_DISCONNECT_REQUEST, osFlagsWaitAny, osWaitForever);
+
+    // Disconnect from server
+    send_and_recieve("AT+CIPCLOSE\r\n", "OK");
+
+    // Disconnect from wifi
+    send_and_recieve("AT+CWQAP\r\n", "OK");
+  }
+  /* USER CODE END prvTaskDisconnect */
 }
 
 /* MPU Configuration */
