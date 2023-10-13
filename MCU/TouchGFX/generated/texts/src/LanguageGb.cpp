@@ -13,6 +13,7 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     30,  // T_ENTEREDTEXT: "<>"
     186, // T_NUMMODE: "ABC"
     182, // T_ALPHAMODE: "123"
+    172, // T___SINGLEUSE_XTTU: "Home"
     109, // T___SINGLEUSE_IZQG: "Reconnect"
     132, // T___SINGLEUSE_YRSU: "Humidity"
     71,  // T___SINGLEUSE_WQ0B: "Temperature"

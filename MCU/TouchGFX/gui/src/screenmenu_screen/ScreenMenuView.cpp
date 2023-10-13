@@ -14,7 +14,7 @@ void ScreenMenuView::setupScreen()
 {
     ScreenMenuViewBase::setupScreen();
 
-    // If transitioning from home screen reload all previous settings
+    // If transitioning from home screen reload all previous settings and show Home button instead of Connect
     osStatus_t status = osSemaphoreAcquire(semaphoreTransitionFromHomeHandle, 0);
 
     if (status == osOK) {
@@ -29,6 +29,9 @@ void ScreenMenuView::setupScreen()
 
     	setText(wifi_ssid, textAreaWifiSsidBuffer, TEXTAREAWIFISSID_SIZE, &textAreaWifiSsid, &TextAreaBackgroundWifiSsid, &scrollableContainerWifiSsid);
 
+    	buttonHome.setVisible(true);
+    	buttonConnect.setVisible(false);
+    	buttonConnect.invalidate();
     }
 }
 

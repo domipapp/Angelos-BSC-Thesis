@@ -8,6 +8,8 @@ ScreenHomeView::ScreenHomeView()
 void ScreenHomeView::setupScreen()
 {
     ScreenHomeViewBase::setupScreen();
+    // Display is called every N ticks, call instantly to display without waiting
+    displayTemperatureAndHumidity();
 }
 
 void ScreenHomeView::tearDownScreen()

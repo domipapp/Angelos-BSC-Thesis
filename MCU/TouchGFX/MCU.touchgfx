@@ -170,7 +170,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaDataFrequency",
-                    "Height": 49,
+                    "Height": 48,
                     "TextId": "__SingleUse_OIDY",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -236,7 +236,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaWifiPass",
-                    "Height": 49,
+                    "Height": 48,
                     "TextId": "__SingleUse_3X0B",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -302,7 +302,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaWifiSsid",
-                    "Height": 49,
+                    "Height": 48,
                     "TextId": "__SingleUse_1UL5",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -368,7 +368,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaServerIp",
-                    "Height": 49,
+                    "Height": 48,
                     "TextId": "__SingleUse_4FDR",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -433,7 +433,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaServerPort",
-                    "Height": 49,
+                    "Height": 48,
                     "TextId": "__SingleUse_IVI5",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -477,7 +477,7 @@
                 "X": 158,
                 "Y": 1,
                 "Width": 165,
-                "Height": 49,
+                "Height": 48,
                 "LockPosition": true,
                 "TextId": "__SingleUse_G20V",
                 "TextRotation": "0",
@@ -496,6 +496,29 @@
                 "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
                 "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png",
                 "TextId": "__SingleUse_OJWK",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0",
+                "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_active.json"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "buttonHome",
+                "X": 370,
+                "Width": 110,
+                "Height": 50,
+                "Visible": false,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png",
+                "TextId": "__SingleUse_XTTU",
                 "ReleasedColor": {
                   "Red": 255,
                   "Green": 255,
@@ -584,7 +607,7 @@
             "X": 106,
             "Y": 137,
             "Width": 269,
-            "Height": 49,
+            "Height": 48,
             "Visible": false,
             "TextId": "__SingleUse_QEQU",
             "TextRotation": "0",
@@ -733,6 +756,19 @@
               "Type": "ActionCustom",
               "FunctionName": "waitForConnection"
             }
+          },
+          {
+            "InteractionName": "ChangeScreenBackHome",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonHome"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "West",
+              "ActionComponent": "ScreenHome"
+            }
           }
         ]
       },
@@ -768,7 +804,7 @@
                 "X": 182,
                 "Y": 1,
                 "Width": 117,
-                "Height": 48,
+                "Height": 49,
                 "LockPosition": true,
                 "TextId": "__SingleUse_5MHQ",
                 "TextRotation": "0",
@@ -863,7 +899,7 @@
             "X": 73,
             "Y": 137,
             "Width": 75,
-            "Height": 48,
+            "Height": 49,
             "TextId": "__SingleUse_NISC",
             "TextRotation": "0",
             "AutoSize": true,
@@ -900,7 +936,7 @@
             "X": 336,
             "Y": 137,
             "Width": 68,
-            "Height": 48,
+            "Height": 49,
             "TextId": "__SingleUse_NMKU",
             "TextRotation": "0",
             "AutoSize": true,

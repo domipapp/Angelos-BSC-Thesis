@@ -180,6 +180,15 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonLoadDefault.setAction(buttonCallback);
     containerMenuBar.add(buttonLoadDefault);
 
+    buttonHome.setXY(370, 0);
+    buttonHome.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    buttonHome.setLabelText(touchgfx::TypedText(T___SINGLEUSE_XTTU));
+    buttonHome.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonHome.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonHome.setVisible(false);
+    buttonHome.setAction(buttonCallback);
+    containerMenuBar.add(buttonHome);
+
     buttonConnect.setXY(370, 0);
     buttonConnect.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
     buttonConnect.setLabelText(touchgfx::TypedText(T___SINGLEUSE_9MJY));
@@ -265,6 +274,13 @@ void ScreenMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //When waitForConnection completed delay
         //Delay for 1500 ms (90 Ticks)
         waitAfterConnectionCounter = WAITAFTERCONNECTION_DURATION;
+    }
+    if (&src == &buttonHome)
+    {
+        //ChangeScreenBackHome
+        //When buttonHome clicked change screen to ScreenHome
+        //Go to ScreenHome with screen transition towards West
+        application().gotoScreenHomeScreenSlideTransitionWest();
     }
 }
 
