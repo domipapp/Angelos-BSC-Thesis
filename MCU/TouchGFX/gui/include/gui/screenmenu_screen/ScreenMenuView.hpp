@@ -51,7 +51,7 @@ private:
     void setText(const Unicode::UnicodeChar* data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground, touchgfx::ScrollableContainer* ScrollableContainer);
     void setText(const uint16_t data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground, touchgfx::ScrollableContainer* ScrollableContainer);
     void loadPreviousSettings();
-
+    void connect();
 };
 
 #endif // SCREENMENUVIEW_HPP

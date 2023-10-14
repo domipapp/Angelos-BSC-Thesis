@@ -154,29 +154,7 @@ void ScreenMenuView::setVisibilityKeyboard(bool state){
 }
 
 void ScreenMenuView::buttonConnectClicked(){
-    //Show textAreaConnecting
-    textAreaConnecting.setVisible(true);
-    textAreaConnecting.invalidate();
-
-    // Save data into main.c
-	char tmp[50];
-	Unicode::toUTF8(textAreaServerIpBuffer, (uint8_t*)tmp, 50);
-	strncpy(server_ip, tmp, 50);
-
-	Unicode::toUTF8(textAreaServerPortBuffer, (uint8_t*)tmp, 50);
-	strncpy(server_port, tmp, 50);
-
-	Unicode::toUTF8(textAreaWifiSsidBuffer, (uint8_t*)tmp, 50);
-	strncpy(wifi_ssid, tmp, 50);
-
-	Unicode::toUTF8(textAreaWifiPassBuffer, (uint8_t*)tmp, 50);
-	strncpy(wifi_pass, tmp, 50);
-
-	data_frequency = Unicode::atoi(textAreaDataFrequencyBuffer);
-
-	// Signal for connection
-	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_WIFI_CONNECT);
-	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_SERVER_CONNECT);
+	connect();
 
 }
 
@@ -277,7 +255,33 @@ void ScreenMenuView::loadPreviousSettings(){
 }
 
 void ScreenMenuView::buttonReconnectClicked(){
-	buttonConnectClicked();
+	connect();
 	waitForConnection();
 	osThreadResume(SendDataWithESPHandle);
+}
+
+void ScreenMenuView::connect(){
+	//Show textAreaConnecting
+    textAreaConnecting.setVisible(true);
+    textAreaConnecting.invalidate();
+
+    // Save data into main.c
+	char tmp[50];
+	Unicode::toUTF8(textAreaServerIpBuffer, (uint8_t*)tmp, 50);
+	strncpy(server_ip, tmp, 50);
+
+	Unicode::toUTF8(textAreaServerPortBuffer, (uint8_t*)tmp, 50);
+	strncpy(server_port, tmp, 50);
+
+	Unicode::toUTF8(textAreaWifiSsidBuffer, (uint8_t*)tmp, 50);
+	strncpy(wifi_ssid, tmp, 50);
+
+	Unicode::toUTF8(textAreaWifiPassBuffer, (uint8_t*)tmp, 50);
+	strncpy(wifi_pass, tmp, 50);
+
+	data_frequency = Unicode::atoi(textAreaDataFrequencyBuffer);
+
+	// Signal for connection
+	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_WIFI_CONNECT);
+	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_SERVER_CONNECT);
 }
