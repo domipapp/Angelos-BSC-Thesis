@@ -22,7 +22,6 @@ public:
     ScreenMenuViewBase();
     virtual ~ScreenMenuViewBase();
     virtual void setupScreen();
-    virtual void handleTickEvent();
 
     /*
      * Virtual Action Handlers
@@ -60,10 +59,6 @@ public:
         // Override and implement this function in ScreenMenu
     }
     virtual void buttonConnectClicked()
-    {
-        // Override and implement this function in ScreenMenu
-    }
-    virtual void waitForConnection()
     {
         // Override and implement this function in ScreenMenu
     }
@@ -142,12 +137,6 @@ private:
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
     void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
-
-    /*
-     * Delay Variable Declarations
-     */
-    static const uint16_t WAITAFTERCONNECTION_DURATION = 90;
-    uint16_t waitAfterConnectionCounter;
 
 };
 

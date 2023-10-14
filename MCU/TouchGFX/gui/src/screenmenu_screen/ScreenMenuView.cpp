@@ -155,16 +155,7 @@ void ScreenMenuView::setVisibilityKeyboard(bool state){
 
 void ScreenMenuView::buttonConnectClicked(){
 	connect();
-
-}
-
-
-void ScreenMenuView::waitForConnection()
-{
-	osEventFlagsWait(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED,  osFlagsWaitAny, osWaitForever);
-	// Set text to green to show successful connection. Touchgfx will wait according to WaitAfterConnection interaction
-	textAreaConnecting.setColor(touchgfx::Color::getColorFromRGB(0, 255, 0));
-	textAreaConnecting.invalidate();
+	waitForConnection();
 }
 
 void ScreenMenuView::setText(const char* data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground, touchgfx::ScrollableContainer* ScrollableContainer){
@@ -284,4 +275,12 @@ void ScreenMenuView::connect(){
 	// Signal for connection
 	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_WIFI_CONNECT);
 	osEventFlagsSet(eventConfigurationsLoadedHandle, EVENT_FLAG_ESP_SERVER_CONNECT);
+}
+
+void ScreenMenuView::waitForConnection()
+{
+	osEventFlagsWait(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED,  osFlagsWaitAny, osWaitForever);
+	// Set text to green to show successful connection. Touchgfx will wait according to WaitAfterConnection interaction
+	textAreaConnecting.setColor(touchgfx::Color::getColorFromRGB(0, 255, 0));
+	textAreaConnecting.invalidate();
 }

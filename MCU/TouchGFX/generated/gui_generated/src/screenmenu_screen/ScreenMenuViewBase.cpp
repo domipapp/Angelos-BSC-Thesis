@@ -8,8 +8,7 @@
 
 ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonCallback(this, &ScreenMenuViewBase::buttonCallbackHandler),
-    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler),
-    waitAfterConnectionCounter(0)
+    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -274,15 +273,10 @@ void ScreenMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //Call buttonConnectClicked
         buttonConnectClicked();
     
-        //waitForConnection
-        //When buttonConnectClicked completed call virtual function
-        //Call waitForConnection
-        waitForConnection();
-    
-        //WaitAfterConnection
-        //When waitForConnection completed delay
-        //Delay for 1500 ms (90 Ticks)
-        waitAfterConnectionCounter = WAITAFTERCONNECTION_DURATION;
+        //ChangeScreen
+        //When buttonConnectClicked completed change screen to ScreenHome
+        //Go to ScreenHome with screen transition towards West
+        application().gotoScreenHomeScreenSlideTransitionWest();
     }
     if (&src == &buttonHome)
     {
@@ -341,20 +335,5 @@ void ScreenMenuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButto
         //When flexButtonDataFrequency clicked call virtual function
         //Call flexButtonDataFrequencyClicked
         flexButtonDataFrequencyClicked();
-    }
-}
-
-void ScreenMenuViewBase::handleTickEvent()
-{
-    if (waitAfterConnectionCounter > 0)
-    {
-        waitAfterConnectionCounter--;
-        if (waitAfterConnectionCounter == 0)
-        {
-                //ChangeScreen
-                //When WaitAfterConnection completed change screen to ScreenHome
-                //Go to ScreenHome with screen transition towards West
-                application().gotoScreenHomeScreenSlideTransitionWest();
-        }
     }
 }

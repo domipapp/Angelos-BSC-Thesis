@@ -26,7 +26,6 @@ public:
     virtual void flexButtonDataFrequencyClicked();
     void setVisibilityKeyboard(bool state);
     virtual void buttonConnectClicked();
-    virtual void waitForConnection();
     virtual void buttonReconnectClicked();
 
 private:
@@ -52,6 +51,7 @@ private:
     void setText(const uint16_t data, Unicode::UnicodeChar * textAreaBuffer,  const uint16_t TEXTAREA_SIZE, touchgfx::TextAreaWithOneWildcard* textArea, touchgfx::Box* TextAreaBackground, touchgfx::ScrollableContainer* ScrollableContainer);
     void loadPreviousSettings();
     void connect();
+    void waitForConnection();
 };
 
 #endif // SCREENMENUVIEW_HPP

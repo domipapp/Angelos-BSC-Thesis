@@ -170,7 +170,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaDataFrequency",
-                    "Height": 48,
+                    "Height": 49,
                     "TextId": "__SingleUse_OIDY",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -236,7 +236,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaWifiPass",
-                    "Height": 48,
+                    "Height": 49,
                     "TextId": "__SingleUse_3X0B",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -302,7 +302,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaWifiSsid",
-                    "Height": 48,
+                    "Height": 49,
                     "TextId": "__SingleUse_1UL5",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -368,7 +368,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaServerIp",
-                    "Height": 48,
+                    "Height": 49,
                     "TextId": "__SingleUse_4FDR",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -433,7 +433,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "textAreaServerPort",
-                    "Height": 48,
+                    "Height": 49,
                     "TextId": "__SingleUse_IVI5",
                     "TextRotation": "0",
                     "AutoSize": true,
@@ -477,7 +477,7 @@
                 "X": 158,
                 "Y": 1,
                 "Width": 165,
-                "Height": 48,
+                "Height": 49,
                 "LockPosition": true,
                 "TextId": "__SingleUse_G20V",
                 "TextRotation": "0",
@@ -630,7 +630,7 @@
             "X": 106,
             "Y": 137,
             "Width": 269,
-            "Height": 48,
+            "Height": 49,
             "Visible": false,
             "TextId": "__SingleUse_QEQU",
             "TextRotation": "0",
@@ -735,25 +735,13 @@
             "InteractionName": "ChangeScreen",
             "Trigger": {
               "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "WaitAfterConnection"
+              "InteractionToTriggerOn": "buttonConnectClicked"
             },
             "Action": {
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionSlide",
               "ScreenTransitionDirection": "West",
               "ActionComponent": "ScreenHome"
-            }
-          },
-          {
-            "InteractionName": "WaitAfterConnection",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "waitForConnection"
-            },
-            "Action": {
-              "Type": "ActionDelay",
-              "Duration": 1500
             }
           },
           {
@@ -766,18 +754,6 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "buttonConnectClicked"
-            }
-          },
-          {
-            "InteractionName": "waitForConnection",
-            "HasCompletedTrigger": true,
-            "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "buttonConnectClicked"
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "waitForConnection"
             }
           },
           {
