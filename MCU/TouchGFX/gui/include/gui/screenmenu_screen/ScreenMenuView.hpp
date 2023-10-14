@@ -24,7 +24,6 @@ public:
     virtual void flexButtonWifiSsidClicked();
     virtual void flexButtonWifiPassClicked();
     virtual void flexButtonDataFrequencyClicked();
-    void setVisibilityKeyboard(bool state);
     virtual void buttonConnectClicked();
     virtual void buttonReconnectClicked();
     virtual void userTextInformationHandler();
@@ -53,6 +52,7 @@ private:
     void loadPreviousSettings();
     void connect();
     void waitForConnection();
+    void setVisibilityKeyboard(bool state);
 };
 
 #endif // SCREENMENUVIEW_HPP
