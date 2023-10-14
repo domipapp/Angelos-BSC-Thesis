@@ -793,6 +793,17 @@
               "ScreenTransitionDirection": "West",
               "ActionComponent": "ScreenHome"
             }
+          },
+          {
+            "InteractionName": "userTextInformationHandler",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 200
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "userTextInformationHandler"
+            }
           }
         ]
       },

@@ -284,3 +284,7 @@ void ScreenMenuView::waitForConnection()
 	textAreaConnecting.setColor(touchgfx::Color::getColorFromRGB(0, 255, 0));
 	textAreaConnecting.invalidate();
 }
+
+void ScreenMenuView::userTextInformationHandler(){
+
+}

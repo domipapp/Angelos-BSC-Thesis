@@ -22,6 +22,7 @@ public:
     ScreenMenuViewBase();
     virtual ~ScreenMenuViewBase();
     virtual void setupScreen();
+    virtual void handleTickEvent();
 
     /*
      * Virtual Action Handlers
@@ -63,6 +64,10 @@ public:
         // Override and implement this function in ScreenMenu
     }
     virtual void buttonReconnectClicked()
+    {
+        // Override and implement this function in ScreenMenu
+    }
+    virtual void userTextInformationHandler()
     {
         // Override and implement this function in ScreenMenu
     }
@@ -137,6 +142,12 @@ private:
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
     void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
+
+    /*
+     * Tick Counter Declarations
+     */
+    static const uint32_t TICK_USERTEXTINFORMATIONHANDLER_INTERVAL = 200;
+    uint32_t frameCountUserTextInformationHandlerInterval;
 
 };
 

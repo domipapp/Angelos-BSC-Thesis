@@ -8,7 +8,8 @@
 
 ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonCallback(this, &ScreenMenuViewBase::buttonCallbackHandler),
-    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler)
+    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler),
+    frameCountUserTextInformationHandlerInterval(0)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -335,5 +336,18 @@ void ScreenMenuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButto
         //When flexButtonDataFrequency clicked call virtual function
         //Call flexButtonDataFrequencyClicked
         flexButtonDataFrequencyClicked();
+    }
+}
+
+void ScreenMenuViewBase::handleTickEvent()
+{
+    frameCountUserTextInformationHandlerInterval++;
+    if(frameCountUserTextInformationHandlerInterval == TICK_USERTEXTINFORMATIONHANDLER_INTERVAL)
+    {
+        //userTextInformationHandler
+        //When every N tick call virtual function
+        //Call userTextInformationHandler
+        userTextInformationHandler();
+        frameCountUserTextInformationHandlerInterval = 0;
     }
 }
