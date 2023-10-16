@@ -11,3 +11,4 @@ MCU/TouchGFX/build
 !/MCU
 !/MCU_Mac
 !/backend
+!/database_schema.sql
