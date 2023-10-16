@@ -623,23 +623,6 @@
               "Blue": 255
             },
             "TextRotation": "0"
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textAreaConnecting",
-            "X": 106,
-            "Y": 137,
-            "Width": 269,
-            "Height": 49,
-            "Visible": false,
-            "TextId": "__SingleUse_QEQU",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
           }
         ],
         "Interactions": [
@@ -793,17 +776,6 @@
               "ScreenTransitionDirection": "West",
               "ActionComponent": "ScreenHome"
             }
-          },
-          {
-            "InteractionName": "userTextInformationHandler",
-            "Trigger": {
-              "Type": "TriggerOnEveryTick",
-              "TickCount": 200
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "userTextInformationHandler"
-            }
           }
         ]
       },
@@ -839,7 +811,7 @@
                 "X": 182,
                 "Y": 1,
                 "Width": 117,
-                "Height": 48,
+                "Height": 49,
                 "LockPosition": true,
                 "TextId": "__SingleUse_5MHQ",
                 "TextRotation": "0",
@@ -911,7 +883,7 @@
             "X": 73,
             "Y": 137,
             "Width": 75,
-            "Height": 48,
+            "Height": 49,
             "TextId": "__SingleUse_NISC",
             "TextRotation": "0",
             "AutoSize": true,
@@ -948,7 +920,7 @@
             "X": 336,
             "Y": 137,
             "Width": 68,
-            "Height": 48,
+            "Height": 49,
             "TextId": "__SingleUse_NMKU",
             "TextRotation": "0",
             "AutoSize": true,

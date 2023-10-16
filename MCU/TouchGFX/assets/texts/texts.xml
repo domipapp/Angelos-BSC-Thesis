@@ -49,9 +49,6 @@
       <Text Id="__SingleUse_5MHQ" Alignment="Left" TypographyId="Large">
         <Translation Language="GB">Home</Translation>
       </Text>
-      <Text Id="__SingleUse_QEQU" Alignment="Left" TypographyId="Large">
-        <Translation Language="GB">Connecting...</Translation>
-      </Text>
       <Text Id="__SingleUse_9MJY" Alignment="Center" TypographyId="MenuBarButton">
         <Translation Language="GB">Connect</Translation>
       </Text>

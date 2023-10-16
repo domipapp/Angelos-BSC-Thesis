@@ -26,7 +26,6 @@ public:
     virtual void flexButtonDataFrequencyClicked();
     virtual void buttonConnectClicked();
     virtual void buttonReconnectClicked();
-    virtual void userTextInformationHandler();
 
 private:
     CustomKeyboard keyboard;

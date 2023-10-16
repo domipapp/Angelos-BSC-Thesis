@@ -8,8 +8,7 @@
 
 ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonCallback(this, &ScreenMenuViewBase::buttonCallbackHandler),
-    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler),
-    frameCountUserTextInformationHandlerInterval(0)
+    flexButtonCallback(this, &ScreenMenuViewBase::flexButtonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -225,13 +224,6 @@ ScreenMenuViewBase::ScreenMenuViewBase() :
     buttonWithLabelKeyboardSave.setVisible(false);
     buttonWithLabelKeyboardSave.setAction(buttonCallback);
     add(buttonWithLabelKeyboardSave);
-
-    textAreaConnecting.setXY(106, 137);
-    textAreaConnecting.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    textAreaConnecting.setLinespacing(0);
-    textAreaConnecting.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QEQU));
-    textAreaConnecting.setVisible(false);
-    add(textAreaConnecting);
 }
 
 ScreenMenuViewBase::~ScreenMenuViewBase()
@@ -336,18 +328,5 @@ void ScreenMenuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButto
         //When flexButtonDataFrequency clicked call virtual function
         //Call flexButtonDataFrequencyClicked
         flexButtonDataFrequencyClicked();
-    }
-}
-
-void ScreenMenuViewBase::handleTickEvent()
-{
-    frameCountUserTextInformationHandlerInterval++;
-    if(frameCountUserTextInformationHandlerInterval == TICK_USERTEXTINFORMATIONHANDLER_INTERVAL)
-    {
-        //userTextInformationHandler
-        //When every N tick call virtual function
-        //Call userTextInformationHandler
-        userTextInformationHandler();
-        frameCountUserTextInformationHandlerInterval = 0;
     }
 }

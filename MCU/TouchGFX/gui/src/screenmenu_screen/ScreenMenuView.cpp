@@ -252,9 +252,6 @@ void ScreenMenuView::buttonReconnectClicked(){
 }
 
 void ScreenMenuView::connect(){
-	//Show textAreaConnecting
-    textAreaConnecting.setVisible(true);
-    textAreaConnecting.invalidate();
 
     // Save data into main.c
 	char tmp[50];
@@ -280,11 +277,4 @@ void ScreenMenuView::connect(){
 void ScreenMenuView::waitForConnection()
 {
 	osEventFlagsWait(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED,  osFlagsWaitAny, osWaitForever);
-	// Set text to green to show successful connection. Touchgfx will wait according to WaitAfterConnection interaction
-	textAreaConnecting.setColor(touchgfx::Color::getColorFromRGB(0, 255, 0));
-	textAreaConnecting.invalidate();
-}
-
-void ScreenMenuView::userTextInformationHandler(){
-
 }
