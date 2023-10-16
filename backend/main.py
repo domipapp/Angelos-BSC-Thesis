@@ -6,6 +6,8 @@ import socket
 import select
 import threading
 import sys
+import copy
+import time
 
 MAX_PORT = 10
 PORT_START = 9000
@@ -50,22 +52,36 @@ def process_socket_handle(clientSocket: socket.socket):
 def process_update_ports():
     while True:
         processesSemaphore.acquire()
-        _processes = processes
-        processesSemaphore.release()
-        for serverSocket, clientSocket, thread in _processes:
+        for serverSocket, clientSocket, thread in processes:
             if not thread.is_alive():
                 _, port = serverSocket.getsockname()
                 my_socket.close_socket(clientSocket=clientSocket, serverSocket=serverSocket)
                 portsSemaphore.acquire()
                 Ports.set_port(port=port, status=False)
                 portsSemaphore.release()
-                processesSemaphore.acquire()
                 processes.remove([serverSocket, clientSocket, thread])
-                processesSemaphore.release()
+        processesSemaphore.release()
+
+# Sometimes a port might be unavailable and is flagged used 
+def process_release_past_used_ports():
+    while True:
+        portsSemaphore.acquire()
+        ports = copy.deepcopy(Ports.get_port_list())
+        portsSemaphore.release()
+        for portNum, used in ports:
+            if used:
+                if my_socket.test_port(portNum=portNum):
+                    time.sleep(10) # Wait a little for port to be freed by OS
+                    portsSemaphore.acquire()
+                    Ports.set_port(port=portNum, status=False)
+                    portsSemaphore.release()
+
 
 
 def main():
     thread = threading.Thread(target=process_update_ports)
+    thread.start()
+    thread = threading.Thread(target=process_release_past_used_ports)
     thread.start()
     while True:
         try:
@@ -86,9 +102,6 @@ def main():
             processesSemaphore.release()
         except (ValueError, RuntimeError):
             processesSemaphore.release()
-            portsSemaphore.acquire()
-            port = Ports.get_new_port(port)
-            portsSemaphore.release()
 
 
         

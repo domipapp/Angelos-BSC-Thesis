@@ -66,6 +66,10 @@ class MyPort:
                 self.ports[i] = [port_num, status]
                 return True
         return False
+    
+    # Return the list of ports
+    def get_port_list(self):
+        return self.ports
         
 
 

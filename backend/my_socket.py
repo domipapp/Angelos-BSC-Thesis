@@ -61,3 +61,18 @@ def close_socket(clientSocket: socket.socket, serverSocket: socket.socket):
     print(f"Closing {host}:{port}")
     clientSocket.close()
     serverSocket.close()
+
+# Test if port could be connected to. If yes, opens and closes socket
+# Returns true if it could be opened, returns false if it can not
+def test_port(portNum):
+    host = get_local_ip() #socket.gethostbyname(socket.gethostname())
+    # Create a TCP socket object
+    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    serversocket.setblocking(True)
+    # Bind the socket to the host and port
+    try:
+        serversocket.bind((host, portNum))
+    except Exception as fail:
+        return False
+    serversocket.close()
+    return True
