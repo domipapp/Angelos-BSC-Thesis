@@ -1185,8 +1185,8 @@ void prvTaskReadTempAndHumidity(void *argument)
 		 osMessageQueuePut(queueTouchgfxTempAndHumidHandle, &humidity, 0, osWaitForever);
 	 }
 
-	 // Delay for 1 second
-	 osDelay(1000);
+	 // Delay for data_frequency milliseconds set by user
+	 osDelay(data_frequency);
   }
   /* USER CODE END prvTaskReadTempAndHumidity */
 }
