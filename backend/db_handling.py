@@ -6,8 +6,6 @@ USER = "pythonUser"
 PASSWORD = "pythonUser"
 DATABASE = "weather"
 
-
-
 def connect_to_db(host, user, password, databse):
     db_config = {
         "host": host,
@@ -27,7 +25,7 @@ def connect_to_db(host, user, password, databse):
 
 
 def make_insert_query(temp, humidity, dataDate):
-    return f"INSERT INTO measurements (value1, value2, measurement_time) VALUES ({temp}, {humidity}, '{dataDate}');"
+    return f"INSERT INTO measurements (temperature, humidity, time_of_measurement) VALUES ({temp}, {humidity}, '{dataDate}');"
 
 def send_query(cursor: MySQLCursor, connection: mysql.connector.MySQLConnection, query):
     cursor.execute(query)
@@ -38,8 +36,5 @@ def send_query(cursor: MySQLCursor, connection: mysql.connector.MySQLConnection,
 def disconnect_db(cursor: MySQLCursor, connection: mysql.connector.MySQLConnection):
     cursor.close()  # Close the cursor
     connection.close()  # Close the connection
-
-cursor, connection = connect_to_db("localhost", "pythonUser", "pythonUser", "weather")
-query = make_insert_query(1.19283, 38.991, "2023-01-01 00:00:01")
 
 
