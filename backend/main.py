@@ -35,7 +35,7 @@ def process_socket_handle(clientSocket: socket.socket):
             # Explicitly asked to close the socket
             if CLOSING_STRING in data:
                 return
-            # bytes, so it doesnt leak into next message
+            # Delete bytes, so it doesnt leak into next message
             binaryData = b""
             if not data_handling.is_data_valid(data):
                 print("Invalid data format")
