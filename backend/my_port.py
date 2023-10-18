@@ -1,8 +1,8 @@
 from typing import List, Tuple
 
 class MyPort:
-    # logic is: [port number, is it being used?]
-    ports: List[Tuple[int, bool]] = []
+    # logic is: [port number, is it being used?, was it unable to bind?]
+    ports: List[Tuple[int, bool, bool]] = []
 
     def __init__(self, portStart, portMax, portEnd):
         self.MAX_PORT_NUMBERS = portMax  # Maximum number of valid ports to be used
@@ -16,19 +16,19 @@ class MyPort:
     # Set ports to not being used
     def _set_ports(self):
         for i in range(self.MAX_PORT_NUMBERS):
-            self.ports.append([self.PORT_START + i, False])
+            self.ports.append([self.PORT_START + i, False, False])
 
     # Return the next port that is not used and set it to used
     def get_next_port(self):
-        for i, (port_num, used) in enumerate(self.ports):
-            if not used:
-                self.ports[i] = [port_num, True]
+        for i, (port_num, used, error) in enumerate(self.ports):
+            if not used and not error:
+                self.ports[i] = [port_num, True, False]
                 return port_num
         raise OverflowError # All ports are used
     
     # Return a list of all ports
     def _get_port_numbers(self):
-        return [port for port, _ in self.ports]
+        return [port for port, _, _ in self.ports]
     
     # Is port in allowed range
     def _is_range_valid_port(self, num):
@@ -46,24 +46,24 @@ class MyPort:
     # Returns the new port
     def get_new_port(self, port):
         try:
-            index = self.ports.index([port, True])
+            index = self.ports.index([port, True, False])
         except ValueError:
             raise ValueError
         newPortNum = self.PORT_START
         
         while True:
             if self._is_range_valid_port(newPortNum) and self._is_port_usable(newPortNum):
-                self.ports[index] = [newPortNum, True]
+                self.ports[index] = [newPortNum, True, False]
                 break
             else:
                 newPortNum += 1
         return self.ports[index][0]
     
-    # Set a port to used or unused
-    def set_port(self, port, status):
-        for i, (port_num, _) in enumerate(self.ports):
+    # Set a port status
+    def set_port(self, port, used, error):
+        for i, (port_num, _, _) in enumerate(self.ports):
             if port_num == port:
-                self.ports[i] = [port_num, status]
+                self.ports[i] = [port_num, used, error]
                 return True
         return False
     

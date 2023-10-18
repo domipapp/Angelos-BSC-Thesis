@@ -57,7 +57,7 @@ def process_update_ports():
                 _, port = serverSocket.getsockname()
                 my_socket.close_socket(clientSocket=clientSocket, serverSocket=serverSocket)
                 portsSemaphore.acquire()
-                Ports.set_port(port=port, status=False)
+                Ports.set_port(port=port, used=False, error=False)
                 portsSemaphore.release()
                 processes.remove([serverSocket, clientSocket, thread])
         processesSemaphore.release()
@@ -68,13 +68,12 @@ def process_release_past_used_ports():
         portsSemaphore.acquire()
         ports = copy.deepcopy(Ports.get_port_list())
         portsSemaphore.release()
-        for portNum, used in ports:
-            if used:
-                if my_socket.test_port(portNum=portNum):
-                    time.sleep(10) # Wait a little for port to be freed by OS
-                    portsSemaphore.acquire()
-                    Ports.set_port(port=portNum, status=False)
-                    portsSemaphore.release()
+        for portNum, used, error in ports:
+            if error:
+                time.sleep(30) # Wait a little for port to be freed by OS
+                portsSemaphore.acquire()
+                Ports.set_port(port=portNum, used=False, error=False)
+                portsSemaphore.release()
 
 
 
@@ -102,6 +101,10 @@ def main():
             processesSemaphore.release()
         except (ValueError, RuntimeError):
             processesSemaphore.release()
+            portsSemaphore.acquire()
+            Ports.set_port(port=port, used=False, error=True)
+            portsSemaphore.release()
+
 
 
         
