@@ -24,8 +24,8 @@ def connect_to_db(host, user, password, databse):
     return cursor, connection
 
 
-def make_insert_query(temp, humidity, dataDate):
-    return f"INSERT INTO measurements (temperature, humidity, time_of_measurement) VALUES ({temp}, {humidity}, '{dataDate}');"
+def make_insert_query(id, temp, humidity, dataDate):
+    return f"INSERT INTO measurements (sensor_id, temperature, humidity, time_of_measurement) VALUES ({id}, {temp}, {humidity}, '{dataDate}');"
 
 def send_query(cursor: MySQLCursor, connection: mysql.connector.MySQLConnection, query):
     cursor.execute(query)

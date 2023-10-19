@@ -971,7 +971,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-void my_snprintf(float temp, float humid, char* result) {
+void my_snprintf(float temp, float humid, char id, char* result) {
 
     // Check for negative values
     bool tempSign = (temp < 0) ? true : false;
@@ -993,6 +993,8 @@ void my_snprintf(float temp, float humid, char* result) {
     uint8_t humidityDecimal = humidityValue % 100;
     uint8_t i = -1;
     // Format the string manually
+    result[++i] = id;
+    result[++i] = ' ';
     if(tempSign)
         result[++i] = '-';
     result[++i] = (temperatureInteger / 10) + '0';
@@ -1093,8 +1095,8 @@ void prvTaskSendDataWithESP(void *argument)
 
 	float temperature, humidity;
 
-    static uint8_t dataString[15] = {'\0'} ;  // -40<temp<125, 00<humid<100 => max 13 char + q + '\0'
-    static uint8_t cipsendString[16] = {'\0'};
+    static uint8_t dataString[16] = {'\0'} ;  // id, space, -40<temp<125, space, 00<humid<100 => max 14 char + q + '\0'
+    static uint8_t cipsendString[16] = {'\0'};	// 2 digit length cipsend
   for(;;)
   {
 		// Get data
@@ -1102,7 +1104,7 @@ void prvTaskSendDataWithESP(void *argument)
 	    osMessageQueueGet(queueTempAndHumidHandle, &humidity, 0, osWaitForever);
 
 	    // Format data into string
-	    my_snprintf(temperature, humidity, (char*)dataString);
+	    my_snprintf(temperature, humidity, BOARD_UNIQUE_ID,(char*)dataString);
 
 	    // Format CIPSEND
 	    snprintf((char*)cipsendString, 16, "AT+CIPSEND=%d\r\n", (int)strlen((char*)dataString));

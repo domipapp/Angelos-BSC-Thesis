@@ -32,6 +32,7 @@ DROP TABLE IF EXISTS `measurements`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `measurements` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `sensor_id` int DEFAULT NULL,
   `temperature` float DEFAULT NULL,
   `humidity` float DEFAULT NULL,
   `time_of_measurement` timestamp NULL DEFAULT CURRENT_TIMESTAMP,

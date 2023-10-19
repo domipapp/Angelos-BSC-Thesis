@@ -40,8 +40,8 @@ def process_socket_handle(clientSocket: socket.socket):
             if not data_handling.is_data_valid(data):
                 print("Invalid data format")
                 continue
-            temp, humidity = data_handling.extract_floats(data)
-            query = db_handling.make_insert_query(temp=temp, humidity=humidity, dataDate=dataDate)
+            id, temp, humidity = data_handling.extract_floats(data)
+            query = db_handling.make_insert_query(id=id, temp=temp, humidity=humidity, dataDate=dataDate)
             dbSemaphore.acquire()
             db_handling.send_query(cursor=cursor, connection=connection, query=query )
             dbSemaphore.release()

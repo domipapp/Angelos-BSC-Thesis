@@ -108,6 +108,9 @@ void Error_Handler(void);
 #define CHE_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
+#define BOARD_UNIQUE_ID '1'			/*	This is the unique identifier of the board.
+										Used in the database, web etc.
+										Declared as a string here, but ID is the number in the string!*/
 
 #define DATA_FREQUENCY "5000"		// 5000ms data frequency
 #define RECEIVED_MESSAGE_SIZE 512	// Max size for ESP message

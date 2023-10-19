@@ -9,7 +9,7 @@ EOM_CHAR = b"q" # EndOfMessage character
 # \. represents a dot
 # \s+ represents one or more whitespace characters (spaces or tabs)
 # $ indicates that the pattern should finish matching at the end of the input string
-DATA_PATTERN = pattern = r'^\d+\.\d+\s+\d+\.\d+$'
+DATA_PATTERN = pattern = r'^\d+\s+\d+\.\d+\s+\d+\.\d+$'
 
 def is_data_valid(data):
     if re.match(pattern, data):
@@ -18,7 +18,7 @@ def is_data_valid(data):
 
 def extract_floats(data: str):
     values = data.split()
-    return float(values[0]), float(values[1])
+    return int(values[0]), float(values[1]), float(values[2])
 
 
 # Extracts binary data as string from socket, if EOM_CHAR has arrived
