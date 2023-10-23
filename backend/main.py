@@ -8,6 +8,7 @@ import threading
 import sys
 import copy
 import time
+import api
 
 MAX_PORT = 10
 PORT_START = 9000
@@ -110,6 +111,7 @@ def main():
         
 
 if __name__ == "__main__":
+    api.app.run(debug=True)
     # Global variables
     processes = []
     processesSemaphore = threading.Semaphore(1)

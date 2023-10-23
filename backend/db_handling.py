@@ -29,8 +29,9 @@ def make_insert_query(id, temp, humidity, dataDate):
 
 def send_query(cursor: MySQLCursor, connection: mysql.connector.MySQLConnection, query):
     cursor.execute(query)
-    connection.commit()  # Commit the transaction
     result = cursor.fetchall()
+    connection.commit()  # Commit the transaction
+
     return result
 
 def disconnect_db(cursor: MySQLCursor, connection: mysql.connector.MySQLConnection):
