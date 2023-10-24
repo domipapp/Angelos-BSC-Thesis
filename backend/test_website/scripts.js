@@ -6,11 +6,11 @@ const id = 1;
 const apiUrlWithQuery = `${API_URL}?id=${id}`;
 
 // Plot the graph
-function plotGraph(data) {
+function plotGraph(data, elementId) {
     const labels = data.map(item => item[1]);
     const temperatures = data.map(item => item[0]);
 
-    const ctx = document.getElementById('temperatureChart').getContext('2d');
+    const ctx = document.getElementById(elementId).getContext('2d');
 
     new Chart(ctx, {
         type: 'line',
@@ -56,7 +56,8 @@ fetch(apiUrlWithQuery)
   })
   .then(data => {
     // Handle the received data here
-    plotGraph(data.id);
+    plotGraph(data.temp, "temperatureChart");
+    plotGraph(data.humid, "humidityChart");
   })
   .catch(error => {
     console.error('Error:', error);

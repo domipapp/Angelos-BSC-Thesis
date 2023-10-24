@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, send_from_directory
 import db_handling as DB
 from flask_cors import CORS
-ROUTE = "test_website"
+ROUTE = "test_website/"
 app = Flask(__name__, template_folder=ROUTE)
 # CORS(app)  # Enable CORS for the entire app
 
@@ -19,9 +19,11 @@ def get_data():
     # Ensure to sanitize or validate the "id" value to prevent SQL injection (not shown here).
     
     data = DB.send_query(cursor=cursor, connection=connection, query=f"SELECT temperature, time_of_measurement FROM measurements WHERE sensor_id = {id};")
-    formatted_data = [(temperature, time.strftime("%Y-%m-%d %H:%M:%S")) for temperature, time in data]
+    formattedTempData = [(temperature, time.strftime("%Y-%m-%d %H:%M:%S")) for temperature, time in data]
+    data = DB.send_query(cursor=cursor, connection=connection, query=f"SELECT humidity, time_of_measurement FROM measurements WHERE sensor_id = {id};")
+    formattedHumidData = [(humidity, time.strftime("%Y-%m-%d %H:%M:%S")) for humidity, time in data]
+    return jsonify({'temp': formattedTempData, 'humid': formattedHumidData})
 
-    return jsonify({'id': formatted_data})
 
 
 # Define a route that accepts a dynamic URL parameter
