@@ -42,6 +42,7 @@ extern osSemaphoreId_t semaphoreTransitionFromHomeByButtonSettingsHandle;
 extern osSemaphoreId_t semaphoreTransitionFromHomeByButtonDisconnectHandle;
 
 extern osThreadId_t SendDataWithESPHandle;
+extern osThreadId_t ReadSensorDataHandle;
 
 extern char server_ip[50];
 extern char server_port[50];

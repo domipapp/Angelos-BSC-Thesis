@@ -248,6 +248,7 @@ void ScreenMenuView::loadPreviousSettings(){
 void ScreenMenuView::buttonReconnectClicked(){
 	connect();
 	waitForConnection();
+	osThreadResume(ReadSensorDataHandle);
 	osThreadResume(SendDataWithESPHandle);
 }
 
