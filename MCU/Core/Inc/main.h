@@ -114,14 +114,14 @@ void Error_Handler(void);
 
 #define DATA_FREQUENCY "5000"		// 5000ms data frequency
 #define RECEIVED_MESSAGE_SIZE 512	// Max size for ESP message
-#define IP_ADDRESS "192.168.1.71"	// Server IP Address
+#define IP_ADDRESS "172.20.10.2"	// Server IP Address
 #define PORT "9000"					// Server Port number
 // AT command for connecting to server
 #define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
 
-#define WIFI_SSID "Telekom-072404"	// Local WIFI SSID
+#define WIFI_SSID "Dominik's iPhone"	// Local WIFI SSID
 
-#define WIFI_PASS "atc7habf4xt6"// Local WIFI password
+#define WIFI_PASS "absmtkd9pbp2"// Local WIFI password
 
 // AT command for connecting to wifi
 #define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"
