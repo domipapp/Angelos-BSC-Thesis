@@ -10,6 +10,7 @@ MCU/TouchGFX/build
 !/.gitignore
 !/MCU
 !/MCU_Mac
-!/backend
-!/database_schema.sql
-!/szakdolgozat.docx
+!/Backend
+!/Dokumentacio
+!/Frontend
+!/Database
