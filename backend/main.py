@@ -14,7 +14,7 @@ MAX_PORT = 10
 PORT_START = 9000
 PORT_END = 9999
 MAX_RETRYS = 1
-TIMEOUT_SEC = 40
+TIMEOUT_SEC = 130
 CLOSING_STRING = "close"
 
 def process_socket_handle(clientSocket: socket.socket):
@@ -111,7 +111,9 @@ def main():
         
 
 if __name__ == "__main__":
-    api.app.run(debug=True)
+    #api.app.run(debug=True)
+    thread = threading.Thread(target=api.app.run)
+    thread.start()
     # Global variables
     processes = []
     processesSemaphore = threading.Semaphore(1)
