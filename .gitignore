@@ -4,6 +4,8 @@
 **/language.settings.xml
 **/__pycache__
 **/.DS_Store
+**/abrak
+**/kepek
 MCU/TouchGFX/build
 # But include:
 !/.git
