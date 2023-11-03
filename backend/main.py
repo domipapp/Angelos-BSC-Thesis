@@ -2,13 +2,14 @@ import my_port
 import my_socket
 import data_handling
 import db_handling
+import web_backend
 import socket
 import select
 import threading
 import sys
 import copy
 import time
-import api
+import subprocess
 
 MAX_PORT = 10
 PORT_START = 9000
@@ -16,6 +17,7 @@ PORT_END = 9999
 MAX_RETRYS = 1
 TIMEOUT_SEC = 130
 CLOSING_STRING = "close"
+
 
 def process_socket_handle(clientSocket: socket.socket):
     binaryData = b""
@@ -28,10 +30,12 @@ def process_socket_handle(clientSocket: socket.socket):
             # Timeout expired, assume client disconnected
             # Main handles closing sockets. Returning from process indicates disconnection
             # The thread stops and it is now detectable that it has stopped
-            return 
+            return
         # Always update binaryData so bytes are not lost
-        data, dataDate, binaryData = data_handling.excract_data(clientSocket=clientSocket, binaryData=binaryData)
-        
+        data, dataDate, binaryData = data_handling.excract_data(
+            clientSocket=clientSocket, binaryData=binaryData
+        )
+
         if data != None:
             # Explicitly asked to close the socket
             if CLOSING_STRING in data:
@@ -42,11 +46,12 @@ def process_socket_handle(clientSocket: socket.socket):
                 print("Invalid data format")
                 continue
             id, temp, humidity = data_handling.extract_floats(data)
-            query = db_handling.make_insert_query(id=id, temp=temp, humidity=humidity, dataDate=dataDate)
+            query = db_handling.make_insert_query(
+                id=id, temp=temp, humidity=humidity, dataDate=dataDate
+            )
             dbSemaphore.acquire()
-            db_handling.send_query(cursor=cursor, connection=connection, query=query )
+            db_handling.send_query(cursor=cursor, connection=connection, query=query)
             dbSemaphore.release()
-
 
 
 # If a port has closed, update Ports object
@@ -56,14 +61,17 @@ def process_update_ports():
         for serverSocket, clientSocket, thread in processes:
             if not thread.is_alive():
                 _, port = serverSocket.getsockname()
-                my_socket.close_socket(clientSocket=clientSocket, serverSocket=serverSocket)
+                my_socket.close_socket(
+                    clientSocket=clientSocket, serverSocket=serverSocket
+                )
                 portsSemaphore.acquire()
                 Ports.set_port(port=port, used=False, error=False)
                 portsSemaphore.release()
                 processes.remove([serverSocket, clientSocket, thread])
         processesSemaphore.release()
 
-# Sometimes a port might be unavailable and is flagged used 
+
+# Sometimes a port might be unavailable and is flagged used
 def process_release_past_used_ports():
     while True:
         portsSemaphore.acquire()
@@ -71,11 +79,10 @@ def process_release_past_used_ports():
         portsSemaphore.release()
         for portNum, used, error in ports:
             if error:
-                time.sleep(30) # Wait a little for port to be freed by OS
+                time.sleep(30)  # Wait a little for port to be freed by OS
                 portsSemaphore.acquire()
                 Ports.set_port(port=portNum, used=False, error=False)
                 portsSemaphore.release()
-
 
 
 def main():
@@ -90,12 +97,14 @@ def main():
             portsSemaphore.release()
         except:
             portsSemaphore.release()
-            continue # Wait until new port frees up
+            continue  # Wait until new port frees up
         serverSocket = socket.socket()
         try:
             serverSocket = my_socket.set_up_socket(maxRetrys=MAX_RETRYS, port=port)
             clientSocket, serverSocket = my_socket.connect_client(serverSocket)
-            thread = threading.Thread(target=process_socket_handle, args=(clientSocket,))
+            thread = threading.Thread(
+                target=process_socket_handle, args=(clientSocket,)
+            )
             thread.start()
             processesSemaphore.acquire()
             processes.append([serverSocket, clientSocket, thread])
@@ -107,13 +116,19 @@ def main():
             portsSemaphore.release()
 
 
-
-        
-
 if __name__ == "__main__":
-    #api.app.run(debug=True)
-    thread = threading.Thread(target=api.app.run)
-    thread.start()
+    # web_backend.app.run(debug=True)
+    # Start the Gunicorn server as a subprocess
+    gunicorn_command = [
+        "gunicorn",
+        "-w",
+        "4",
+        "-b",
+        my_socket.get_local_ip() + ":5000",
+        "web_backend:app",
+    ]
+    print("Starting Gunicorn server: %s" % " ".join(gunicorn_command))
+    subprocess.Popen(gunicorn_command)
     # Global variables
     processes = []
     processesSemaphore = threading.Semaphore(1)
@@ -123,18 +138,15 @@ if __name__ == "__main__":
         print("Check constants! Incorrect confiugartion.")
         sys.exit()
     portsSemaphore = threading.Semaphore(1)
-    cursor, connection = db_handling.connect_to_db(host=db_handling.HOST, user=db_handling.USER, password=db_handling.PASSWORD, databse=db_handling.DATABASE)
+    cursor, connection = db_handling.connect_to_db(
+        host=db_handling.HOST,
+        user=db_handling.USER,
+        password=db_handling.PASSWORD,
+        databse=db_handling.DATABASE,
+    )
     if not cursor or not connection:
         print("Unable to connect to databae. Check configuration!")
         sys.exit()
-    dbSemaphore = threading.Semaphore(1)    
+    dbSemaphore = threading.Semaphore(1)
     # Run program
     main()
-
-
-
-
-
-
-
-    
