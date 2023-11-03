@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify, send_from_directory
 import db_handling as DB
 from flask_cors import CORS
+import os
 
-app = Flask(__name__, template_folder=ROUTE)
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROUTE_DIR = os.path.join(ROOT_DIR, "../Frontend/szakdoga/build/")
+
+app = Flask(__name__, static_folder=ROUTE_DIR)
 CORS(app)  # Enable CORS for the entire app
 
 # Simulated data (replace with actual data retrieval logic)
@@ -49,3 +53,18 @@ def get_data():
         data = [id for id, in data]
         return jsonify({"sensor_id_array": data})
     return jsonify({"error": "Missing or invalid parameters"}), 400
+
+
+@app.route("/")
+def index():
+    return app.send_static_file("index.html")
+
+
+@app.route("/manifest.json")
+def serve_manifest():
+    return send_from_directory(ROUTE_DIR, "manifest.json")
+
+
+@app.route("/static/<path:filename>")
+def serve_static(filename):
+    return send_from_directory(ROUTE_DIR + "/static", filename)
