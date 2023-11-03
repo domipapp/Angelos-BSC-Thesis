@@ -1,15 +1,15 @@
-import my_port
-import my_socket
-import data_handling
-import db_handling
-import web_backend
 import socket
 import select
 import threading
 import sys
 import copy
 import time
-import subprocess
+import sys
+from common import db_handling
+from common import my_socket
+from . import data_handling
+from . import my_port
+
 
 MAX_PORT = 10
 PORT_START = 9000
@@ -17,6 +17,28 @@ PORT_END = 9999
 MAX_RETRYS = 1
 TIMEOUT_SEC = 130
 CLOSING_STRING = "close"
+
+processes = []
+
+processesSemaphore = threading.Semaphore(1)
+portsSemaphore = threading.Semaphore(1)
+dbSemaphore = threading.Semaphore(1)
+
+cursor, connection = db_handling.connect_to_db(
+    host=db_handling.HOST,
+    user=db_handling.USER,
+    password=db_handling.PASSWORD,
+    databse=db_handling.DATABASE,
+)
+if not cursor or not connection:
+    print("Unable to connect to databae. Check configuration!")
+    sys.exit()
+
+try:
+    Ports = my_port.MyPort(portStart=PORT_START, portEnd=PORT_END, portMax=MAX_PORT)
+except:
+    print("Check constants! Incorrect confiugartion.")
+    sys.exit()
 
 
 def process_socket_handle(clientSocket: socket.socket):
@@ -114,39 +136,3 @@ def main():
             portsSemaphore.acquire()
             Ports.set_port(port=port, used=False, error=True)
             portsSemaphore.release()
-
-
-if __name__ == "__main__":
-    # web_backend.app.run(debug=True)
-    # Start the Gunicorn server as a subprocess
-    gunicorn_command = [
-        "gunicorn",
-        "-w",
-        "4",
-        "-b",
-        my_socket.get_local_ip() + ":5000",
-        "web_backend:app",
-    ]
-    print("Starting Gunicorn server: %s" % " ".join(gunicorn_command))
-    subprocess.Popen(gunicorn_command)
-    # Global variables
-    processes = []
-    processesSemaphore = threading.Semaphore(1)
-    try:
-        Ports = my_port.MyPort(portStart=PORT_START, portEnd=PORT_END, portMax=MAX_PORT)
-    except:
-        print("Check constants! Incorrect confiugartion.")
-        sys.exit()
-    portsSemaphore = threading.Semaphore(1)
-    cursor, connection = db_handling.connect_to_db(
-        host=db_handling.HOST,
-        user=db_handling.USER,
-        password=db_handling.PASSWORD,
-        databse=db_handling.DATABASE,
-    )
-    if not cursor or not connection:
-        print("Unable to connect to databae. Check configuration!")
-        sys.exit()
-    dbSemaphore = threading.Semaphore(1)
-    # Run program
-    main()

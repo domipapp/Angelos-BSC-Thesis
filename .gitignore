@@ -6,13 +6,15 @@
 **/.DS_Store
 **/abrak
 **/kepek
+**/szakdolgozat.pdf
+**/Dokumentacio/szakdolgozat/
 MCU/TouchGFX/build
 # But include:
 !/.git
 !/.gitignore
 !/MCU
 !/MCU_Mac
-!/Backend
+!/Server
 !/Dokumentacio
 !/Frontend
 !/Database
