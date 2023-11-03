@@ -35,6 +35,12 @@ class MyChart extends Component {
     zoomValue: true,
     panValue: true,
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.data !== this.props.data) {
+    }
+  }
+
   render() {
     const { zoomValue, panValue, zoomArgument, panArgument } = this.state;
     const chartData = this.props.data;

@@ -9,18 +9,33 @@ class NavBar extends Component {
     return (
       <nav className="navbar navbar-expand-sm  navbar-light bg-light ">
         <Link className="navbar-brand" to="/">
-          Vidly
+          Angelos
         </Link>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            {ids.map((id) => (
-              <NavLink
-                className="nav-item nav-link"
-                to={`/sensor/${id}`}
-                key={id}>
-                {id}
-              </NavLink>
-            ))}
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Show sensor
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {ids.map((id) => (
+                    <NavLink
+                      className="dropdown-item"
+                      to={`/sensor/${id}`}
+                      key={id}>
+                      {id}
+                    </NavLink>
+                  ))}
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
