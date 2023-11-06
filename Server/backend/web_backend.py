@@ -4,7 +4,7 @@ from flask_cors import CORS
 import os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-ROUTE_DIR = os.path.join(ROOT_DIR, "../Frontend/szakdoga/build/")
+ROUTE_DIR = os.path.join(ROOT_DIR, "../../Frontend/angelos/build/")
 
 app = Flask(__name__, static_folder=ROUTE_DIR)
 CORS(app)  # Enable CORS for the entire app
