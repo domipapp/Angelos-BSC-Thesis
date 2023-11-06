@@ -7,7 +7,7 @@ class NavBar extends Component {
     const { ids } = this.props;
 
     return (
-      <nav className="navbar navbar-expand-sm  navbar-light bg-light ">
+      <nav className="navbar navbar-expand  navbar-light bg-light ">
         <Link className="navbar-brand" to="/">
           Angelos
         </Link>

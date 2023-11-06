@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import QueryClientProviderWrapper from "./components/queryClient";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "@devexpress/dx-react-chart-bootstrap4/dist/dx-react-chart-bootstrap4.css";
@@ -11,7 +12,9 @@ import "@devexpress/dx-react-chart-bootstrap4/dist/dx-react-chart-bootstrap4.css
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <App />
+    <QueryClientProviderWrapper>
+      <App />
+    </QueryClientProviderWrapper>
   </BrowserRouter>
 );
 

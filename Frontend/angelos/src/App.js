@@ -3,7 +3,6 @@ import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import Charts from "./components/charts";
 import NavBar from "./components/navBar";
-import TestChart from "./test/testChart";
 import "./App.css";
 
 class App extends Component {
@@ -28,7 +27,6 @@ class App extends Component {
     return (
       <div>
         <NavBar ids={sensor_id_array} />
-        <TestChart />
         <Routes>
           <Route path="/sensor/:id" Component={Charts} />
         </Routes>
