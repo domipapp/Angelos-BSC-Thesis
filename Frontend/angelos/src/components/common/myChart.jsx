@@ -19,16 +19,26 @@ import RangeSelector, {
   Behavior,
 } from "devextreme-react/range-selector";
 
+import { calculateDataMin } from "../../utils/calculateDataMin";
+import { transformRangeSelectorData } from "../../utils/transformRangeSelectorData";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const dataMin = calculateDataMin(props.data);
+    const rangeSelectorData = transformRangeSelectorData(props.data, dataMin);
     this.state = {
       visualRange: { startValue: 10, endValue: 880 },
+      dataMin: dataMin,
+      rangeSelectorData: rangeSelectorData,
+      startValue: rangeSelectorData[0].date,
+      endValue: rangeSelectorData[rangeSelectorData.length - 1].date,
     };
 
     this.updateVisualRange = this.updateVisualRange.bind(this);
     this.chartRef = React.createRef();
   }
+
   handleRefreshClick = () => {
     const { current } = this.chartRef;
     if (current && current.instance) {
@@ -38,16 +48,25 @@ class App extends React.Component {
       });
     }
   };
+
   componentDidUpdate(prevProps) {
     this.handleRefreshClick();
     if (prevProps.data !== this.props.data) {
-      this.dataMin = Math.min(...this.props.data.map((item) => item.value));
-      this.rangeSelectorData = this.props.data.map((item) => ({
-        date: item.date,
-        value: item.value - this.dataMin,
-      }));
-      this.startValue = this.props.data[0].date;
-      this.endValue = this.props.data[this.props.data.length - 1].date;
+      console.log("componentDidUpdate");
+      const dataMin = calculateDataMin(this.props.data);
+      const rangeSelectorData = transformRangeSelectorData(
+        this.props.data,
+        dataMin
+      );
+      const startValue = this.props.data[0].date;
+      const endValue = this.props.data[this.props.data.length - 1].date;
+
+      this.setState({
+        dataMin: dataMin,
+        rangeSelectorData: rangeSelectorData,
+        startValue: startValue,
+        endValue: endValue,
+      });
     }
   }
 
@@ -61,17 +80,10 @@ class App extends React.Component {
   }
   // Define label visibility here, outside of the render method
   rangeSelectorLabelConfig = { visible: false };
-  dataMin = Math.min(...this.props.data.map((item) => item.value));
-  rangeSelectorData = this.props.data.map((item) => ({
-    date: item.date,
-    value: item.value - this.dataMin,
-  }));
-  startValue = this.props.data[0].date;
-  endValue = this.props.data[this.props.data.length - 1].date;
 
   render() {
     const { data } = this.props;
-    const { rangeSelectorData, startValue, endValue } = this;
+    const { rangeSelectorData, startValue, endValue } = this.state;
     return (
       <React.Fragment>
         <div className="container">
