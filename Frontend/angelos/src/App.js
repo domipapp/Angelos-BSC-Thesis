@@ -28,7 +28,7 @@ class App extends Component {
       <div>
         <NavBar ids={sensor_id_array} />
         <Routes>
-          <Route path="/sensor/:id" Component={Charts} />
+          <Route path="/sensor/:id" element={<Charts />} />
         </Routes>
       </div>
     );
