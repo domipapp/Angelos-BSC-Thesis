@@ -24,7 +24,7 @@ const Charts = () => {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>Loading data...</p>;
   }
 
   if (error) {
