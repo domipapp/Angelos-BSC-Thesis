@@ -1,0 +1,50 @@
+.cool-text-rotator {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  background: linear-gradient(to bottom right, #3498db, #e74c3c);
+  background-size: cover;
+  overflow: hidden;
+}
+
+.cool-text-content {
+  transform: translateZ(0);
+  transition: transform 2s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  text-align: center; /* Center the text horizontally */
+}
+
+.username {
+  display: inline-block;
+  color: #f1620fa2;
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transform: rotateX(0deg) rotateY(0deg);
+  animation: rotate 6s linear infinite;
+  margin: 0; /* Remove any default margin */
+}
+
+.welcomeMessage {
+  color: #f1620fa2;
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Times New Roman", Times, serif;
+  margin: 0; /* Remove any default margin */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(360deg);
+  }
+}

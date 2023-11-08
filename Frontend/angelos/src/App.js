@@ -3,6 +3,7 @@ import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import Charts from "./components/charts";
 import NavBar from "./components/navBar";
+import CoolTextRotator from "./components/coolTextRotator";
 import "./App.css";
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
         <NavBar ids={sensor_id_array} />
         <Routes>
           <Route path="/sensor/:id" element={<Charts />} />
+          <Route path="/" element={<CoolTextRotator username={"Alma"} />} />
         </Routes>
       </div>
     );
