@@ -29,7 +29,7 @@ def get_data():
             query=f"SELECT temperature, time_of_measurement FROM measurements WHERE sensor_id = {id};",
         )
         formattedTempData = [
-            (temperature, time.strftime("%Y-%m-%d %H:%M:%S"))
+            (time.strftime("%Y-%m-%d %H:%M:%S"), temperature)
             for temperature, time in data
         ]
         data = DB.send_query(
@@ -38,7 +38,7 @@ def get_data():
             query=f"SELECT humidity, time_of_measurement FROM measurements WHERE sensor_id = {id};",
         )
         formattedHumidData = [
-            (humidity, time.strftime("%Y-%m-%d %H:%M:%S")) for humidity, time in data
+            (time.strftime("%Y-%m-%d %H:%M:%S"), humidity) for humidity, time in data
         ]
         return jsonify({"temp": formattedTempData, "humid": formattedHumidData})
 
