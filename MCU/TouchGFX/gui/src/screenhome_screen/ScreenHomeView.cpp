@@ -48,7 +48,6 @@ void ScreenHomeView::buttonDisconnectClicked(){
 	osEventFlagsSet(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_REQUEST);
 	osEventFlagsWait(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_SUCCESSFUL, osFlagsWaitAll, osWaitForever);
 	osSemaphoreRelease(semaphoreTransitionFromHomeByButtonDisconnectHandle);
-	osThreadSuspend(ReadSensorDataHandle);
 }
 
 void ScreenHomeView::buttonSettingsClicked(){

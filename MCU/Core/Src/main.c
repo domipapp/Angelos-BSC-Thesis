@@ -1328,6 +1328,7 @@ void prvTaskDisconnect(void *argument)
     // Signal successful disconnection
     osEventFlagsSet(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_SUCCESSFUL);
     osThreadSuspend(SendDataWithESPHandle);
+    osThreadSuspend(ReadSensorDataHandle);
   }
   /* USER CODE END prvTaskDisconnect */
 }
