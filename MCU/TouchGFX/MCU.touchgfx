@@ -947,7 +947,7 @@
             "InteractionName": "displayTemperatureAndHumidity",
             "Trigger": {
               "Type": "TriggerOnEveryTick",
-              "TickCount": 30
+              "TickCount": 1
             },
             "Action": {
               "Type": "ActionCustom",

@@ -7,7 +7,6 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 ScreenHomeViewBase::ScreenHomeViewBase() :
-    frameCountDisplayTemperatureAndHumidityInterval(0),
     buttonCallback(this, &ScreenHomeViewBase::buttonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
@@ -129,13 +128,8 @@ void ScreenHomeViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
 
 void ScreenHomeViewBase::handleTickEvent()
 {
-    frameCountDisplayTemperatureAndHumidityInterval++;
-    if(frameCountDisplayTemperatureAndHumidityInterval == TICK_DISPLAYTEMPERATUREANDHUMIDITY_INTERVAL)
-    {
-        //displayTemperatureAndHumidity
-        //When every N tick call virtual function
-        //Call displayTemperatureAndHumidity
-        displayTemperatureAndHumidity();
-        frameCountDisplayTemperatureAndHumidityInterval = 0;
-    }
+    //displayTemperatureAndHumidity
+    //When every N tick call virtual function
+    //Call displayTemperatureAndHumidity
+    displayTemperatureAndHumidity();
 }

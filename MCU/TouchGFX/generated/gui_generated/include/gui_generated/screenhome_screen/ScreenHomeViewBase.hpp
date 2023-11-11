@@ -71,12 +71,6 @@ protected:
 private:
 
     /*
-     * Tick Counter Declarations
-     */
-    static const uint32_t TICK_DISPLAYTEMPERATUREANDHUMIDITY_INTERVAL = 30;
-    uint32_t frameCountDisplayTemperatureAndHumidityInterval;
-
-    /*
      * Callback Declarations
      */
     touchgfx::Callback<ScreenHomeViewBase, const touchgfx::AbstractButton&> buttonCallback;
