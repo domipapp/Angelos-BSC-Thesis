@@ -13,7 +13,6 @@ MCU/TouchGFX/build
 !/.git
 !/.gitignore
 !/MCU
-!/MCU_Mac
 !/Server
 !/Dokumentacio
 !/Frontend
