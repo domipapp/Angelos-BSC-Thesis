@@ -16,6 +16,7 @@
   *
   ******************************************************************************
   */
+#include <main.h>
 /* USER CODE END Header */
 
 /* USER CODE BEGIN STM32TouchController */
@@ -50,7 +51,9 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
      *
      */
     TS_State_t  TS_State = { 0 };
+    osMutexAcquire(MutexI2C4Handle, osWaitForever);
     BSP_TS_GetState(0, &TS_State);
+    osMutexRelease(MutexI2C4Handle);
     if (TS_State.TouchDetected)
     {
         x = TS_State.TouchX;

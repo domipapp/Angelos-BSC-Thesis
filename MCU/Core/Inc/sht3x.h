@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdbool.h>
+#include <main.h>
 
 #if (defined STM32L011xx) || (defined STM32L021xx) || \
 	(defined STM32L031xx) || (defined STM32L041xx) || \

@@ -73,14 +73,17 @@ bool sht3x_init(sht3x_handle_t *handle)
 
 bool sht3x_read_temperature_and_humidity(sht3x_handle_t *handle, float *temperature, float *humidity)
 {
+	osMutexAcquire(MutexI2C4Handle, osWaitForever);
 	sht3x_send_command(handle, SHT3X_COMMAND_MEASURE_HIGHREP_STRETCH);
-
+	osMutexRelease(MutexI2C4Handle);
 	HAL_Delay(1);
 
 	uint8_t buffer[6];
+	osMutexAcquire(MutexI2C4Handle, osWaitForever);
 	if (HAL_I2C_Master_Receive(handle->i2c_handle, handle->device_address << 1u, buffer, sizeof(buffer), SHT3X_I2C_TIMEOUT) != HAL_OK) {
 		return false;
 	}
+	osMutexRelease(MutexI2C4Handle);
 
 	uint8_t temperature_crc = calculate_crc(buffer, 2);
 	uint8_t humidity_crc = calculate_crc(buffer + 3, 2);

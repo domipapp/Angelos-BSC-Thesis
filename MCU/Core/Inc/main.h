@@ -57,6 +57,8 @@ extern osEventFlagsId_t eventESPServerConnectedHandle;
 extern osEventFlagsId_t eventDisconnectHandle;
 
 extern osMessageQueueId_t queueTouchgfxTempAndHumidHandle;
+
+extern osMutexId_t MutexI2C4Handle;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -109,20 +111,20 @@ void Error_Handler(void);
 #define CHE_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
-#define BOARD_UNIQUE_ID '1'			/*	This is the unique identifier of the board.
+#define BOARD_UNIQUE_ID '5'			/*	This is the unique identifier of the board.
 										Used in the database, web etc.
 										Declared as a string here, but ID is the number in the string!*/
 
 #define DATA_FREQUENCY "5000"		// 5000ms data frequency
 #define RECEIVED_MESSAGE_SIZE 512	// Max size for ESP message
-#define IP_ADDRESS "172.20.10.2"	// Server IP Address
+#define IP_ADDRESS "192.168.1.71"	// Server IP Address
 #define PORT "9000"					// Server Port number
 // AT command for connecting to server
 #define SERVER_CONNECT "AT+CIPSTART=\"TCP\",\""IP_ADDRESS"\","PORT"\r\n"
 
-#define WIFI_SSID "Dominik's iPhone"	// Local WIFI SSID
+#define WIFI_SSID "Telekom-072404"	// Local WIFI SSID
 
-#define WIFI_PASS "absmtkd9pbp2"// Local WIFI password
+#define WIFI_PASS "atc7habf4xt6"// Local WIFI password
 
 // AT command for connecting to wifi
 #define WIFI_CONNECT "AT+CWJAP=\""WIFI_SSID"\",\""WIFI_PASS"\"\r\n"

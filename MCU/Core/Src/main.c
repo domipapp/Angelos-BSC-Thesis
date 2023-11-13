@@ -156,6 +156,11 @@ osMessageQueueId_t queueTouchgfxTempAndHumidHandle;
 const osMessageQueueAttr_t queueTouchgfxTempAndHumid_attributes = {
   .name = "queueTouchgfxTempAndHumid"
 };
+/* Definitions for MutexI2C4 */
+osMutexId_t MutexI2C4Handle;
+const osMutexAttr_t MutexI2C4_attributes = {
+  .name = "MutexI2C4"
+};
 /* Definitions for semaphoreHaltUntilString */
 osSemaphoreId_t semaphoreHaltUntilStringHandle;
 const osSemaphoreAttr_t semaphoreHaltUntilString_attributes = {
@@ -315,6 +320,9 @@ int main(void)
 
   /* Init scheduler */
   osKernelInitialize();
+  /* Create the mutex(es) */
+  /* creation of MutexI2C4 */
+  MutexI2C4Handle = osMutexNew(&MutexI2C4_attributes);
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
@@ -390,7 +398,6 @@ int main(void)
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
-  /* Create the event(s) */
   /* creation of eventESPBasicSetUpFinished */
   eventESPBasicSetUpFinishedHandle = osEventFlagsNew(&eventESPBasicSetUpFinished_attributes);
 
@@ -1053,7 +1060,7 @@ bool send_and_recieve(char* send, char* recieve){
         	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_RESPONSE_TIMEOUT);
         	return send_and_recieve(send, recieve);
     	}
-
+    osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
     	return false;
     }
 }
@@ -1111,7 +1118,7 @@ void prvTaskSendDataWithESP(void *argument)
 
 	    // Send CMD to send data
 	    osSemaphoreAcquire(semaphoreUARTHandle, osWaitForever);
-	    if(!send_and_recieve((char*) cipsendString, "OK\r\n"))
+	    if(!send_and_recieve((char*) cipsendString, ">"))
 	    	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
 
 	    // Send data
