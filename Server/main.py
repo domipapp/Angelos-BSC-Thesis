@@ -13,8 +13,11 @@ if __name__ == "__main__":
         "4",
         "-b",
         my_socket.get_local_ip() + ":5000",
+        "--log-level",
+        "debug",
         "backend.web_backend:app",
     ]
+
     print("Starting Gunicorn server: %s" % " ".join(gunicorn_command))
     subprocess.Popen(gunicorn_command)
 
