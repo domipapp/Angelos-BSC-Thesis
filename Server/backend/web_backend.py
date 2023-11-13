@@ -55,11 +55,6 @@ def get_data():
     return jsonify({"error": "Missing or invalid parameters"}), 400
 
 
-@app.route("/")
-def index():
-    return app.send_static_file("index.html")
-
-
 @app.route("/manifest.json")
 def serve_manifest():
     return send_from_directory(ROUTE_DIR, "manifest.json")
@@ -68,3 +63,10 @@ def serve_manifest():
 @app.route("/static/<path:filename>")
 def serve_static(filename):
     return send_from_directory(ROUTE_DIR + "/static", filename)
+
+
+# Add a catch-all route to serve the main HTML file for any route
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def catch_all(path):
+    return app.send_static_file("index.html")
