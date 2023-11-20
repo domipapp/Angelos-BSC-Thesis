@@ -1038,13 +1038,15 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 }
 
 
-bool send_and_recieve(char* send, char* recieve){
+bool send_and_recieve(char* send, char* recieve, bool useSemaphore){
 
     // Set expected response
     osSemaphoreAcquire(semaphoreHaltUntilStringHandle, osWaitForever);
     strcpy((char*) expectedESPResponse, recieve);
     osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
+    if(useSemaphore)// TODO: handle semaphore usage properly
+    	osSemaphoreAcquire(semaphoreUARTHandle, osWaitForever);
     HAL_UART_Transmit(&huart2, (uint8_t*) send, strlen(send), HAL_MAX_DELAY);
 
     // wait for 5000ms to get response
@@ -1052,14 +1054,21 @@ bool send_and_recieve(char* send, char* recieve){
 
     if (flags & EVENT_FLAG_ESP_RESPONSE_VALID) {
         // Valid response received
+    	if(useSemaphore)
+    		osSemaphoreRelease(semaphoreUARTHandle);
     	return true;
     } else {
         // Timeout occurred
     	// Retry once
     	if(!(osEventFlagsGet(eventESPResponseHandle) & EVENT_FLAG_ESP_RESPONSE_TIMEOUT)){
         	osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_RESPONSE_TIMEOUT);
-        	return send_and_recieve(send, recieve);
+        	bool ret = send_and_recieve(send, recieve, false);
+        	if(useSemaphore)
+        		osSemaphoreRelease(semaphoreUARTHandle);
+        	return ret;
     	}
+    	if(useSemaphore)
+    		osSemaphoreRelease(semaphoreUARTHandle);
     osEventFlagsSet(eventESPResponseHandle, EVENT_FLAG_ESP_ERROR);
     	return false;
     }
@@ -1118,10 +1127,10 @@ void prvTaskSendDataWithESP(void *argument)
 
 	    // Send CMD to send data
 	    osSemaphoreAcquire(semaphoreUARTHandle, osWaitForever);
-	    send_and_recieve((char*) cipsendString, ">");
+	    send_and_recieve((char*) cipsendString, ">", false);
 
 	    // Send data
-	    send_and_recieve((char*) dataString, "OK\r\n");
+	    send_and_recieve((char*) dataString, "OK\r\n", false);
 	    osSemaphoreRelease(semaphoreUARTHandle);
 
   }
@@ -1144,15 +1153,15 @@ void prvTaskSetUpESP(void *argument)
 	  // Halts threads until setup complete
 	  	// Make configurations so user doesnt have to wait so long
 	  	  // Restart ESP
-	  	    send_and_recieve("AT+RST\r\n", "ready\r\n");
+	  	    send_and_recieve("AT+RST\r\n", "ready\r\n", true);
 
 	  	  // Disable echo mode on ESP
-	  	    send_and_recieve("ATE0\r\n", "OK\r\n");
+	  	    send_and_recieve("ATE0\r\n", "OK\r\n", true);
 
 	  	  // Configure ESP so it is able to connect to wifi and server
-	  	    send_and_recieve("AT+CIPMODE=0\r\n", "OK\r\n");
+	  	    send_and_recieve("AT+CIPMODE=0\r\n", "OK\r\n", true);
 
-	  	    send_and_recieve("AT+CWMODE=1\r\n", "OK\r\n");
+	  	    send_and_recieve("AT+CWMODE=1\r\n", "OK\r\n", true);
 
 	  	  // Signal setup finish
 	  		osEventFlagsSet(eventESPBasicSetUpFinishedHandle, EVENT_FLAG_ESP_BASIC_SETUP_FINISHED);
@@ -1260,7 +1269,7 @@ void prvTaskConnectToWifi(void *argument)
 
   	  // Connect to WIFI
   	    snprintf(command, sizeof(command), "AT+CWJAP=\"%s\",\"%s\"\r\n", wifi_ssid, wifi_pass);
-  	    send_and_recieve(command, "OK");
+  	    send_and_recieve(command, "OK", true);
 
   	    osEventFlagsSet(eventESPWifiConnectedHandle, EVENT_FLAG_ESP_WIFI_CONNECTED);
   }
@@ -1290,7 +1299,7 @@ void prvTaskConnectToServer(void *argument)
 		osEventFlagsWait(eventESPWifiConnectedHandle, EVENT_FLAG_ESP_WIFI_CONNECTED,  osFlagsWaitAny, osWaitForever);
   	  //Connect to server
   	    snprintf(command, sizeof(command), "AT+CIPSTART=\"TCP\",\"%s\",%s\r\n", server_ip, server_port);
-  	    send_and_recieve(command, "OK\r\n");
+  	    send_and_recieve(command, "OK\r\n", true);
 
   	  osEventFlagsSet(eventESPServerConnectedHandle, EVENT_FLAG_ESP_SERVER_CONNECTED);
   }
@@ -1314,13 +1323,13 @@ void prvTaskDisconnect(void *argument)
 
     // Disconnect from server
     osSemaphoreAcquire(semaphoreUARTHandle, osWaitForever);
-    send_and_recieve("AT+CIPSEND=6\r\n", "OK\r\n");
+    send_and_recieve("AT+CIPSEND=6\r\n", "OK\r\n", false);
 
-    send_and_recieve("closeq", "CLOSED\r\n");
+    send_and_recieve("closeq", "CLOSED\r\n", false);
     osSemaphoreRelease(semaphoreUARTHandle);
 
     // Disconnect from wifi
-	send_and_recieve("AT+CWQAP\r\n", "OK");
+	send_and_recieve("AT+CWQAP\r\n", "OK", true);
     // Signal successful disconnection
     osEventFlagsSet(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_SUCCESSFUL);
     osThreadSuspend(SendDataWithESPHandle);
