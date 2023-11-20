@@ -1045,7 +1045,7 @@ bool send_and_recieve(char* send, char* recieve, bool useSemaphore){
     strcpy((char*) expectedESPResponse, recieve);
     osSemaphoreRelease(semaphoreHaltUntilStringHandle);
 
-    if(useSemaphore)// TODO: handle semaphore usage properly
+    if(useSemaphore)
     	osSemaphoreAcquire(semaphoreUARTHandle, osWaitForever);
     HAL_UART_Transmit(&huart2, (uint8_t*) send, strlen(send), HAL_MAX_DELAY);
 
