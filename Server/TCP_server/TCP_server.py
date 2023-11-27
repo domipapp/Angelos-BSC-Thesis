@@ -15,7 +15,7 @@ MAX_PORT = 10
 PORT_START = 9000
 PORT_END = 9999
 MAX_RETRYS = 1
-TIMEOUT_SEC = 130
+TIMEOUT_SEC = 10
 CLOSING_STRING = "close"
 
 processes = []
@@ -46,6 +46,7 @@ def process_socket_handle(clientSocket: socket.socket):
     data = ""
     while True:
         # Wait for data to be received or for the timeout to expire
+
         ready_sockets, _, _ = select.select([clientSocket], [], [], TIMEOUT_SEC)
 
         if len(ready_sockets) == 0:
@@ -74,6 +75,8 @@ def process_socket_handle(clientSocket: socket.socket):
             dbSemaphore.acquire()
             db_handling.send_query(cursor=cursor, connection=connection, query=query)
             dbSemaphore.release()
+        elif data == None and binaryData == None:  # Client disconnected
+            return
 
 
 # If a port has closed, update Ports object
