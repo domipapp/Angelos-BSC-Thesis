@@ -123,7 +123,7 @@ def main():
         serverSocket = socket.socket()
         try:
             serverSocket = my_socket.set_up_socket(maxRetrys=MAX_RETRYS, port=port)
-            clientSocket, serverSocket = my_socket.connect_client(serverSocket)
+            clientSocket = my_socket.connect_client(serverSocket)
             thread = threading.Thread(
                 target=process_socket_handle, args=(clientSocket,)
             )
