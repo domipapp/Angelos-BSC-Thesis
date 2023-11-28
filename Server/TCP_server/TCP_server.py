@@ -105,6 +105,11 @@ def process_release_past_used_ports():
         for portNum, used, error in ports:
             if error:
                 time.sleep(30)  # Wait a little for port to be freed by OS
+                if not my_socket.test_port(portNum=portNum):  # still in use
+                    portsSemaphore.acquire()
+                    Ports.get_new_port([portNum, used, error])
+                    portsSemaphore.release()
+                    continue
                 portsSemaphore.acquire()
                 Ports.set_port(port=portNum, used=False, error=False)
                 portsSemaphore.release()

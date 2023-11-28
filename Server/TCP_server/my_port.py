@@ -39,28 +39,26 @@ class MyPort:
 
     # Is port already in ports list
     def _is_port_usable(self, num):
-        if num in self._ports:
-            return False
+        for port_num, _, _ in self._ports:
+            if port_num == num:
+                return False
         return True
 
     # Changes the port to a new valid one. Overwrites the ports list
     # Returns the new port
-    def get_new_port(self, port):
+    def get_new_port(self, portListElement):
         try:
-            index = self._ports.index([port, True, False])
+            index = self._ports.index(portListElement)
         except ValueError:
             raise ValueError
-        newPortNum = self.PORT_START
 
-        while True:
+        for newPortNum in range(self.PORT_START, self.PORT_END):
             if self._is_range_valid_port(newPortNum) and self._is_port_usable(
                 newPortNum
             ):
-                self._ports[index] = [newPortNum, True, False]
-                break
-            else:
-                newPortNum += 1
-        return self._ports[index][0]
+                self._ports[index] = [newPortNum, False, False]
+                return newPortNum
+        raise ValueError
 
     # Set a port status
     def set_port(self, port, used, error):
