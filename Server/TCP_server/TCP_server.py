@@ -133,7 +133,7 @@ def main():
         except:
             portsSemaphore.release()
             continue  # Wait until new port frees up
-        serverSocket = socket.socket()
+
         try:
             serverSocket = my_socket.set_up_socket(maxRetrys=MAX_RETRYS, port=port)
             clientSocket = my_socket.connect_client(serverSocket)
@@ -150,7 +150,4 @@ def main():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "main":
-        main()
-    else:
-        print("Usage: python3 TCP_server.py main")
+    main()
