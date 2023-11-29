@@ -102,7 +102,7 @@ def thread_update_ports():
 
 
 # Sometimes a port might be unavailable and is flagged used
-def thread_release_past_used_ports():
+def thread_release_bindError_ports():
     while True:
         portsSemaphore.acquire()
         ports = Ports.get_ports_list()
@@ -123,7 +123,7 @@ def thread_release_past_used_ports():
 def main():
     thread = threading.Thread(target=thread_update_ports)
     thread.start()
-    thread = threading.Thread(target=thread_release_past_used_ports)
+    thread = threading.Thread(target=thread_release_bindError_ports)
     thread.start()
     while True:
         try:
