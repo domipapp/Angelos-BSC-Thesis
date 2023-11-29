@@ -1,4 +1,5 @@
 from typing import List, Tuple
+import copy
 
 
 class MyPort:
@@ -69,5 +70,5 @@ class MyPort:
         return False
 
     # Return the list of ports
-    def get_port_list(self):
-        return self._ports
+    def get_ports_list(self):
+        return copy.deepcopy(self._ports)
