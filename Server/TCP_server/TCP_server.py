@@ -2,7 +2,6 @@ import socket
 import select
 import threading
 import sys
-import copy
 import time
 import sys
 from common import db_handling
@@ -18,9 +17,9 @@ MAX_RETRYS = 1
 TIMEOUT_SEC = 10
 CLOSING_STRING = "close"
 
-processes = []
+threads = []
 
-processesSemaphore = threading.Semaphore(1)
+threadsSemaphore = threading.Semaphore(1)
 portsSemaphore = threading.Semaphore(1)
 dbSemaphore = threading.Semaphore(1)
 
@@ -31,7 +30,7 @@ cursor, connection = db_handling.connect_to_db(
     databse=db_handling.DATABASE,
 )
 if not cursor or not connection:
-    print("Unable to connect to databae. Check configuration!")
+    print("Unable to connect to database. Check configuration!")
     sys.exit()
 
 try:
@@ -41,7 +40,7 @@ except:
     sys.exit()
 
 
-def process_socket_handle(clientSocket: socket.socket):
+def thread_socket_handle(clientSocket: socket.socket):
     binaryData = b""
     data = ""
     while True:
@@ -51,7 +50,7 @@ def process_socket_handle(clientSocket: socket.socket):
 
         if len(ready_sockets) == 0:
             # Timeout expired, assume client disconnected
-            # Main handles closing sockets. Returning from process indicates disconnection
+            # Main handles closing sockets. Returning from thread indicates disconnection
             # The thread stops and it is now detectable that it has stopped
             return
         # Always update binaryData so bytes are not lost
@@ -80,10 +79,10 @@ def process_socket_handle(clientSocket: socket.socket):
 
 
 # If a port has closed, update Ports object
-def process_update_ports():
+def thread_update_ports():
     while True:
-        processesSemaphore.acquire()
-        for serverSocket, clientSocket, thread in processes:
+        threadsSemaphore.acquire()
+        for serverSocket, clientSocket, thread in threads:
             if not thread.is_alive():
                 _, port = serverSocket.getsockname()
                 my_socket.close_socket(
@@ -92,15 +91,15 @@ def process_update_ports():
                 portsSemaphore.acquire()
                 Ports.set_port(port=port, used=False, error=False)
                 portsSemaphore.release()
-                processes.remove([serverSocket, clientSocket, thread])
-        processesSemaphore.release()
+                threads.remove([serverSocket, clientSocket, thread])
+        threadsSemaphore.release()
 
 
 # Sometimes a port might be unavailable and is flagged used
-def process_release_past_used_ports():
+def thread_release_past_used_ports():
     while True:
         portsSemaphore.acquire()
-        ports = copy.deepcopy(Ports.get_port_list())
+        ports = Ports.get_ports_list()
         portsSemaphore.release()
         for portNum, used, error in ports:
             if error:
@@ -116,9 +115,9 @@ def process_release_past_used_ports():
 
 
 def main():
-    thread = threading.Thread(target=process_update_ports)
+    thread = threading.Thread(target=thread_update_ports)
     thread.start()
-    thread = threading.Thread(target=process_release_past_used_ports)
+    thread = threading.Thread(target=thread_release_past_used_ports)
     thread.start()
     while True:
         try:
@@ -132,15 +131,20 @@ def main():
         try:
             serverSocket = my_socket.set_up_socket(maxRetrys=MAX_RETRYS, port=port)
             clientSocket = my_socket.connect_client(serverSocket)
-            thread = threading.Thread(
-                target=process_socket_handle, args=(clientSocket,)
-            )
+            thread = threading.Thread(target=thread_socket_handle, args=(clientSocket,))
             thread.start()
-            processesSemaphore.acquire()
-            processes.append([serverSocket, clientSocket, thread])
-            processesSemaphore.release()
+            threadsSemaphore.acquire()
+            threads.append([serverSocket, clientSocket, thread])
+            threadsSemaphore.release()
         except (ValueError, RuntimeError):
-            processesSemaphore.release()
+            threadsSemaphore.release()
             portsSemaphore.acquire()
             Ports.set_port(port=port, used=False, error=True)
             portsSemaphore.release()
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "main":
+        main()
+    else:
+        print("Usage: python3 TCP_server.py main")
