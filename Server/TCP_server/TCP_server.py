@@ -14,7 +14,7 @@ MAX_PORT = 10
 PORT_START = 9000
 PORT_END = 9999
 MAX_RETRYS = 1
-TIMEOUT_SEC = 10
+TIMEOUT_SEC = 50
 CLOSING_STRING = "close"
 
 threads = []
@@ -42,7 +42,7 @@ except:
 
 def thread_socket_handle(clientSocket: socket.socket):
     binaryData = b""
-    data = ""
+    _, port = clientSocket.getsockname()
     while True:
         # Wait for data to be received or for the timeout to expire
 
@@ -54,28 +54,34 @@ def thread_socket_handle(clientSocket: socket.socket):
             # The thread stops and it is now detectable that it has stopped
             return
         # Always update binaryData so bytes are not lost
-        data, dataDate, binaryData = data_handling.excract_data(
-            clientSocket=clientSocket, binaryData=binaryData
-        )
+        chunk = clientSocket.recv(1024)
+
+        if chunk == b"":  # Client disconnected
+            return
+
+        binaryData += chunk
+        data, dataDate, binaryData = data_handling.extract_data(binaryData=binaryData)
 
         if data != None:
+            print(f"Received message on port {port}: {data}")
             # Explicitly asked to close the socket
             if CLOSING_STRING in data:
                 return
             # Delete bytes, so it doesnt leak into next message
             binaryData = b""
-            if not data_handling.is_data_valid(data):
+
+            try:  # Extract data with format validation
+                id, temp, humidity = data_handling.extract_floats(data)
+            except ValueError:
                 print("Invalid data format")
                 continue
-            id, temp, humidity = data_handling.extract_floats(data)
+
             query = db_handling.make_insert_query(
                 id=id, temp=temp, humidity=humidity, dataDate=dataDate
             )
             dbSemaphore.acquire()
             db_handling.send_query(cursor=cursor, connection=connection, query=query)
             dbSemaphore.release()
-        elif data == None and binaryData == None:  # Client disconnected
-            return
 
 
 # If a port has closed, update Ports object
