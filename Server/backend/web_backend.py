@@ -22,29 +22,23 @@ def get_data():
 
     if id is not None:
         # Ensure to sanitize or validate the "id" value to prevent SQL injection (not shown here).
-
         data = DB.send_query(
             cursor=cursor,
             connection=connection,
-            query=f"SELECT temperature, time_of_measurement FROM measurements WHERE sensor_id = {id};",
+            query=f"SELECT humidity, temperature, time_of_measurement FROM measurements WHERE sensor_id = {id};",
         )
         formattedTempData = [
             (time.strftime("%Y-%m-%d %H:%M:%S"), temperature)
-            for temperature, time in data
+            for _, temperature, time in data
         ]
-        data = DB.send_query(
-            cursor=cursor,
-            connection=connection,
-            query=f"SELECT humidity, time_of_measurement FROM measurements WHERE sensor_id = {id};",
-        )
+
         formattedHumidData = [
-            (time.strftime("%Y-%m-%d %H:%M:%S"), humidity) for humidity, time in data
+            (time.strftime("%Y-%m-%d %H:%M:%S"), humidity) for humidity, _, time in data
         ]
+
         return jsonify({"temp": formattedTempData, "humid": formattedHumidData})
 
     elif "unique_ids" in request.args:
-        # Ensure to sanitize or validate the "idCount" value to prevent SQL injection (not shown here).
-
         data = DB.send_query(
             cursor=cursor,
             connection=connection,
@@ -57,7 +51,7 @@ def get_data():
 
 @app.route("/manifest.json")
 def serve_manifest():
-    return send_from_directory(ROUTE_DIR, "manifest.json")
+    return app.send_static_file("manifest.json")
 
 
 @app.route("/static/<path:filename>")
