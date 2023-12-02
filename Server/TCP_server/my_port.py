@@ -10,7 +10,7 @@ class MyPort:
         self.MAX_PORT_NUMBERS = portMax  # Maximum number of valid ports to be used
         self.PORT_START = portStart  # Starting point for assignable ports
         self.PORT_END = portEnd  # Ending point for assignable ports
-        if portEnd - portStart > portMax:
+        if (portEnd - portStart) > portMax:
             self._set_ports()  # Initiate ports
         else:
             raise ValueError
