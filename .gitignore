@@ -8,6 +8,7 @@
 **/kepek
 **/szakdolgozat.pdf
 **/Dokumentacio/szakdolgozat/
+**/test.py
 MCU/TouchGFX/build
 # But include:
 !/.git
