@@ -1322,11 +1322,7 @@ void prvTaskDisconnect(void *argument)
     osEventFlagsWait(eventDisconnectHandle, EVENT_FLAG_DISCONNECT_REQUEST, osFlagsWaitAny, osWaitForever);
 
     // Disconnect from server
-    osSemaphoreAcquire(semaphoreUARTHandle, osWaitForever);
-    send_and_receive("AT+CIPSEND=6\r\n", "OK\r\n", false);
-
-    send_and_receive("closeq", "CLOSED\r\n", false);
-    osSemaphoreRelease(semaphoreUARTHandle);
+    send_and_receive("AT+CIPCLOSE\r\n", "OK\r\n", false);
 
     // Disconnect from wifi
 	send_and_receive("AT+CWQAP\r\n", "OK", true);

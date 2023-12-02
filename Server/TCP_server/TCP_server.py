@@ -15,7 +15,6 @@ PORT_START = 9000
 PORT_END = 9999
 MAX_RETRYS = 1
 TIMEOUT_SEC = 50
-CLOSING_STRING = "close"
 
 threads = []
 
@@ -64,9 +63,6 @@ def thread_socket_handle(clientSocket: socket.socket):
 
         if data != None:
             print(f"Received message on port {port}: {data}")
-            # Explicitly asked to close the socket
-            if CLOSING_STRING in data:
-                return
             # Delete bytes, so it doesnt leak into next message
             binaryData = b""
 
