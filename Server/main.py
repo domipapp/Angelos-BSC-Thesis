@@ -4,24 +4,30 @@ import backend.web_backend as web_backend
 import subprocess
 import os
 
+# Set this variable to True to use Gunicorn, False to use Flask debug server
+use_gunicorn = True
 
 if __name__ == "__main__":
     try:
-        # web_backend.app.run(debug=True)
-        # Start the Gunicorn server as a subprocess
-        gunicorn_command = [
-            "gunicorn",
-            "-w",
-            "4",
-            "-b",
-            my_socket.get_local_ip() + ":5000",
-            "--log-level",
-            "debug",
-            "backend.web_backend:app",
-        ]
+        if use_gunicorn:
+            # Start the Gunicorn server as a subprocess
+            gunicorn_command = [
+                "gunicorn",
+                "-w",
+                "4",
+                "-b",
+                my_socket.get_local_ip() + ":5000",
+                #   "--log-level",
+                #  "debug",
+                "backend.web_backend:app",
+            ]
 
-        print("Starting Gunicorn server: %s" % " ".join(gunicorn_command))
-        subprocess_webserver = subprocess.Popen(gunicorn_command)
+            print("Starting Gunicorn server: %s" % " ".join(gunicorn_command))
+            subprocess_webserver = subprocess.Popen(gunicorn_command)
+        else:
+            # Start the Flask debug server
+            print("Starting Flask debug server on 192.168.1.71")
+            web_backend.app.run(debug=True, host="192.168.1.71")
 
         print("Starting TCP server")
         subprocess_TCP_server = subprocess.Popen(
@@ -29,7 +35,9 @@ if __name__ == "__main__":
             cwd=os.path.abspath(os.path.join(os.path.dirname(__file__))),
         )
 
-        subprocess_webserver.wait()
+        if use_gunicorn:
+            subprocess_webserver.wait()
+
         subprocess_TCP_server.wait()
 
     except KeyboardInterrupt:
@@ -37,11 +45,15 @@ if __name__ == "__main__":
         print("Keyboard interrupt detected. Stopping subprocesses.")
 
         # Send a signal to terminate the subprocesses
-        subprocess_webserver.terminate()
+        if use_gunicorn:
+            subprocess_webserver.terminate()
+
         subprocess_TCP_server.terminate()
 
         # Wait for subprocesses to finish
-        subprocess_webserver.wait()
+        if use_gunicorn:
+            subprocess_webserver.wait()
+
         subprocess_TCP_server.wait()
 
         print("Subprocesses stopped.")
