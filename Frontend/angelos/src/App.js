@@ -9,14 +9,14 @@ import "./App.css";
 class App extends Component {
   state = {
     sensor_id_array: [],
+    SERVER_API_ADDR: "http://172.20.10.2:5000/api/data",
   };
 
   async componentDidMount() {
     try {
-      const response1 = await axios.get(
-        "http://192.168.1.71:5000/api/data?unique_ids"
-      );
-      const { sensor_id_array } = response1.data;
+      const {
+        data: { sensor_id_array },
+      } = await axios.get(`${this.state.SERVER_API_ADDR}?unique_ids`);
       this.setState({ sensor_id_array });
     } catch (error) {
       console.error("Error in componentDidMount:", error);
@@ -24,12 +24,15 @@ class App extends Component {
   }
 
   render() {
-    const { sensor_id_array } = this.state;
+    const { sensor_id_array, SERVER_API_ADDR } = this.state;
     return (
       <div>
         <NavBar ids={sensor_id_array} />
         <Routes>
-          <Route path="/sensor/:id" element={<Charts />} />
+          <Route
+            path="/sensor/:id"
+            element={<Charts SERVER_API_ADDR={SERVER_API_ADDR} />}
+          />
           <Route path="/" element={<CoolTextRotator username={"Alma"} />} />
         </Routes>
       </div>
