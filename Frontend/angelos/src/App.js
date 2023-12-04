@@ -33,7 +33,7 @@ class App extends Component {
             path="/sensor/:id"
             element={<Charts SERVER_API_ADDR={SERVER_API_ADDR} />}
           />
-          <Route path="/" element={<CoolTextRotator username={"Alma"} />} />
+          <Route path="/" element={<CoolTextRotator username={"User"} />} />
         </Routes>
       </div>
     );
