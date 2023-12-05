@@ -32,7 +32,8 @@ const Charts = ({ SERVER_API_ADDR }) => {
     return <p>Error: {error.message}</p>;
   }
 
-  const { humid, temp } = data;
+  const { humid, temp, min_humidity, min_temperature } = data;
+
   return (
     <React.Fragment>
       <h1>showing {id}</h1>
@@ -46,10 +47,10 @@ const Charts = ({ SERVER_API_ADDR }) => {
         <tbody>
           <tr>
             <td>
-              <MyChart data={transformData(humid)} />
+              <MyChart data={transformData(humid)} dataMin={min_humidity} />
             </td>
             <td>
-              <MyChart data={transformData(temp)} />
+              <MyChart data={transformData(temp)} dataMin={min_temperature} />
             </td>
           </tr>
         </tbody>

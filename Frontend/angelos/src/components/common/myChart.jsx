@@ -25,11 +25,12 @@ import { transformRangeSelectorData } from "../../utils/transformRangeSelectorDa
 class App extends React.Component {
   constructor(props) {
     super(props);
-    const dataMin = calculateDataMin(props.data);
-    const rangeSelectorData = transformRangeSelectorData(props.data, dataMin);
+    const rangeSelectorData = transformRangeSelectorData(
+      props.data,
+      props.dataMin
+    );
     this.state = {
       visualRange: { startValue: 10, endValue: 880 },
-      dataMin: dataMin,
       rangeSelectorData: rangeSelectorData,
       startValue: rangeSelectorData[0].date,
       endValue: rangeSelectorData[rangeSelectorData.length - 1].date,
