@@ -53,7 +53,6 @@ class App extends React.Component {
   componentDidUpdate(prevProps) {
     this.handleRefreshClick();
     if (prevProps.data !== this.props.data) {
-      console.log("componentDidUpdate");
       const dataMin = calculateDataMin(this.props.data);
       const rangeSelectorData = transformRangeSelectorData(
         this.props.data,
