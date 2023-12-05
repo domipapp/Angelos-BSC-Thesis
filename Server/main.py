@@ -5,7 +5,7 @@ import subprocess
 import os
 
 # Set this variable to True to use Gunicorn, False to use Flask debug server
-use_gunicorn = True
+use_gunicorn = False
 
 if __name__ == "__main__":
     try:
@@ -26,8 +26,10 @@ if __name__ == "__main__":
             subprocess_webserver = subprocess.Popen(gunicorn_command)
         else:
             # Start the Flask debug server
-            print("Starting Flask debug server on 192.168.1.71")
-            web_backend.app.run(debug=True, host="192.168.1.71")
+            print(
+                "Starting Flask debug server on " + my_socket.get_local_ip() + ":5000"
+            )
+            web_backend.app.run(debug=True, host=my_socket.get_local_ip(), port=5000)
 
         print("Starting TCP server")
         subprocess_TCP_server = subprocess.Popen(
