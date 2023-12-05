@@ -17,9 +17,9 @@ import RangeSelector, {
   Margin,
   Scale,
   Behavior,
+  Tick,
 } from "devextreme-react/range-selector";
 
-import { calculateDataMin } from "../../utils/calculateDataMin";
 import { transformRangeSelectorData } from "../../utils/transformRangeSelectorData";
 
 class App extends React.Component {
@@ -53,16 +53,14 @@ class App extends React.Component {
   componentDidUpdate(prevProps) {
     this.handleRefreshClick();
     if (prevProps.data !== this.props.data) {
-      const dataMin = calculateDataMin(this.props.data);
       const rangeSelectorData = transformRangeSelectorData(
         this.props.data,
-        dataMin
+        this.props.dataMin
       );
       const startValue = this.props.data[0].date;
       const endValue = this.props.data[this.props.data.length - 1].date;
 
       this.setState({
-        dataMin: dataMin,
         rangeSelectorData: rangeSelectorData,
         startValue: startValue,
         endValue: endValue,

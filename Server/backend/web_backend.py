@@ -41,12 +41,13 @@ def get_data():
         humidityMin, temperatureMin = dataMin[0]
 
         formattedTempData = [
-            (time.strftime("%Y-%m-%d %H:%M:%S"), temperature)
+            {"date": time.strftime("%Y-%m-%d %H:%M:%S"), "value": temperature}
             for _, temperature, time in data
         ]
 
         formattedHumidData = [
-            (time.strftime("%Y-%m-%d %H:%M:%S"), humidity) for humidity, _, time in data
+            {"date": time.strftime("%Y-%m-%d %H:%M:%S"), "value": humidity}
+            for humidity, _, time in data
         ]
 
         return jsonify(

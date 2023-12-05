@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MyChart from "./common/myChart";
-import { transformData } from "../utils/transformData";
 import { useQuery } from "react-query";
 
 const fetchData = async (id, ADDR) => {
@@ -47,10 +46,10 @@ const Charts = ({ SERVER_API_ADDR }) => {
         <tbody>
           <tr>
             <td>
-              <MyChart data={transformData(humid)} dataMin={min_humidity} />
+              <MyChart data={humid} dataMin={min_humidity} />
             </td>
             <td>
-              <MyChart data={transformData(temp)} dataMin={min_temperature} />
+              <MyChart data={temp} dataMin={min_temperature} />
             </td>
           </tr>
         </tbody>
