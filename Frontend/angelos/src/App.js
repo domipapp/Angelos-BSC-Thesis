@@ -9,10 +9,30 @@ import "./App.css";
 class App extends Component {
   state = {
     sensor_id_array: [],
-    SERVER_API_ADDR: "http://172.20.10.2:5000/api/data",
+    SERVER_API_ADDR: "http://152.66.158.117:5000/api/data",
   };
 
   async componentDidMount() {
+    const currentURL = window.location.href;
+    const urlObject = new URL(currentURL);
+
+    if (urlObject.host !== "localhost:3000") {
+      this.setState(
+        {
+          SERVER_API_ADDR: `http://${urlObject.host}/api/data`,
+        },
+        () => {
+          // Callback function to ensure the state is updated before making the API call
+          this.fetchData();
+        }
+      );
+    } else {
+      // If it is localhost, use the default API address
+      this.fetchData();
+    }
+  }
+
+  async fetchData() {
     try {
       const {
         data: { sensor_id_array },
