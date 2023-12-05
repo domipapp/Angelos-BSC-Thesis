@@ -17,30 +17,24 @@ import RangeSelector, {
   Margin,
   Scale,
   Behavior,
-  Tick,
 } from "devextreme-react/range-selector";
 
 import { transformRangeSelectorData } from "../../utils/transformRangeSelectorData";
 
-class App extends React.Component {
+class MyChart extends React.Component {
   constructor(props) {
     super(props);
-    const rangeSelectorData = transformRangeSelectorData(
-      props.data,
-      props.dataMin
-    );
-    this.state = {
-      visualRange: { startValue: 10, endValue: 880 },
-      rangeSelectorData: rangeSelectorData,
-      startValue: rangeSelectorData[0].date,
-      endValue: rangeSelectorData[rangeSelectorData.length - 1].date,
-    };
 
-    this.updateVisualRange = this.updateVisualRange.bind(this);
+    this.state = {
+      visualRange: { startValue: undefined, endValue: undefined },
+      rangeSelectorData: transformRangeSelectorData(props.data, props.dataMin),
+    };
     this.chartRef = React.createRef();
+    this.falseVisibility = { visible: false };
   }
 
-  handleRefreshClick = () => {
+  componentDidUpdate(prevProps) {
+    //refresh chart
     const { current } = this.chartRef;
     if (current && current.instance) {
       current.instance.render({
@@ -48,40 +42,20 @@ class App extends React.Component {
         animate: false, // redraws the UI component without animation
       });
     }
-  };
 
-  componentDidUpdate(prevProps) {
-    this.handleRefreshClick();
     if (prevProps.data !== this.props.data) {
-      const rangeSelectorData = transformRangeSelectorData(
-        this.props.data,
-        this.props.dataMin
-      );
-      const startValue = this.props.data[0].date;
-      const endValue = this.props.data[this.props.data.length - 1].date;
-
       this.setState({
-        rangeSelectorData: rangeSelectorData,
-        startValue: startValue,
-        endValue: endValue,
+        rangeSelectorData: transformRangeSelectorData(
+          this.props.data,
+          this.props.dataMin
+        ),
       });
     }
   }
 
-  updateVisualRange(e) {
-    this.setState({ visualRange: e.value });
-  }
-  customizeTooltip(pointInfo) {
-    return {
-      text: `Date: ${pointInfo.argumentText}\nValue: ${pointInfo.valueText}`,
-    };
-  }
-  // Define label visibility here, outside of the render method
-  rangeSelectorLabelConfig = { visible: false };
-
   render() {
     const { data } = this.props;
-    const { rangeSelectorData, startValue, endValue } = this.state;
+    const { rangeSelectorData } = this.state;
     return (
       <React.Fragment>
         <div className="container">
@@ -99,18 +73,26 @@ class App extends React.Component {
             <ValueAxis>
               <Label format="decimal" />
             </ValueAxis>
-            <Tooltip enabled={true} customizeTooltip={this.customizeTooltip} />
+            <Tooltip
+              enabled={true}
+              customizeTooltip={(pointInfo) => {
+                return {
+                  text: `Date: ${pointInfo.argumentText}\nValue: ${pointInfo.valueText}`,
+                };
+              }}
+            />
           </Chart>
           <RangeSelector
             dataSource={rangeSelectorData}
-            onValueChanged={this.updateVisualRange}>
+            onValueChanged={(e) => {
+              this.setState({ visualRange: e.value });
+            }}>
             <Size height={80} />
             <Margin left={10} />
             <Scale
-              minorTickCount={1}
-              startValue={startValue}
-              endValue={endValue}
-              label={this.rangeSelectorLabelConfig}
+              startValue={rangeSelectorData[0].date}
+              endValue={rangeSelectorData[rangeSelectorData.length - 1].date}
+              label={this.falseVisibility}
             />
 
             <ChartOptions palette="Harmony Light">
@@ -125,4 +107,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default MyChart;
