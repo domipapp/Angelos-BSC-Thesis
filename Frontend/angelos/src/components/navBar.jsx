@@ -8,9 +8,8 @@ const Navbar = ({ ids }) => {
       className="navbar navbar-expand  navbar-light"
       style={{ backgroundColor: "#a7826ca2" }}>
       <div className="container-fluid">
-        <FontAwesomeIcon icon={faMagnifyingGlassChart} flip="horizontal" />
-
         <Link className="navbar-brand" to="/">
+          <FontAwesomeIcon icon={faMagnifyingGlassChart} flip="horizontal" />
           Angelos
         </Link>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
