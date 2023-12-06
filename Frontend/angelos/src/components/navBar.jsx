@@ -5,8 +5,8 @@ import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
 const Navbar = ({ ids }) => {
   return (
     <nav
-      className="navbar navbar-expand  navbar-light"
-      style={{ backgroundColor: "#a7826ca2" }}>
+      className="navbar navbar-expand navbar-light"
+      style={{ backgroundColor: "rgb(236, 181, 107)" }}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <FontAwesomeIcon icon={faMagnifyingGlassChart} flip="horizontal" />

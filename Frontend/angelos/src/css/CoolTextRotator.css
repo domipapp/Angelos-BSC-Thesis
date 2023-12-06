@@ -22,7 +22,7 @@
 
 .username {
   display: inline-block;
-  color: #f1620fa2;
+  color: rgb(236, 181, 107);
   font-size: 4rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -32,7 +32,7 @@
 }
 
 .welcomeMessage {
-  color: #f1620fa2;
+  color: rgb(236, 181, 107);
   font-size: 4rem;
   font-weight: bold;
   text-transform: uppercase;
