@@ -12,32 +12,30 @@ const Navbar = ({ ids }) => {
           <FontAwesomeIcon icon={faMagnifyingGlassChart} flip="horizontal" />
           Angelos
         </Link>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Show sensor
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {ids.map((id) => (
-                    <NavLink
-                      className="dropdown-item"
-                      to={`/sensor/${id}`}
-                      key={id}>
-                      {id}
-                    </NavLink>
-                  ))}
-                </ul>
-              </li>
-            </ul>
-          </div>
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav">
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Show sensor
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                {ids.map((id) => (
+                  <NavLink
+                    className="dropdown-item"
+                    to={`/sensor/${id}`}
+                    key={id}>
+                    {id}
+                  </NavLink>
+                ))}
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
