@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MyChart from "./common/myChart";
+
 import { useQuery } from "react-query";
 
 const fetchData = async (id, ADDR) => {
@@ -19,7 +20,7 @@ const Charts = ({ SERVER_API_ADDR }) => {
     () => fetchData(id, SERVER_API_ADDR),
     {
       // Set staleTime to control when data is considered stale (e.g., re-fetch after 5 minutes)
-      staleTime: 5 * 60 * 1000, // 5 minutes in milliseconds
+      // staleTime: 5 * 60 * 1000, // 5 minutes in milliseconds
     }
   );
 
