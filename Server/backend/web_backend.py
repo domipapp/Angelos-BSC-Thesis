@@ -30,7 +30,9 @@ def get_data():
             connection=connection,
             query=f"SELECT humidity, temperature, time_of_measurement FROM measurements WHERE sensor_id = {id};",
         )
+        db_semaphore.release()
 
+        db_semaphore.acquire()
         dataMin = DB.send_query(
             cursor=cursor,
             connection=connection,
