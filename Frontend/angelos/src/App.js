@@ -3,20 +3,20 @@ import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import Charts from "./components/charts";
 import NavBar from "./components/navBar";
-import CoolTextRotator from "./components/coolTextRotator";
+import TextRotator from "./components/textRotator";
 import "./App.css";
 
 class App extends Component {
   state = {
     sensor_id_array: [],
-    SERVER_API_ADDR: "http://152.66.158.117:5000/api/data",
+    SERVER_API_ADDR: "http://152.66.158.66:5000/api/data",
   };
 
   async componentDidMount() {
     const currentURL = window.location.href;
     const urlObject = new URL(currentURL);
 
-    if (urlObject.host !== "localhost:3000") {
+    if (urlObject.hostname !== "localhost") {
       this.setState(
         {
           SERVER_API_ADDR: `http://${urlObject.host}/api/data`,
@@ -46,16 +46,16 @@ class App extends Component {
   render() {
     const { sensor_id_array, SERVER_API_ADDR } = this.state;
     return (
-      <div>
+      <React.Fragment>
         <NavBar ids={sensor_id_array} />
         <Routes>
           <Route
             path="/sensor/:id"
             element={<Charts SERVER_API_ADDR={SERVER_API_ADDR} />}
           />
-          <Route path="/" element={<CoolTextRotator username={"User"} />} />
+          <Route path="/" element={<TextRotator username={"User"} />} />
         </Routes>
-      </div>
+      </React.Fragment>
     );
   }
 }

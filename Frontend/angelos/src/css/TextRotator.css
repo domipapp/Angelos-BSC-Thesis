@@ -1,5 +1,5 @@
 /* Styling for the cool text rotator container */
-.cool-text-rotator {
+.text-rotator {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@
 }
 
 /* Apply 3D transformations to create a visually appealing effect */
-.cool-text-content {
+.text-content {
   transform-style: preserve-3d;
   text-align: center; /* Center the text horizontally */
 }
