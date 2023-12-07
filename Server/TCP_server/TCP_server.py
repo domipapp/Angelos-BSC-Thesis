@@ -35,7 +35,7 @@ if not cursor or not connection:
 try:
     Ports = my_port.MyPort(portStart=PORT_START, portEnd=PORT_END, portMax=MAX_PORT)
 except:
-    print("Check constants! Incorrect confiugartion.")
+    print("Check constants! Incorrect configuration.")
     sys.exit()
 
 
